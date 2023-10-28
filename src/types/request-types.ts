@@ -1,13 +1,8 @@
 import { Request } from 'express';
+import { IUserObj } from './user-types';
 
 export interface IExtendedRequest extends Request {
-  currentUser?: IReqUser;
-}
-
-export interface IReqUser {
-  id: string;
-  name: string;
-  email: string;
+  currentUser?: IUserObj;
 }
 
 export interface IDecodedJWTVerify {
