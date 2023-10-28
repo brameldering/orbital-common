@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 
 // Interface describing the User object attributes
 export interface IUserObj {
+  id?: string;
   name: string;
   email: string;
   password: string;

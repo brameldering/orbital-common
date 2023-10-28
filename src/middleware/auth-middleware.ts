@@ -28,7 +28,6 @@ const protect = (req: IExtendedRequest, res: Response, next: NextFunction) => {
   if (!req.currentUser) {
     throw new NotAuthorizedError();
   }
-
   next();
 };
 
