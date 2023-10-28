@@ -63,14 +63,25 @@ export class EnvConfigurationError extends CustomError {
   }
 }
 
-export class RouteNoteFoundError extends CustomError {
+export class RouteNotFoundError extends CustomError {
   statusCode = 404;
   reason = 'Route for this API not found';
   constructor() {
     super('Route for this API not found');
-    Object.setPrototypeOf(this, RouteNoteFoundError.prototype);
+    Object.setPrototypeOf(this, RouteNotFoundError.prototype);
   }
   serializeErrors() {
     return [{ message: this.reason }];
+  }
+}
+
+export class ObjectNotFoundError extends CustomError {
+  statusCode = 404;
+  constructor(public message: string) {
+    super(message);
+    Object.setPrototypeOf(this, ObjectNotFoundError.prototype);
+  }
+  serializeErrors() {
+    return [{ message: this.message }];
   }
 }
