@@ -1,3 +1,4 @@
+// Re-export definitions
 export * from './types/error-types';
 export * from './types/request-types';
 
