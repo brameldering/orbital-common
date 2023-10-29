@@ -85,3 +85,14 @@ export class ObjectNotFoundError extends CustomError {
     return [{ message: this.message }];
   }
 }
+
+export class UserInputError extends CustomError {
+  statusCode = 300;
+  constructor(public message: string) {
+    super(message);
+    Object.setPrototypeOf(this, UserInputError.prototype);
+  }
+  serializeErrors() {
+    return [{ message: this.message }];
+  }
+}
