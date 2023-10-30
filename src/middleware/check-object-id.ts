@@ -9,7 +9,7 @@ export const checkObjectId = (
   next: NextFunction
 ) => {
   if (!isValidObjectId(req.params.id)) {
-    throw new UserInputError(`Invalid ObjectId:  ${req.params.id}`);
+    throw new UserInputError(`Invalid ObjectId: ${req.params.id}`);
   } else {
     next();
   }
