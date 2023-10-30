@@ -22,6 +22,8 @@ export const errorHandler = (
     return res.status(422).send({ errors: [{ message: message }] });
   }
 
+  // Log unexpected error
+  console.error(err);
   // Default error
   res.status(500).send({ errors: [{ message: 'Something went wrong' }] });
   next();
