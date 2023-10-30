@@ -4,7 +4,7 @@ import { IExtendedRequest } from '../types/request-types';
 import { IUserObj } from '../types/user-types';
 import { NotAuthorizedError } from '../types/error-types';
 
-const currentUser = (
+export const currentUser = (
   req: IExtendedRequest,
   res: Response,
   next: NextFunction
@@ -24,7 +24,11 @@ const currentUser = (
   next();
 };
 
-const protect = (req: IExtendedRequest, res: Response, next: NextFunction) => {
+export const protect = (
+  req: IExtendedRequest,
+  res: Response,
+  next: NextFunction
+) => {
   if (!req.currentUser) {
     throw new NotAuthorizedError();
   }
@@ -32,12 +36,14 @@ const protect = (req: IExtendedRequest, res: Response, next: NextFunction) => {
 };
 
 // User must be an admin
-const admin = (req: IExtendedRequest, res: Response, next: NextFunction) => {
+export const admin = (
+  req: IExtendedRequest,
+  res: Response,
+  next: NextFunction
+) => {
   if (req.currentUser?.role === 'admin') {
     next();
   } else {
     throw new NotAuthorizedError();
   }
 };
-
-export { currentUser, protect, admin };
