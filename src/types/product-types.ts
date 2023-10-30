@@ -39,7 +39,7 @@ export interface IProductObj {
   rating?: number;
   price: number;
   countInStock: number;
-  // userId: mongoose.Types.ObjectId;
+  userId: mongoose.Types.ObjectId;
 }
 
 // Interface describing the Product Model
@@ -60,7 +60,7 @@ export interface IProductDoc extends mongoose.Document {
   rating?: number;
   price: number;
   countInStock: number;
-  // userId: mongoose.Types.ObjectId;
+  userId: mongoose.Types.ObjectId;
   _id: mongoose.Types.ObjectId;
   createdAt?: Date;
   updatedAt?: Date;
