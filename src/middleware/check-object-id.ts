@@ -1,4 +1,3 @@
-// @ts-check
 import { Request, Response, NextFunction } from 'express';
 import { isValidObjectId } from 'mongoose';
 
