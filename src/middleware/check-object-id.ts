@@ -10,6 +10,7 @@ export const checkObjectId = (
 ) => {
   if (!isValidObjectId(req.params.id)) {
     throw new UserInputError(`Invalid ObjectId:  ${req.params.id}`);
+  } else {
+    next();
   }
-  next();
 };
