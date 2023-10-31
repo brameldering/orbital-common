@@ -87,7 +87,7 @@ export class ObjectNotFoundError extends CustomError {
 }
 
 export class UserInputError extends CustomError {
-  statusCode = 300;
+  statusCode = 400;
   constructor(public message: string) {
     super(message);
     Object.setPrototypeOf(this, UserInputError.prototype);
