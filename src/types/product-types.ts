@@ -35,7 +35,7 @@ export interface IProductObj {
   category: string;
   description: string;
   numReviews: number;
-  reviews?: IReviewDoc[];
+  reviews?: IReviewDoc[] | [];
   rating?: number;
   price: number;
   countInStock: number;
@@ -56,7 +56,7 @@ export interface IProductDoc extends mongoose.Document {
   category: string;
   description: string;
   numReviews: number;
-  reviews?: IReviewDoc[];
+  reviews?: IReviewDoc[] | [];
   rating?: number;
   price: number;
   countInStock: number;
