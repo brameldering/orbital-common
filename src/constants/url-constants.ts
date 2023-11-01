@@ -1,3 +1,10 @@
+// Id Sequences
+export const ID_SEQUENCE_URL = '/api/idsequence/v2';
+export const ID_SEQUENCE_PRODUCTS_URL = '/api/idsequence/v2/products';
+export const ID_SEQUENCE_ORDERS_URL = '/api/idsequence/v2/orders';
+export const ID_SEQUENCE_CUSTOMERS_URL = '/api/idsequence/v2/customers';
+export const ID_SEQUENCE_INVOICES_URL = '/api/idsequence/v2/invoices';
+
 // Auth / Users
 export const USERS_URL = '/api/users/v2';
 
