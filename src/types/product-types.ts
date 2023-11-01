@@ -15,11 +15,11 @@ export interface IReviewModel extends mongoose.Model<IReviewDoc> {
 
 // Interface describing the Review Document
 export interface IReviewDoc extends mongoose.Document {
+  _id: mongoose.Types.ObjectId;
   userId: mongoose.Types.ObjectId;
   userName: string;
   rating: number;
   comment: string;
-  _id: mongoose.Types.ObjectId;
   createdAt?: Date;
   updatedAt?: Date;
 }
