@@ -36,7 +36,7 @@ class EnvConfigurationError extends CustomError {
 }
 
 class FileUploadError extends CustomError {
-  statusCode = 500;
+  statusCode = 415;
   constructor(public message: string) {
     super(message);
     Object.setPrototypeOf(this, FileUploadError.prototype);

@@ -20,4 +20,4 @@ export const UPDATE_PROFILE_URL = USERS_URL + '/profile';
 
 // Products
 export const PRODUCTS_URL = '/api/products/v2';
-export const UPLOAD_URL = '/api/products/v2/upload';
+export const UPLOAD_URL = PRODUCTS_URL + '/upload';
