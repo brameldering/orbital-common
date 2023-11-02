@@ -13,7 +13,62 @@ export abstract class CustomError extends Error {
   }[];
 }
 
-export class RequestValidationError extends CustomError {
+class DatabaseError extends CustomError {
+  statusCode = 500;
+  constructor(public message: string) {
+    super(message);
+    Object.setPrototypeOf(this, DatabaseError.prototype);
+  }
+  serializeErrors() {
+    return [{ message: this.message }];
+  }
+}
+
+class EnvConfigurationError extends CustomError {
+  statusCode = 500;
+  constructor(public message: string) {
+    super(message);
+    Object.setPrototypeOf(this, EnvConfigurationError.prototype);
+  }
+  serializeErrors() {
+    return [{ message: this.message }];
+  }
+}
+
+class FileUploadError extends CustomError {
+  statusCode = 500;
+  constructor(public message: string) {
+    super(message);
+    Object.setPrototypeOf(this, FileUploadError.prototype);
+  }
+  serializeErrors() {
+    return [{ message: this.message }];
+  }
+}
+
+class NotAuthorizedError extends CustomError {
+  statusCode = 401;
+  constructor() {
+    super('Not authorized');
+    Object.setPrototypeOf(this, NotAuthorizedError.prototype);
+  }
+  serializeErrors() {
+    return [{ message: 'Not authorized' }];
+  }
+}
+
+class ObjectNotFoundError extends CustomError {
+  statusCode = 404;
+  constructor(public message: string) {
+    super(message);
+    Object.setPrototypeOf(this, ObjectNotFoundError.prototype);
+  }
+  serializeErrors() {
+    return [{ message: this.message }];
+  }
+}
+
+class RequestValidationError extends CustomError {
   statusCode = 400;
   constructor(public errors: ValidationError[]) {
     super('Invalid request parameters');
@@ -29,41 +84,7 @@ export class RequestValidationError extends CustomError {
     });
   }
 }
-
-export class NotAuthorizedError extends CustomError {
-  statusCode = 401;
-  constructor() {
-    super('Not authorized');
-    Object.setPrototypeOf(this, NotAuthorizedError.prototype);
-  }
-  serializeErrors() {
-    return [{ message: 'Not authorized' }];
-  }
-}
-
-export class DatabaseError extends CustomError {
-  statusCode = 500;
-  constructor(public message: string) {
-    super(message);
-    Object.setPrototypeOf(this, DatabaseError.prototype);
-  }
-  serializeErrors() {
-    return [{ message: this.message }];
-  }
-}
-
-export class EnvConfigurationError extends CustomError {
-  statusCode = 500;
-  constructor(public message: string) {
-    super(message);
-    Object.setPrototypeOf(this, EnvConfigurationError.prototype);
-  }
-  serializeErrors() {
-    return [{ message: this.message }];
-  }
-}
-
-export class RouteNotFoundError extends CustomError {
+class RouteNotFoundError extends CustomError {
   statusCode = 404;
   reason = 'Route for this API not found';
   constructor() {
@@ -75,18 +96,7 @@ export class RouteNotFoundError extends CustomError {
   }
 }
 
-export class ObjectNotFoundError extends CustomError {
-  statusCode = 404;
-  constructor(public message: string) {
-    super(message);
-    Object.setPrototypeOf(this, ObjectNotFoundError.prototype);
-  }
-  serializeErrors() {
-    return [{ message: this.message }];
-  }
-}
-
-export class UserInputError extends CustomError {
+class UserInputError extends CustomError {
   statusCode = 400;
   constructor(public message: string) {
     super(message);
@@ -96,3 +106,14 @@ export class UserInputError extends CustomError {
     return [{ message: this.message }];
   }
 }
+
+export {
+  DatabaseError,
+  EnvConfigurationError,
+  FileUploadError,
+  NotAuthorizedError,
+  ObjectNotFoundError,
+  RequestValidationError,
+  RouteNotFoundError,
+  UserInputError,
+};
