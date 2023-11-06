@@ -1,3 +1,6 @@
+// Seed Data
+export const SEED_DATA_URL = '/api/seeddata/v2';
+
 // Id Sequences
 export const ID_SEQUENCE_URL = '/api/idsequence/v2';
 export const ID_SEQUENCE_PRODUCTS_URL = '/api/idsequence/v2/products';
