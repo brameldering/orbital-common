@@ -18,7 +18,6 @@ export const RESET_PASSWORD_URL = USERS_URL + '/resetpassword';
 export const UPDATE_PASSWORD_URL = USERS_URL + '/updatepassword';
 export const UPDATE_PROFILE_URL = USERS_URL + '/profile';
 export const ROLES_URL = USERS_URL + '/roles';
-export const ROLES_TO_API_ACCESS_MAP_URL = USERS_URL + '/rolestoapiaccessmap';
 
 // Products
 export const PRODUCTS_URL = '/api/products/v2';
