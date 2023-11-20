@@ -11,6 +11,8 @@ export const currentUser = (
 ) => {
   console.log('==> req.url:', req.url);
   console.log('==> req.method:', req.method);
+  console.log('==> req.params:', req.params);
+  console.log('==> req.query:', req.query);
   if (!req.session?.jwt) {
     // console.log('currentUser req.session.jwt does not exist');
     return next();
