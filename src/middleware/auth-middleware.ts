@@ -34,6 +34,7 @@ const getAccessByApiAndMethod = (
   apiUrl: string,
   method: string
 ): { role: string; apiAccess: IApiAccess[] }[] => {
+  console.log(API_ACCESS_BY_ROLE);
   const matchingAccess: { role: string; apiAccess: IApiAccess[] }[] = [];
   for (const role of API_ACCESS_BY_ROLE) {
     const matchingApiAccess = role.apiAccess.filter(
@@ -55,8 +56,10 @@ export const authorize = (
   const apiMethod = req.method;
   console.log(apiUrl + '-' + apiMethod);
 
-  const result = getAccessByApiAndMethod(apiUrl, apiMethod);
-  console.log(result);
+  if (apiUrl === '/api/users/v2') {
+    const result = getAccessByApiAndMethod(apiUrl, apiMethod);
+    console.log(result);
+  }
   next();
   /*
   if (!req.currentUser) {
