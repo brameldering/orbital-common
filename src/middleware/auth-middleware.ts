@@ -61,6 +61,7 @@ export const authorize = (
 
   const result = getAccessByApiAndMethod(apiUrl, apiMethod);
   console.log(result);
+  next();
   /*
   if (!req.currentUser) {
     // console.log('protect: !req.currentUser error');
