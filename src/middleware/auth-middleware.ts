@@ -34,20 +34,15 @@ const getAccessByApiAndMethod = (
   apiUrl: string,
   method: string
 ): { role: string; apiAccess: IApiAccess[] }[] => {
-  const matchingAccess: { role: string; apiAccess: IApiAccess[] }[] =
-    API_ACCESS_BY_ROLE.reduce(
-      (acc, role) => {
-        const matchingApiAccess = role.apiAccess.filter(
-          (access) => access.api === apiUrl && access.method === method
-        );
-        if (matchingApiAccess.length > 0) {
-          acc.push({ role: role.role, apiAccess: matchingApiAccess });
-        }
-        return acc;
-      },
-      [] as { role: string; apiAccess: IApiAccess[] }[] // Type assertion here
+  const matchingAccess: { role: string; apiAccess: IApiAccess[] }[] = [];
+  for (const role of API_ACCESS_BY_ROLE) {
+    const matchingApiAccess = role.apiAccess.filter(
+      (access) => access.api === apiUrl && access.method === method
     );
-
+    if (matchingApiAccess.length > 0) {
+      matchingAccess.push({ role: role.role, apiAccess: matchingApiAccess });
+    }
+  }
   return matchingAccess;
 };
 
