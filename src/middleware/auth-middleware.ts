@@ -58,6 +58,7 @@ export const authorize = (
 ) => {
   const apiUrl = req.url;
   const apiMethod = req.method;
+  console.log(apiUrl + '-' + apiMethod);
 
   const result = getAccessByApiAndMethod(apiUrl, apiMethod);
   console.log(result);
