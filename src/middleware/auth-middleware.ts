@@ -51,6 +51,7 @@ const getAllowedRolesForApi = (
     if (
       apiMethod === access.method &&
       ((apiUrl === access.apiUrl && !access.hasParams) ||
+        (apiUrl.startsWith(access.apiUrl + '?') && !access.hasParams) ||
         (apiUrl.startsWith(access.apiUrl + '/') && access.hasParams))
     ) {
       return true;
