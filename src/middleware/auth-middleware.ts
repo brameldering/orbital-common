@@ -33,13 +33,14 @@ export const currentUser = (
   next();
 };
 
-// find allowed role for api, method and whether it has trailing param
+// Find the first match for allowed role for api, method and whether it has trailing param
 const getAllowedRoleForApi = (
   apiArray: IApiAccess[],
   apiUrl: string,
   apiMethod: string
 ): string => {
-  const matchingRecords = apiArray.filter((access) => {
+  // Check for first match, in other words the order in apiArray matters!
+  const matchingRecord = apiArray.find((access) => {
     // Check if an API object in apiArray matches the apiUrl and apiMethod
     if (
       apiMethod === access.method &&
@@ -50,22 +51,13 @@ const getAllowedRoleForApi = (
     }
     return false;
   });
-  // Check if no matches or more then 1 match has been found
-  if (matchingRecords.length === 0) {
+  // Check if no match is found
+  if (!matchingRecord) {
     console.log('getAllowedRoleForApi - No role found for the given API');
     throw new ApplicationIntegrityError('No role found for the given API');
   }
-  if (matchingRecords.length > 1) {
-    console.log(
-      'getAllowedRoleForApi - More than one role found for the given API',
-      matchingRecords
-    );
-    throw new ApplicationIntegrityError(
-      'More than one role found for the given API'
-    );
-  }
-  // Matching records should be an array with only one record
-  return matchingRecords[0].role;
+  //Return role for first match
+  return matchingRecord.role;
 };
 
 export const authorizeAuth = (

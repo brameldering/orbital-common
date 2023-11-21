@@ -16,6 +16,10 @@ import {
   RESET_PASSWORD_URL,
 } from '../constants/url-constants';
 
+// The order of the following array matters.
+// It should be the same as the order of routes in the app.ts
+// At least make sure that URLs with an ID are placed after matching base URLs
+
 export const API_ACCESS_AUTH: IApiAccess[] = [
   /* get-user-roles */
   { api: ROLES_URL, method: 'GET', hasParams: false, role: ANONYMOUS_ROLE },
