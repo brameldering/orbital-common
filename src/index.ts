@@ -15,6 +15,7 @@ export * from './middleware/auth-middleware';
 export * from './middleware/check-object-id';
 export * from './middleware/error-handler';
 export * from './middleware/validate-request';
+export * from './middleware/validate-url';
 
 export * from './constants/microservice-names';
 export * from './constants/url-constants';
