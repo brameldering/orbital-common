@@ -10,6 +10,7 @@ import { IApiAccess } from '../api-access/interfaces';
 import { API_ACCESS_AUTH } from '../api-access/api-access-auth';
 import { API_ACCESS_PRODUCT } from '../api-access/api-access-product';
 import { API_ACCESS_SEQ } from '../api-access/api-access-seq-service';
+import { ANONYMOUS_ROLE } from '../constants/role-constants';
 
 export const currentUser = (
   req: IExtendedRequest,
@@ -68,7 +69,23 @@ export const authorizeAuth = (
   const url = req.url;
   const method = req.method;
   const allowedRoles = getAllowedRolesForApi(API_ACCESS_AUTH, url, method);
-  console.log('allowedRoles', allowedRoles);
+  console.log(
+    'url ' + req.url + ' method ' + req.method + ' allowedRoles',
+    allowedRoles
+  );
+  let currentUserRole: string;
+  if (!req.currentUser) {
+    // User is not logged in
+    currentUserRole = ANONYMOUS_ROLE;
+  } else {
+    // User is logged in, assign role
+    currentUserRole = req.currentUser.role;
+  }
+  // Check if role is authorized to access API, if not then raise NotAuthorizedError
+  if (!allowedRoles.includes(currentUserRole)) {
+    // console.log ('User not authorised to access API');
+    throw new NotAuthorizedError();
+  }
   next();
 };
 
