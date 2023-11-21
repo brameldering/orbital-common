@@ -1,12 +1,14 @@
+import { IApiAccess } from '../api-access/interfaces';
 import {
-  IApiAccess,
   ANONYMOUS_ROLE,
   CUSTOMER_ROLE,
   ADMIN_ROLE,
+} from '../constants/role-constants';
+import {
   PRODUCTS_URL,
   PRODUCT_REVIEW_URL,
   UPLOAD_URL,
-} from '../index';
+} from '../constants/url-constants';
 
 export const API_ACCESS_PRODUCT: IApiAccess[] = [
   /* upload-file */

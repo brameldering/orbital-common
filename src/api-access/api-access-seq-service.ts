@@ -1,10 +1,14 @@
+import { IApiAccess } from '../api-access/interfaces';
 import {
-  IApiAccess,
+  ANONYMOUS_ROLE,
+  CUSTOMER_ROLE,
   ADMIN_ROLE,
+} from '../constants/role-constants';
+import {
   ID_SEQUENCE_URL,
   ID_SEQUENCE_PRODUCTS_URL,
   ID_SEQUENCE_ORDERS_URL,
-} from '../index';
+} from '../constants/url-constants';
 
 export const API_ACCESS_SEQ: IApiAccess[] = [
   /* create-sequence-Record - body: sequenceName */
