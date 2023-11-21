@@ -2,11 +2,14 @@ import { Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import { IExtendedRequest } from '../types/request-types';
 import { IUserObj } from '../types/user-types';
-import { NotAuthorizedError } from '../types/error-types';
 import {
-  API_ACCESS_BY_ROLE,
-  IApiAccess,
-} from '../api-access-auth/api-access-by-role';
+  NotAuthorizedError,
+  ApplicationIntegrityError,
+} from '../types/error-types';
+import { IApiAccess } from '../api-access/interfaces';
+import { API_ACCESS_AUTH } from '../api-access/api-access-auth';
+import { API_ACCESS_PRODUCT } from '../api-access/api-access-product';
+import { API_ACCESS_SEQ } from '../api-access/api-access-seq-service';
 
 export const currentUser = (
   req: IExtendedRequest,
@@ -30,46 +33,73 @@ export const currentUser = (
   next();
 };
 
-const getAccessByApiAndMethod = (
+// find allowed role for api, method and whether it has trailing param
+const getAllowedRoleForApi = (
+  apiArray: IApiAccess[],
   apiUrl: string,
-  method: string
-): { role: string; apiAccess: IApiAccess[] }[] => {
-  console.log(API_ACCESS_BY_ROLE);
-  const matchingAccess: { role: string; apiAccess: IApiAccess[] }[] = [];
-  for (const role of API_ACCESS_BY_ROLE) {
-    const matchingApiAccess = role.apiAccess.filter(
-      (access) => access.api === apiUrl && access.method === method
-    );
-    if (matchingApiAccess.length > 0) {
-      matchingAccess.push({ role: role.role, apiAccess: matchingApiAccess });
+  apiMethod: string
+): string => {
+  const matchingRecords = apiArray.filter((access) => {
+    // Check if an API object in apiArray matches the apiUrl and apiMethod
+    if (
+      access.method === apiMethod &&
+      ((access.api === apiUrl && !access.hasParams) ||
+        (access.api.startsWith(apiUrl + '/') && access.hasParams))
+    ) {
+      return true;
     }
+    return false;
+  });
+  // Check if no matches or more then 1 match has been found
+  if (matchingRecords.length === 0) {
+    throw new ApplicationIntegrityError('No role found for the given API');
   }
-  return matchingAccess;
+  if (matchingRecords.length > 1) {
+    throw new ApplicationIntegrityError(
+      'More than one role found for the given API'
+    );
+  }
+  // Matching records should be an array with only one record
+  return matchingRecords[0].role;
 };
 
-export const authorize = (
+export const authorizeAuth = (
   req: IExtendedRequest,
   res: Response,
   next: NextFunction
 ) => {
-  const apiUrl = req.url;
-  const apiMethod = req.method;
-  console.log(apiUrl + '-' + apiMethod);
-
-  if (apiUrl === '/api/users/v2') {
-    const result = getAccessByApiAndMethod(apiUrl, apiMethod);
-    console.log(result);
-  }
+  const url = req.url;
+  const method = req.method;
+  console.log(url + '-' + method);
+  const allowedRole = getAllowedRoleForApi(API_ACCESS_AUTH, url, method);
+  console.log(allowedRole);
   next();
-  /*
-  if (!req.currentUser) {
-    // console.log('protect: !req.currentUser error');
-    throw new NotAuthorizedError();
-  } else {
-    // console.log('protect: req.currentUser exists');
-    next();
-  }
-  */
+};
+
+export const authorizeProduct = (
+  req: IExtendedRequest,
+  res: Response,
+  next: NextFunction
+) => {
+  const url = req.url;
+  const method = req.method;
+  console.log(url + '-' + method);
+  const allowedRole = getAllowedRoleForApi(API_ACCESS_PRODUCT, url, method);
+  console.log(allowedRole);
+  next();
+};
+
+export const authorizeSeqService = (
+  req: IExtendedRequest,
+  res: Response,
+  next: NextFunction
+) => {
+  const url = req.url;
+  const method = req.method;
+  console.log(url + '-' + method);
+  const allowedRole = getAllowedRoleForApi(API_ACCESS_SEQ, url, method);
+  console.log(allowedRole);
+  next();
 };
 
 export const protect = (

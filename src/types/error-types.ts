@@ -24,6 +24,18 @@ class DatabaseError extends CustomError {
   }
 }
 
+// Following error is thrown when a problem in code config is detected
+class ApplicationIntegrityError extends CustomError {
+  statusCode = 500;
+  constructor(public message: string) {
+    super(message);
+    Object.setPrototypeOf(this, ApplicationIntegrityError.prototype);
+  }
+  serializeErrors() {
+    return [{ message: this.message }];
+  }
+}
+
 class EnvConfigurationError extends CustomError {
   statusCode = 500;
   constructor(public message: string) {
@@ -109,6 +121,7 @@ class UserInputError extends CustomError {
 
 export {
   DatabaseError,
+  ApplicationIntegrityError,
   EnvConfigurationError,
   FileUploadError,
   NotAuthorizedError,

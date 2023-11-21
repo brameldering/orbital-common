@@ -6,6 +6,11 @@ export * from './types/id-sequence-types';
 export * from './types/error-types';
 export * from './types/request-types';
 
+export * from './api-access/interfaces';
+export * from './api-access/api-access-auth';
+export * from './api-access/api-access-product';
+export * from './api-access/api-access-seq-service';
+
 export * from './middleware/auth-middleware';
 export * from './middleware/check-object-id';
 export * from './middleware/error-handler';
