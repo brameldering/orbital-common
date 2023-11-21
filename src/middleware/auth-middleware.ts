@@ -39,8 +39,9 @@ const getAllowedRoleForApi = (
   apiUrl: string,
   apiMethod: string
 ): string => {
-  console.log('authorizeAuth apiArray: ' + apiArray);
-  console.log('authorizeAuth apiArray[0]: ' + apiArray[0]);
+  console.log('getAllowedRoleForApi apiArray: ', apiArray);
+  console.log('getAllowedRoleForApi apiArray[0]: ', apiArray[0]);
+  console.log('getAllowedRoleForApi apiArray[0].api: ', apiArray[0].api);
 
   const matchingRecords = apiArray.filter((access) => {
     const accessApi = access.api;
