@@ -1,4 +1,4 @@
-import { IApiAccess } from '../api-access/interfaces';
+import { IApiAccess } from './interfaces';
 import {
   ANONYMOUS_ROLE,
   CUSTOMER_ROLE,
@@ -14,7 +14,7 @@ import {
 // It should be the same as the order of routes in the app.ts
 // At least make sure that URLs with an ID are placed after matching base URLs
 
-export const API_ACCESS_PRODUCT: IApiAccess[] = [
+export const API_ACCESS_PRODUCTS: IApiAccess[] = [
   /* upload-file */
   {
     api: UPLOAD_URL,

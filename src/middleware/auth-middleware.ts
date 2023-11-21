@@ -7,8 +7,14 @@ import {
   ApplicationIntegrityError,
 } from '../types/error-types';
 import { IApiAccess } from '../api-access/interfaces';
+import {
+  AUTH_MICROSERVICE,
+  PRODUCTS_MICROSERVICE,
+  SEQ_SERVICE_MICROSERVICE,
+  SEEDER_MICROSERVICE,
+} from '../constants/microservice-names';
 import { API_ACCESS_AUTH } from '../api-access/api-access-auth';
-import { API_ACCESS_PRODUCT } from '../api-access/api-access-product';
+import { API_ACCESS_PRODUCTS } from '../api-access/api-access-products';
 import { API_ACCESS_SEQ } from '../api-access/api-access-seq-service';
 import { ANONYMOUS_ROLE } from '../constants/role-constants';
 
@@ -54,88 +60,57 @@ const getAllowedRolesForApi = (
   });
   // Check if no match is found
   if (!matchingRecord) {
-    console.log('getAllowedRoleForApi - No role found for the given API');
-    throw new ApplicationIntegrityError('No role found for the given API');
+    const errorMessage =
+      'getAllowedRoleForApi - No role found for the given API: ' + apiUrl;
+    console.log(errorMessage);
+    throw new ApplicationIntegrityError(errorMessage);
   }
   //Return role for first match
   return matchingRecord.allowedRoles;
 };
 
-export const authorizeAuth = (
-  req: IExtendedRequest,
-  res: Response,
-  next: NextFunction
-) => {
-  const url = req.url;
-  const method = req.method;
-  const allowedRoles = getAllowedRolesForApi(API_ACCESS_AUTH, url, method);
-  // console.log(
-  //   'url ' + req.url + ' method ' + req.method + ' allowedRoles',
-  //   allowedRoles
-  // );
-  let currentUserRole: string;
-  if (!req.currentUser) {
-    // User is not logged in
-    currentUserRole = ANONYMOUS_ROLE;
-  } else {
-    // User is logged in, assign role
-    currentUserRole = req.currentUser.role;
-  }
-  // Check if role is authorized to access API, if not then raise NotAuthorizedError
-  if (!allowedRoles.includes(currentUserRole)) {
-    // console.log ('User not authorised to access API');
-    throw new NotAuthorizedError();
-  }
-  next();
-};
+export const authorize =
+  (microservice: string) =>
+  (req: IExtendedRequest, res: Response, next: NextFunction) => {
+    const url = req.url;
+    const method = req.method;
 
-export const authorizeProduct = (
-  req: IExtendedRequest,
-  res: Response,
-  next: NextFunction
-) => {
-  const url = req.url;
-  const method = req.method;
-  const allowedRoles = getAllowedRolesForApi(API_ACCESS_PRODUCT, url, method);
-  next();
-};
+    let API_ACCESS_TABLE: IApiAccess[];
+    switch (microservice) {
+      case AUTH_MICROSERVICE:
+        API_ACCESS_TABLE = API_ACCESS_AUTH;
+        break;
+      case PRODUCTS_MICROSERVICE:
+        API_ACCESS_TABLE = API_ACCESS_PRODUCTS;
+        break;
+      case SEQ_SERVICE_MICROSERVICE:
+        API_ACCESS_TABLE = API_ACCESS_SEQ;
+        break;
+      default:
+        const errorMessage =
+          'Authorize middleware - No Access Table defined for microservice' +
+          microservice;
+        console.log(errorMessage);
+        throw new ApplicationIntegrityError(errorMessage);
+    }
 
-export const authorizeSeqService = (
-  req: IExtendedRequest,
-  res: Response,
-  next: NextFunction
-) => {
-  const url = req.url;
-  const method = req.method;
-  const allowedRoles = getAllowedRolesForApi(API_ACCESS_SEQ, url, method);
-  next();
-};
-
-export const protect = (
-  req: IExtendedRequest,
-  res: Response,
-  next: NextFunction
-) => {
-  if (!req.currentUser) {
-    // console.log('protect: !req.currentUser error');
-    throw new NotAuthorizedError();
-  } else {
-    // console.log('protect: req.currentUser exists');
+    const allowedRoles = getAllowedRolesForApi(API_ACCESS_TABLE, url, method);
+    // console.log(
+    //   'url ' + req.url + ' method ' + req.method + ' allowedRoles',
+    //   allowedRoles
+    // );
+    let currentUserRole: string;
+    if (!req.currentUser) {
+      // User is not logged in
+      currentUserRole = ANONYMOUS_ROLE;
+    } else {
+      // User is logged in, assign role
+      currentUserRole = req.currentUser.role;
+    }
+    // Check if role is authorized to access API, if not then raise NotAuthorizedError
+    if (!allowedRoles.includes(currentUserRole)) {
+      // console.log ('User not authorised to access API');
+      throw new NotAuthorizedError();
+    }
     next();
-  }
-};
-
-// User must be an admin
-export const admin = (
-  req: IExtendedRequest,
-  res: Response,
-  next: NextFunction
-) => {
-  if (req.currentUser?.role === 'admin') {
-    // console.log('admin: req.currentUser.role = admin');
-    next();
-  } else {
-    // console.log('admin: req.currentUser.role != admin:', req.currentUser?.role);
-    throw new NotAuthorizedError();
-  }
-};
+  };

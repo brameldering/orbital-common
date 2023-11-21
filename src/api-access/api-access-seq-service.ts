@@ -1,9 +1,5 @@
 import { IApiAccess } from '../api-access/interfaces';
-import {
-  ANONYMOUS_ROLE,
-  CUSTOMER_ROLE,
-  ADMIN_ROLE,
-} from '../constants/role-constants';
+import { ADMIN_ROLE } from '../constants/role-constants';
 import {
   ID_SEQUENCE_URL,
   ID_SEQUENCE_PRODUCTS_URL,

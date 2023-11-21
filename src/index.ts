@@ -8,7 +8,7 @@ export * from './types/request-types';
 
 export * from './api-access/interfaces';
 export * from './api-access/api-access-auth';
-export * from './api-access/api-access-product';
+export * from './api-access/api-access-products';
 export * from './api-access/api-access-seq-service';
 
 export * from './middleware/auth-middleware';
@@ -16,6 +16,7 @@ export * from './middleware/check-object-id';
 export * from './middleware/error-handler';
 export * from './middleware/validate-request';
 
+export * from './constants/microservice-names';
 export * from './constants/url-constants';
 export * from './constants/role-constants';
 export * from './constants/test-constants';
