@@ -40,12 +40,12 @@ const getAllowedRoleForApi = (
   apiMethod: string
 ): string => {
   const matchingRecords = apiArray.filter((access) => {
-    const accessApi = access.api;
+    console.log('access.api: ', access.api);
     // Check if an API object in apiArray matches the apiUrl and apiMethod
     if (
       access.method === apiMethod &&
-      ((accessApi === apiUrl && !access.hasParams) ||
-        (accessApi.startsWith(apiUrl + '/') && access.hasParams))
+      ((access.api === apiUrl && !access.hasParams) ||
+        (access.api.startsWith(apiUrl + '/') && access.hasParams))
     ) {
       return true;
     }
@@ -53,9 +53,13 @@ const getAllowedRoleForApi = (
   });
   // Check if no matches or more then 1 match has been found
   if (matchingRecords.length === 0) {
+    console.log('getAllowedRoleForApi - No role found for the given API');
     throw new ApplicationIntegrityError('No role found for the given API');
   }
   if (matchingRecords.length > 1) {
+    console.log(
+      'getAllowedRoleForApi - More than one role found for the given API'
+    );
     throw new ApplicationIntegrityError(
       'More than one role found for the given API'
     );
@@ -72,7 +76,6 @@ export const authorizeAuth = (
   const url = req.url;
   const method = req.method;
   const allowedRole = getAllowedRoleForApi(API_ACCESS_AUTH, url, method);
-  console.log(allowedRole);
   next();
 };
 
@@ -84,7 +87,6 @@ export const authorizeProduct = (
   const url = req.url;
   const method = req.method;
   const allowedRole = getAllowedRoleForApi(API_ACCESS_PRODUCT, url, method);
-  console.log(allowedRole);
   next();
 };
 
@@ -96,7 +98,6 @@ export const authorizeSeqService = (
   const url = req.url;
   const method = req.method;
   const allowedRole = getAllowedRoleForApi(API_ACCESS_SEQ, url, method);
-  console.log(allowedRole);
   next();
 };
 
