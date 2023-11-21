@@ -1,8 +1,10 @@
+import { IApiAccess } from '../api-access/interfaces';
 import {
-  IApiAccess,
   ANONYMOUS_ROLE,
   CUSTOMER_ROLE,
   ADMIN_ROLE,
+} from '../constants/role-constants';
+import {
   USERS_URL,
   CURRENT_USER_URL,
   ROLES_URL,
@@ -12,7 +14,7 @@ import {
   UPDATE_PROFILE_URL,
   UPDATE_PASSWORD_URL,
   RESET_PASSWORD_URL,
-} from '../index';
+} from '../constants/url-constants';
 
 export const API_ACCESS_AUTH: IApiAccess[] = [
   /* get-user-roles */
