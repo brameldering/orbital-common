@@ -69,10 +69,10 @@ export const authorizeAuth = (
   const url = req.url;
   const method = req.method;
   const allowedRoles = getAllowedRolesForApi(API_ACCESS_AUTH, url, method);
-  console.log(
-    'url ' + req.url + ' method ' + req.method + ' allowedRoles',
-    allowedRoles
-  );
+  // console.log(
+  //   'url ' + req.url + ' method ' + req.method + ' allowedRoles',
+  //   allowedRoles
+  // );
   let currentUserRole: string;
   if (!req.currentUser) {
     // User is not logged in
