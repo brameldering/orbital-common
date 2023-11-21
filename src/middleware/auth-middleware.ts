@@ -40,11 +40,12 @@ const getAllowedRoleForApi = (
   apiMethod: string
 ): string => {
   const matchingRecords = apiArray.filter((access) => {
+    const accessApi = access.api;
     // Check if an API object in apiArray matches the apiUrl and apiMethod
     if (
       access.method === apiMethod &&
-      ((access.api === apiUrl && !access.hasParams) ||
-        (access.api.startsWith(apiUrl + '/') && access.hasParams))
+      ((accessApi === apiUrl && !access.hasParams) ||
+        (accessApi.startsWith(apiUrl + '/') && access.hasParams))
     ) {
       return true;
     }
