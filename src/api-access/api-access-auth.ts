@@ -22,47 +22,87 @@ import {
 
 export const API_ACCESS_AUTH: IApiAccess[] = [
   /* get-user-roles */
-  { api: ROLES_URL, method: 'GET', hasParams: false, role: ANONYMOUS_ROLE },
+  {
+    api: ROLES_URL,
+    method: 'GET',
+    hasParams: false,
+    allowedRoles: [ANONYMOUS_ROLE, CUSTOMER_ROLE, ADMIN_ROLE],
+  },
   /* current-user */
   {
     api: CURRENT_USER_URL,
     method: 'GET',
     hasParams: false,
-    role: ANONYMOUS_ROLE,
+    allowedRoles: [ANONYMOUS_ROLE, CUSTOMER_ROLE, ADMIN_ROLE],
   },
   /* signup - body: name, email, password, role */
-  { api: SIGN_UP_URL, method: 'POST', hasParams: false, role: ANONYMOUS_ROLE },
+  {
+    api: SIGN_UP_URL,
+    method: 'POST',
+    hasParams: false,
+    allowedRoles: [ANONYMOUS_ROLE, CUSTOMER_ROLE, ADMIN_ROLE],
+  },
   /* signin - body: email, password */
-  { api: SIGN_IN_URL, method: 'POST', hasParams: false, role: ANONYMOUS_ROLE },
+  {
+    api: SIGN_IN_URL,
+    method: 'POST',
+    hasParams: false,
+    allowedRoles: [ANONYMOUS_ROLE, CUSTOMER_ROLE, ADMIN_ROLE],
+  },
   /* signout */
-  { api: SIGN_OUT_URL, method: 'POST', hasParams: false, role: ANONYMOUS_ROLE },
+  {
+    api: SIGN_OUT_URL,
+    method: 'POST',
+    hasParams: false,
+    allowedRoles: [ANONYMOUS_ROLE, CUSTOMER_ROLE, ADMIN_ROLE],
+  },
   /* reset-password - body: email */
   {
     api: RESET_PASSWORD_URL,
     method: 'PUT',
     hasParams: false,
-    role: ANONYMOUS_ROLE,
+    allowedRoles: [ANONYMOUS_ROLE, CUSTOMER_ROLE, ADMIN_ROLE],
   },
   /* update-password - body: currentPassword, newPassword */
   {
     api: UPDATE_PASSWORD_URL,
     method: 'PUT',
     hasParams: false,
-    role: CUSTOMER_ROLE,
+    allowedRoles: [CUSTOMER_ROLE, ADMIN_ROLE],
   },
   /* update-user-profile - body: name, email */
   {
     api: UPDATE_PROFILE_URL,
     method: 'PUT',
     hasParams: false,
-    role: CUSTOMER_ROLE,
+    allowedRoles: [CUSTOMER_ROLE, ADMIN_ROLE],
   },
   /* get-users */
-  { api: USERS_URL, method: 'GET', hasParams: false, role: ADMIN_ROLE },
+  {
+    api: USERS_URL,
+    method: 'GET',
+    hasParams: false,
+    allowedRoles: [ADMIN_ROLE],
+  },
   /* get-user-by-id - params: id */
-  { api: USERS_URL, method: 'GET', hasParams: true, role: ADMIN_ROLE },
+  {
+    api: USERS_URL,
+    method: 'GET',
+    hasParams: true,
+    allowedRoles: [ADMIN_ROLE],
+  },
   /* update-user - params: id, body: name, email, role */
-  { api: USERS_URL, method: 'PUT', hasParams: true, role: ADMIN_ROLE },
+  {
+    api: USERS_URL,
+    method: 'PUT',
+    hasParams: true,
+    allowedRoles: [ADMIN_ROLE],
+  },
   /* delete-user - params: id */
-  { api: USERS_URL, method: 'DELETE', hasParams: true, role: ADMIN_ROLE },
+  {
+    api: USERS_URL,
+    method: 'DELETE',
+    hasParams: true,
+    allowedRoles: [ADMIN_ROLE],
+  },
 ];

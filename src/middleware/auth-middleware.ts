@@ -33,12 +33,12 @@ export const currentUser = (
   next();
 };
 
-// Find the first match for allowed role for api, method and whether it has trailing param
-const getAllowedRoleForApi = (
+// Find and return the allowed roles for the first matchning api, method and whether it has trailing param
+const getAllowedRolesForApi = (
   apiArray: IApiAccess[],
   apiUrl: string,
   apiMethod: string
-): string => {
+): string[] => {
   // Check for first match, in other words the order in apiArray matters!
   const matchingRecord = apiArray.find((access) => {
     // Check if an API object in apiArray matches the apiUrl and apiMethod
@@ -57,7 +57,7 @@ const getAllowedRoleForApi = (
     throw new ApplicationIntegrityError('No role found for the given API');
   }
   //Return role for first match
-  return matchingRecord.role;
+  return matchingRecord.allowedRoles;
 };
 
 export const authorizeAuth = (
@@ -67,7 +67,8 @@ export const authorizeAuth = (
 ) => {
   const url = req.url;
   const method = req.method;
-  const allowedRole = getAllowedRoleForApi(API_ACCESS_AUTH, url, method);
+  const allowedRoles = getAllowedRolesForApi(API_ACCESS_AUTH, url, method);
+  console.log('allowedRoles', allowedRoles);
   next();
 };
 
@@ -78,7 +79,7 @@ export const authorizeProduct = (
 ) => {
   const url = req.url;
   const method = req.method;
-  const allowedRole = getAllowedRoleForApi(API_ACCESS_PRODUCT, url, method);
+  const allowedRoles = getAllowedRolesForApi(API_ACCESS_PRODUCT, url, method);
   next();
 };
 
@@ -89,7 +90,7 @@ export const authorizeSeqService = (
 ) => {
   const url = req.url;
   const method = req.method;
-  const allowedRole = getAllowedRoleForApi(API_ACCESS_SEQ, url, method);
+  const allowedRoles = getAllowedRolesForApi(API_ACCESS_SEQ, url, method);
   next();
 };
 
