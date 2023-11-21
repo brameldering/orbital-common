@@ -57,7 +57,8 @@ const getAllowedRoleForApi = (
   }
   if (matchingRecords.length > 1) {
     console.log(
-      'getAllowedRoleForApi - More than one role found for the given API'
+      'getAllowedRoleForApi - More than one role found for the given API',
+      matchingRecords
     );
     throw new ApplicationIntegrityError(
       'More than one role found for the given API'
