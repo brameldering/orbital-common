@@ -93,7 +93,6 @@ export const authorize =
         console.log(errorMessage);
         throw new ApplicationIntegrityError(errorMessage);
     }
-
     const allowedRoles = getAllowedRolesForApi(API_ACCESS_TABLE, url, method);
     // console.log(
     //   'url ' + req.url + ' method ' + req.method + ' allowedRoles',
@@ -104,7 +103,7 @@ export const authorize =
       // User is not logged in
       currentUserRole = ANONYMOUS_ROLE;
     } else {
-      // User is logged in, assign role
+      // User is logged in, identify role
       currentUserRole = req.currentUser.role;
     }
     // Check if role is authorized to access API, if not then raise NotAuthorizedError
