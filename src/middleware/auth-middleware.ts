@@ -71,7 +71,9 @@ export const authorizeAuth = (
 ) => {
   const url = req.url;
   const method = req.method;
-  console.log(url + '-' + method);
+  console.log('authorizeAuth: ' + url + '-' + method);
+  console.log('authorizeAuth API_ACCESS_AUTH: ' + API_ACCESS_AUTH);
+
   const allowedRole = getAllowedRoleForApi(API_ACCESS_AUTH, url, method);
   console.log(allowedRole);
   next();
