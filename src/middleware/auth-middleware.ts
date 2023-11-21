@@ -40,12 +40,11 @@ const getAllowedRoleForApi = (
   apiMethod: string
 ): string => {
   const matchingRecords = apiArray.filter((access) => {
-    console.log('apiUrl' + apiUrl + 'access.api ' + access.api);
     // Check if an API object in apiArray matches the apiUrl and apiMethod
     if (
-      access.method === apiMethod &&
-      ((access.api === apiUrl && !access.hasParams) ||
-        (access.api.startsWith(apiUrl + '/') && access.hasParams))
+      apiMethod === access.method &&
+      ((apiUrl === access.api && !access.hasParams) ||
+        (apiUrl.startsWith(access.api + '/') && access.hasParams))
     ) {
       return true;
     }
@@ -76,7 +75,6 @@ export const authorizeAuth = (
   const url = req.url;
   const method = req.method;
   const allowedRole = getAllowedRoleForApi(API_ACCESS_AUTH, url, method);
-  console.log('allowedRole', allowedRole);
   next();
 };
 
@@ -88,7 +86,6 @@ export const authorizeProduct = (
   const url = req.url;
   const method = req.method;
   const allowedRole = getAllowedRoleForApi(API_ACCESS_PRODUCT, url, method);
-  console.log('allowedRole', allowedRole);
   next();
 };
 
@@ -100,7 +97,6 @@ export const authorizeSeqService = (
   const url = req.url;
   const method = req.method;
   const allowedRole = getAllowedRoleForApi(API_ACCESS_SEQ, url, method);
-  console.log('allowedRole', allowedRole);
   next();
 };
 
