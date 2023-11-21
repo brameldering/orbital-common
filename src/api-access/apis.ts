@@ -1,9 +1,9 @@
-import { IApiAccess, IApi } from '../api-access/interfaces';
+import { IApi } from '../api-access/interfaces';
 import {
-  ANONYMOUS_ROLE,
-  CUSTOMER_ROLE,
-  ADMIN_ROLE,
-} from '../constants/role-constants';
+  MICROSERVICE_AUTH,
+  MICROSERVICE_PRODUCTS,
+  MICROSERVICE_SEQUENCES,
+} from '../constants/microservice-names';
 import {
   USERS_URL,
   CURRENT_USER_URL,
@@ -16,93 +16,89 @@ import {
   RESET_PASSWORD_URL,
 } from '../constants/url-constants';
 
-// The order of the following array matters.
-// It should be the same as the order of routes in the app.ts
-// At least make sure that URLs with an ID are placed after matching base URLs
-
-export const API_ACCESS_AUTH: IApiAccess[] = [
+export const APIS: IApi[] = [
   /* get-user-roles */
   {
+    microservice: MICROSERVICE_AUTH,
     apiUrl: ROLES_URL,
     method: 'GET',
     hasParams: false,
-    allowedRoles: [ANONYMOUS_ROLE, CUSTOMER_ROLE, ADMIN_ROLE],
   },
   /* current-user */
   {
+    microservice: MICROSERVICE_AUTH,
     apiUrl: CURRENT_USER_URL,
     method: 'GET',
     hasParams: false,
-    allowedRoles: [ANONYMOUS_ROLE, CUSTOMER_ROLE, ADMIN_ROLE],
   },
   /* signup - body: name, email, password, role */
   {
+    microservice: MICROSERVICE_AUTH,
     apiUrl: SIGN_UP_URL,
     method: 'POST',
     hasParams: false,
-    allowedRoles: [ANONYMOUS_ROLE, CUSTOMER_ROLE, ADMIN_ROLE],
   },
   /* signin - body: email, password */
   {
+    microservice: MICROSERVICE_AUTH,
     apiUrl: SIGN_IN_URL,
     method: 'POST',
     hasParams: false,
-    allowedRoles: [ANONYMOUS_ROLE, CUSTOMER_ROLE, ADMIN_ROLE],
   },
   /* signout */
   {
+    microservice: MICROSERVICE_AUTH,
     apiUrl: SIGN_OUT_URL,
     method: 'POST',
     hasParams: false,
-    allowedRoles: [ANONYMOUS_ROLE, CUSTOMER_ROLE, ADMIN_ROLE],
   },
   /* reset-password - body: email */
   {
+    microservice: MICROSERVICE_AUTH,
     apiUrl: RESET_PASSWORD_URL,
     method: 'PUT',
     hasParams: false,
-    allowedRoles: [ANONYMOUS_ROLE, CUSTOMER_ROLE, ADMIN_ROLE],
   },
   /* update-password - body: currentPassword, newPassword */
   {
+    microservice: MICROSERVICE_AUTH,
     apiUrl: UPDATE_PASSWORD_URL,
     method: 'PUT',
     hasParams: false,
-    allowedRoles: [CUSTOMER_ROLE, ADMIN_ROLE],
   },
   /* update-user-profile - body: name, email */
   {
+    microservice: MICROSERVICE_AUTH,
     apiUrl: UPDATE_PROFILE_URL,
     method: 'PUT',
     hasParams: false,
-    allowedRoles: [CUSTOMER_ROLE, ADMIN_ROLE],
   },
   /* get-users */
   {
+    microservice: MICROSERVICE_AUTH,
     apiUrl: USERS_URL,
     method: 'GET',
     hasParams: false,
-    allowedRoles: [ADMIN_ROLE],
   },
   /* get-user-by-id - params: id */
   {
+    microservice: MICROSERVICE_AUTH,
     apiUrl: USERS_URL,
     method: 'GET',
     hasParams: true,
-    allowedRoles: [ADMIN_ROLE],
   },
   /* update-user - params: id, body: name, email, role */
   {
+    microservice: MICROSERVICE_AUTH,
     apiUrl: USERS_URL,
     method: 'PUT',
     hasParams: true,
-    allowedRoles: [ADMIN_ROLE],
   },
   /* delete-user - params: id */
   {
+    microservice: MICROSERVICE_AUTH,
     apiUrl: USERS_URL,
     method: 'DELETE',
     hasParams: true,
-    allowedRoles: [ADMIN_ROLE],
   },
 ];

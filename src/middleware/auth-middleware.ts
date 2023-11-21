@@ -8,10 +8,9 @@ import {
 } from '../types/error-types';
 import { IApiAccess } from '../api-access/interfaces';
 import {
-  AUTH_MICROSERVICE,
-  PRODUCTS_MICROSERVICE,
-  SEQ_SERVICE_MICROSERVICE,
-  SEEDER_MICROSERVICE,
+  MICROSERVICE_AUTH,
+  MICROSERVICE_PRODUCTS,
+  MICROSERVICE_SEQUENCES,
 } from '../constants/microservice-names';
 import { API_ACCESS_AUTH } from '../api-access/api-access-auth';
 import { API_ACCESS_PRODUCTS } from '../api-access/api-access-products';
@@ -51,8 +50,8 @@ const getAllowedRolesForApi = (
     // Check if an API object in apiArray matches the apiUrl and apiMethod
     if (
       apiMethod === access.method &&
-      ((apiUrl === access.api && !access.hasParams) ||
-        (apiUrl.startsWith(access.api + '/') && access.hasParams))
+      ((apiUrl === access.apiUrl && !access.hasParams) ||
+        (apiUrl.startsWith(access.apiUrl + '/') && access.hasParams))
     ) {
       return true;
     }
@@ -77,13 +76,13 @@ export const authorize =
 
     let API_ACCESS_TABLE: IApiAccess[];
     switch (microservice) {
-      case AUTH_MICROSERVICE:
+      case MICROSERVICE_AUTH:
         API_ACCESS_TABLE = API_ACCESS_AUTH;
         break;
-      case PRODUCTS_MICROSERVICE:
+      case MICROSERVICE_PRODUCTS:
         API_ACCESS_TABLE = API_ACCESS_PRODUCTS;
         break;
-      case SEQ_SERVICE_MICROSERVICE:
+      case MICROSERVICE_SEQUENCES:
         API_ACCESS_TABLE = API_ACCESS_SEQ;
         break;
       default:
@@ -94,10 +93,7 @@ export const authorize =
         throw new ApplicationIntegrityError(errorMessage);
     }
     const allowedRoles = getAllowedRolesForApi(API_ACCESS_TABLE, url, method);
-    // console.log(
-    //   'url ' + req.url + ' method ' + req.method + ' allowedRoles',
-    //   allowedRoles
-    // );
+    // console.log('url ' + req.url + ' method ' + req.method + ': ', allowedRoles);
     let currentUserRole: string;
     if (!req.currentUser) {
       // User is not logged in
