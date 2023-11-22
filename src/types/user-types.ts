@@ -1,8 +1,3 @@
-export interface IUserNameEmail {
-  name: string;
-  email: string;
-}
-
 export interface ICurrentUser {
   id?: string;
   name: string;
@@ -10,10 +5,6 @@ export interface ICurrentUser {
   role: string;
   iat: number;
   exp: number;
-}
-
-export interface IUserInfo {
-  userInfo: IUser | null;
 }
 
 export interface IUser {
