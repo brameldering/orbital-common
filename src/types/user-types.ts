@@ -3,6 +3,7 @@ export interface IBasicUserInfo {
 }
 
 export interface IBasicUser {
+  id: string;
   name: string;
   email: string;
   role: string;
