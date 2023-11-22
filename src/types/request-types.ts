@@ -1,5 +1,5 @@
 import { Request } from 'express';
-import { IUserObj } from './user-types';
+import { IUserObj } from './mongoose-model-types/mongoose-user-types';
 
 export interface IExtendedRequest extends Request {
   currentUser?: IUserObj;

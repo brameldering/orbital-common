@@ -1,10 +1,16 @@
 // Re-export definitions
-export * from './types/product-types';
-export * from './types/user-types';
-export * from './types/id-sequence-types';
+export * from './types/mongoose-model-types/mongoose-product-types';
+export * from './types/mongoose-model-types/mongoose-user-types';
+export * from './types/mongoose-model-types/mongoose-sequence-types';
 
+export * from './types/cart-types';
+export * from './types/common-types';
+export * from './types/config-types';
 export * from './types/error-types';
+export * from './types/order-types';
+export * from './types/product-types';
 export * from './types/request-types';
+export * from './types/user-types';
 
 export * from './api-access/interfaces';
 export * from './api-access/api-access-auth';

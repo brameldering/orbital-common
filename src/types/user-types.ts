@@ -1,26 +1,48 @@
-import mongoose from 'mongoose';
-
-// Interface describing the User object attributes
-export interface IUserObj {
+export interface ICurrentUser {
   id?: string;
   name: string;
   email: string;
-  password: string;
   role: string;
+  iat: number;
+  exp: number;
 }
 
-// Interface describing the User Model
-export interface IUserModel extends mongoose.Model<IUserDoc> {
-  build(attrs: IUserObj): IUserDoc;
+export interface IUserInfo {
+  userInfo: IUser | null;
 }
 
-// Interface describing the User Document
-export interface IUserDoc extends mongoose.Document {
+export interface IUser {
+  id?: string;
+  name: string;
+  email: string;
+  password?: string;
+  role: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
+export interface ISignUp {
   name: string;
   email: string;
   password: string;
   role: string;
-  _id: mongoose.Types.ObjectId;
-  createdAt?: Date;
-  updatedAt?: Date;
+}
+
+export interface ISignIn {
+  email: string;
+  password: string;
+}
+
+export interface IChangeUserProfile {
+  name: string;
+  email: string;
+}
+
+export interface IChangePassword {
+  currentPassword: string;
+  newPassword: string;
+}
+
+export interface IResetPassword {
+  email: string;
 }

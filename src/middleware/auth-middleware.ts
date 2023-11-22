@@ -1,7 +1,7 @@
 import { Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import { IExtendedRequest } from '../types/request-types';
-import { IUserObj } from '../types/user-types';
+import { IUserObj } from '../types/mongoose-model-types/mongoose-user-types';
 import {
   NotAuthorizedError,
   ApplicationIntegrityError,
