@@ -1,10 +1,20 @@
+export interface IBasicUserInfo {
+  basicUserInfo: IBasicUser | null;
+}
+
+export interface IBasicUser {
+  name: string;
+  email: string;
+  role: string;
+}
+
 export interface ICurrentUser {
   id?: string;
   name: string;
   email: string;
   role: string;
-  iat: number;
-  exp: number;
+  iat?: number;
+  exp?: number;
 }
 
 export interface IUser {
