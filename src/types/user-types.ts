@@ -8,7 +8,7 @@ export interface ICurrentUser {
 }
 
 export interface IUserInfoName {
-  name: string;
+  name: IUser | null;
 }
 
 export interface IUser {
