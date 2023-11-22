@@ -7,8 +7,8 @@ export interface ICurrentUser {
   exp: number;
 }
 
-export interface IUserInfo {
-  userInfo: IUser | null;
+export interface IUserInfoName {
+  name: string;
 }
 
 export interface IUser {
