@@ -1,14 +1,3 @@
-export interface IBasicUserInfo {
-  userInfo: IBasicUser | null;
-}
-
-export interface IBasicUser {
-  id: string;
-  name: string;
-  email: string;
-  role: string;
-}
-
 export interface ICurrentUser {
   id?: string;
   name: string;
@@ -18,11 +7,14 @@ export interface ICurrentUser {
   exp?: number;
 }
 
+export interface IUserInfo {
+  userInfo: IUser | null;
+}
+
 export interface IUser {
   id?: string;
   name: string;
   email: string;
-  password?: string;
   role: string;
   createdAt?: Date;
   updatedAt?: Date;
