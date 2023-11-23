@@ -1,5 +1,5 @@
 export interface IBasicUserInfo {
-  basicUserInfo: IBasicUser | null;
+  userInfo: IBasicUser | null;
 }
 
 export interface IBasicUser {
