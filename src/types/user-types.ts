@@ -1,5 +1,5 @@
 export interface ICurrentUser {
-  id?: string;
+  id: string;
   name: string;
   email: string;
   role: string;
@@ -12,7 +12,7 @@ export interface IUserInfo {
 }
 
 export interface IUser {
-  id?: string;
+  id: string;
   name: string;
   email: string;
   role: string;
