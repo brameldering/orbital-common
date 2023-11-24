@@ -12,10 +12,12 @@ import { IApiAccess } from '../api-access/types';
 import {
   MICROSERVICE_AUTH,
   MICROSERVICE_PRODUCTS,
+  MICROSERVICE_ORDERS,
   MICROSERVICE_SEQUENCES,
 } from '../constants/microservice-names';
 import { API_ACCESS_AUTH } from '../api-access/api-access-auth';
 import { API_ACCESS_PRODUCTS } from '../api-access/api-access-products';
+import { API_ACCESS_ORDERS } from '../api-access/api-access-orders';
 import { API_ACCESS_SEQ } from '../api-access/api-access-seq-service';
 import { ANONYMOUS_ROLE } from '../constants/role-constants';
 
@@ -92,6 +94,9 @@ export const authorize =
         break;
       case MICROSERVICE_PRODUCTS:
         API_ACCESS_TABLE = API_ACCESS_PRODUCTS;
+        break;
+      case MICROSERVICE_ORDERS:
+        API_ACCESS_TABLE = API_ACCESS_ORDERS;
         break;
       case MICROSERVICE_SEQUENCES:
         API_ACCESS_TABLE = API_ACCESS_SEQ;
