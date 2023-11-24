@@ -1,6 +1,7 @@
 // Re-export definitions
-export * from './types/mongoose-model-types/mongoose-product-types';
 export * from './types/mongoose-model-types/mongoose-user-types';
+export * from './types/mongoose-model-types/mongoose-product-types';
+export * from './types/mongoose-model-types/mongoose-order-types';
 export * from './types/mongoose-model-types/mongoose-sequence-types';
 
 export * from './types/cart-types';

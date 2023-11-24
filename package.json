@@ -11,7 +11,7 @@
     "clean": "del-cli ./build/*",
     "build": "npm run clean && tsc",
     "pub": "git add . && git commit -m \"Updates\" && npm version patch && npm run build && npm publish --access public && git push origin main",
-    "upd": "cd ../auth && npm i @orbitelco/common && cd ../client && npm i @orbitelco/common && cd ../products && npm i @orbitelco/common && cd ../seeder-service && npm i @orbitelco/common && cd ../sequence-service && npm i @orbitelco/common"
+    "upd": "cd ../auth && npm i @orbitelco/common && cd ../client && npm i @orbitelco/common && cd ../products && npm i @orbitelco/common  && cd ../orders && npm i @orbitelco/common && cd ../seeder-service && npm i @orbitelco/common && cd ../sequence-service && npm i @orbitelco/common"
   },
   "keywords": [],
   "author": "Bram Eldering",
