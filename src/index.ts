@@ -12,13 +12,13 @@ export * from './types/product-types';
 export * from './types/request-types';
 export * from './types/user-types';
 
-export * from './api-access/interfaces';
+export * from './api-access/types';
 export * from './api-access/api-access-auth';
 export * from './api-access/api-access-products';
+export * from './api-access/api-access-orders';
 export * from './api-access/api-access-seq-service';
 
 export * from './middleware/auth-middleware';
-export * from './middleware/check-object-id';
 export * from './middleware/error-handler';
 export * from './middleware/validate-request';
 export * from './middleware/validate-url';

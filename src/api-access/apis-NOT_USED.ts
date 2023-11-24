@@ -1,4 +1,4 @@
-import { IApi } from '../api-access/interfaces';
+import { IApi } from './types';
 import {
   MICROSERVICE_AUTH,
   MICROSERVICE_PRODUCTS,

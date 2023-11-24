@@ -1,4 +1,4 @@
-import { IApiAccess } from './interfaces';
+import { IApiAccess } from './types';
 import {
   ANONYMOUS_ROLE,
   CUSTOMER_ROLE,

@@ -23,3 +23,9 @@ export const ROLES_URL = USERS_URL + '/roles';
 export const PRODUCTS_URL = '/api/products/v2';
 export const PRODUCT_REVIEW_URL = PRODUCTS_URL + '/reviews';
 export const UPLOAD_URL = PRODUCTS_URL + '/upload';
+
+// Orders
+export const ORDERS_URL = '/api/orders/v2';
+export const MY_ORDERS_URL = ORDERS_URL + '/mine';
+export const UPDATE_ORDER_TO_PAID_URL = ORDERS_URL + '/updatetopaid';
+export const UPDATE_ORDER_TO_DELIVERED_URL = ORDERS_URL + '/updatetodelivered';

@@ -1,12 +1,14 @@
 import { Response, NextFunction } from 'express';
+import { isValidObjectId } from 'mongoose';
 import jwt from 'jsonwebtoken';
 import { IExtendedRequest } from '../types/request-types';
 import { IUserObj } from '../types/mongoose-model-types/mongoose-user-types';
 import {
   NotAuthorizedError,
+  UserInputError,
   ApplicationIntegrityError,
 } from '../types/error-types';
-import { IApiAccess } from '../api-access/interfaces';
+import { IApiAccess } from '../api-access/types';
 import {
   MICROSERVICE_AUTH,
   MICROSERVICE_PRODUCTS,
@@ -39,12 +41,17 @@ export const currentUser = (
   next();
 };
 
+interface IAllowedRolesAndHasParams {
+  allowedRoles: string[];
+  hasParams: boolean;
+}
+
 // Find and return the allowed roles for the first matchning api, method and whether it has trailing param
-const getAllowedRolesForApi = (
+const getAllowedRolesAndHasParams = (
   apiArray: IApiAccess[],
   apiUrl: string,
   apiMethod: string
-): string[] => {
+): IAllowedRolesAndHasParams => {
   // Check for first match, in other words the order in apiArray matters!
   const matchingRecord = apiArray.find((access) => {
     // Check if an API object in apiArray matches the apiUrl and apiMethod
@@ -65,8 +72,11 @@ const getAllowedRolesForApi = (
     console.log(errorMessage);
     throw new ApplicationIntegrityError(errorMessage);
   }
-  //Return role for first match
-  return matchingRecord.allowedRoles;
+  //Return role and hasParams boolean for first match
+  return {
+    allowedRoles: matchingRecord.allowedRoles,
+    hasParams: matchingRecord.hasParams,
+  };
 };
 
 export const authorize =
@@ -93,7 +103,11 @@ export const authorize =
         console.log(errorMessage);
         throw new ApplicationIntegrityError(errorMessage);
     }
-    const allowedRoles = getAllowedRolesForApi(API_ACCESS_TABLE, url, method);
+    const { allowedRoles, hasParams } = getAllowedRolesAndHasParams(
+      API_ACCESS_TABLE,
+      url,
+      method
+    );
     // console.log('url ' + req.url + ' method ' + req.method + ': ', allowedRoles);
     let currentUserRole: string;
     if (!req.currentUser) {
@@ -108,5 +122,12 @@ export const authorize =
       // console.log ('User not authorised to access API');
       throw new NotAuthorizedError();
     }
+    // If URL is defined to have params then check validity of params
+    if (hasParams) {
+      if (!isValidObjectId(req.params.id)) {
+        throw new UserInputError(`Invalid ObjectId: ${req.params.id}`);
+      }
+    }
+    // All good, proceed:
     next();
   };

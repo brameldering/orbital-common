@@ -1,4 +1,4 @@
-import { IApiAccess } from '../api-access/interfaces';
+import { IApiAccess } from './types';
 import { ADMIN_ROLE } from '../constants/role-constants';
 import {
   ID_SEQUENCE_URL,
