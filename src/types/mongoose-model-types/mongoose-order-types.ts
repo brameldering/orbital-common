@@ -2,7 +2,6 @@ import mongoose from 'mongoose';
 
 // =============== OrderItem ===============
 export interface IOrderItemObj {
-  _id: mongoose.Types.ObjectId;
   productId: mongoose.Types.ObjectId;
   productName: string;
   imageURL: string;
@@ -27,7 +26,6 @@ export interface IOrderItemDoc extends mongoose.Document {
 
 // =============== OrderTotalAmount ===============
 export interface IOrderTotalAmountObj {
-  _id: mongoose.Types.ObjectId;
   itemsPrice: number;
   shippingPrice: number;
   taxPrice: number;
@@ -52,7 +50,6 @@ export interface IOrderTotalAmountDoc extends mongoose.Document {
 // =============== Order ===============
 // Interface describing the Order object attributes
 export interface IOrderObj {
-  _id: mongoose.Types.ObjectId;
   // sequenceProductId: string;
   userId: mongoose.Types.ObjectId;
   orderItems: IOrderItemObj[];
@@ -76,7 +73,7 @@ export interface IOrderObj {
   deliveredAt?: Date;
   createdAt?: Date;
   updatedAt?: Date;
-  user: any;
+  // user: any;
 }
 
 // Interface describing the Order Model
