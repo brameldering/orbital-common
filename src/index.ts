@@ -26,6 +26,7 @@ export * from './middleware/validate-request';
 export * from './middleware/validate-url';
 
 export * from './constants/microservice-names';
+export * from './constants/payment-methods';
 export * from './constants/url-constants';
 export * from './constants/role-constants';
 export * from './constants/test-constants';
