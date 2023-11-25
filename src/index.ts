@@ -20,6 +20,7 @@ export * from './api-access/api-access-orders';
 export * from './api-access/api-access-seq-service';
 
 export * from './middleware/auth-middleware';
+export * from './middleware/check-object-id';
 export * from './middleware/error-handler';
 export * from './middleware/validate-request';
 export * from './middleware/validate-url';
