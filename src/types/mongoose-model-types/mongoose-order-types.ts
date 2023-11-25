@@ -52,6 +52,8 @@ export interface IOrderTotalAmountDoc extends mongoose.Document {
 export interface IOrderObj {
   // sequenceProductId: string;
   userId: mongoose.Types.ObjectId;
+  userName: string;
+  userEmail: string;
   orderItems: IOrderItemObj[];
   shippingAddress: {
     address: string;
@@ -84,6 +86,8 @@ export interface IOrderModel extends mongoose.Model<IOrderDoc> {
 // Interface describing the Order Document
 export interface IOrderDoc extends mongoose.Document {
   _id: mongoose.Types.ObjectId;
+  userName: string;
+  userEmail: string;
   // sequenceProductId: string;
   userId: mongoose.Types.ObjectId;
   orderItems: mongoose.Types.DocumentArray<IOrderItemDoc>;
