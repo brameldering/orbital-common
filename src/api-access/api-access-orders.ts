@@ -26,11 +26,11 @@ export const API_ACCESS_ORDERS: IApiAccess[] = [
     hasParams: false,
     allowedRoles: [CUSTOMER_ROLE, ADMIN_ROLE],
   },
-  /* get-my-orders - - params: user_id*/
+  /* get-my-orders */
   {
     apiUrl: MY_ORDERS_URL,
     method: 'GET',
-    hasParams: true,
+    hasParams: false,
     allowedRoles: [CUSTOMER_ROLE, ADMIN_ROLE],
   },
   /* update-order-to-paid - params: order_id */

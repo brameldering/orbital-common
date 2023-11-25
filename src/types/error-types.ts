@@ -13,6 +13,18 @@ export abstract class CustomError extends Error {
   }[];
 }
 
+// Following error is thrown when a problem with an external API such as PayPal
+class ExternalAPIError extends CustomError {
+  statusCode = 500;
+  constructor(public message: string) {
+    super(message);
+    Object.setPrototypeOf(this, ExternalAPIError.prototype);
+  }
+  serializeErrors() {
+    return [{ message: this.message }];
+  }
+}
+
 class DatabaseError extends CustomError {
   statusCode = 500;
   constructor(public message: string) {
@@ -121,6 +133,7 @@ class UserInputError extends CustomError {
 
 export {
   DatabaseError,
+  ExternalAPIError,
   ApplicationIntegrityError,
   EnvConfigurationError,
   FileUploadError,
