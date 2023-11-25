@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-// =============== OrderItem ===============
+// ================ OrderItem ================
 export interface IOrderItemObj {
   productId: mongoose.Types.ObjectId;
   productName: string;
