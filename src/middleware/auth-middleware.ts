@@ -129,7 +129,7 @@ export const authorize =
     }
     // If URL is defined to have params then check validity of params
     if (hasParams) {
-      console.log('In hasParams, req.params.id:', req.params.id);
+      console.log('In hasParams, req.params:', req.params);
       if (!isValidObjectId(req.params.id)) {
         throw new UserInputError(`Invalid ObjectId: ${req.params.id}`);
       }

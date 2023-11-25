@@ -1,10 +1,15 @@
 import { IApiAccess } from './types';
-import { CUSTOMER_ROLE, ADMIN_ROLE } from '../constants/role-constants';
+import {
+  ANONYMOUS_ROLE,
+  CUSTOMER_ROLE,
+  ADMIN_ROLE,
+} from '../constants/role-constants';
 import {
   ORDERS_URL,
   MY_ORDERS_URL,
   UPDATE_ORDER_TO_PAID_URL,
   UPDATE_ORDER_TO_DELIVERED_URL,
+  GET_PAYPAL_CLIENT_ID_URL,
 } from '../constants/url-constants';
 
 // The order of the following array matters.
@@ -47,11 +52,18 @@ export const API_ACCESS_ORDERS: IApiAccess[] = [
     hasParams: true,
     allowedRoles: [ADMIN_ROLE],
   },
-  /* get-order-by-id - params: order_id*/
+  /* get-order-by-id - params: order_id */
   {
     apiUrl: ORDERS_URL,
     method: 'GET',
     hasParams: true,
     allowedRoles: [CUSTOMER_ROLE, ADMIN_ROLE],
+  },
+  /* get-paypal-client-id */
+  {
+    apiUrl: GET_PAYPAL_CLIENT_ID_URL,
+    method: 'GET',
+    hasParams: false,
+    allowedRoles: [ANONYMOUS_ROLE, CUSTOMER_ROLE, ADMIN_ROLE],
   },
 ];
