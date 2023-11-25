@@ -1,11 +1,9 @@
 import { Response, NextFunction } from 'express';
-import { isValidObjectId } from 'mongoose';
 import jwt from 'jsonwebtoken';
 import { IExtendedRequest } from '../types/request-types';
 import { IUserObj } from '../types/mongoose-model-types/mongoose-user-types';
 import {
   NotAuthorizedError,
-  UserInputError,
   ApplicationIntegrityError,
 } from '../types/error-types';
 import { IApiAccess } from '../api-access/types';
@@ -126,13 +124,6 @@ export const authorize =
     if (!allowedRoles.includes(currentUserRole)) {
       // console.log ('User not authorised to access API');
       throw new NotAuthorizedError();
-    }
-    // If URL is defined to have params then check validity of params
-    if (hasParams) {
-      console.log('In hasParams, req.params:', req.params);
-      if (!isValidObjectId(req.params.id)) {
-        throw new UserInputError(`Invalid ObjectId: ${req.params.id}`);
-      }
     }
     // All good, proceed:
     next();
