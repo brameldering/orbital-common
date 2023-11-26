@@ -1,5 +1,5 @@
 // config
-export const GET_PAYPAL_CLIENT_ID_URL: string = '/api/config/v1/paypalclientid';
+export const GET_PAYPAL_CLIENT_ID_URL: string = '/api/config/v2/paypalclientid';
 
 // Seed Data
 export const SEED_DATA_URL = '/api/seeddata/v2';
