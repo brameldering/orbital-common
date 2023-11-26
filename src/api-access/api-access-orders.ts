@@ -1,9 +1,5 @@
 import { IApiAccess } from './types';
-import {
-  ANONYMOUS_ROLE,
-  CUSTOMER_ROLE,
-  ADMIN_ROLE,
-} from '../constants/role-constants';
+import { CUSTOMER_ROLE, ADMIN_ROLE } from '../constants/role-constants';
 import {
   ORDERS_URL,
   MY_ORDERS_URL,
