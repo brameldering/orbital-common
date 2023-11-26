@@ -17,6 +17,13 @@ import {
 // At least make sure that URLs with an ID are placed after matching base URLs
 
 export const API_ACCESS_ORDERS: IApiAccess[] = [
+  /* get-paypal-client-id */
+  {
+    apiUrl: GET_PAYPAL_CLIENT_ID_URL,
+    method: 'GET',
+    hasParams: false,
+    allowedRoles: [CUSTOMER_ROLE, ADMIN_ROLE],
+  },
   /* get-orders */
   {
     apiUrl: ORDERS_URL,
@@ -58,12 +65,5 @@ export const API_ACCESS_ORDERS: IApiAccess[] = [
     method: 'GET',
     hasParams: true,
     allowedRoles: [CUSTOMER_ROLE, ADMIN_ROLE],
-  },
-  /* get-paypal-client-id */
-  {
-    apiUrl: GET_PAYPAL_CLIENT_ID_URL,
-    method: 'GET',
-    hasParams: false,
-    allowedRoles: [ANONYMOUS_ROLE, CUSTOMER_ROLE, ADMIN_ROLE],
   },
 ];
