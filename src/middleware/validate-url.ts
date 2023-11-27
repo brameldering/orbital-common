@@ -11,7 +11,7 @@ export const validateURL = (
   const apiUrl = req.url;
   if (apiUrl.includes('/?')) {
     const errorMessage = 'URL should not contain /?, URL: ' + apiUrl;
-    console.log(errorMessage);
+    // console.log(errorMessage);
     throw new ApplicationIntegrityError(errorMessage);
   }
   next();
