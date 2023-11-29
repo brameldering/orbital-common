@@ -1,6 +1,26 @@
 import mongoose from 'mongoose';
 
-// ================ OrderItem ================
+// ================ IOrderContact ================
+export interface IOrderContactObj {
+  userId: mongoose.Types.ObjectId;
+  name: string;
+  email: string;
+}
+
+// Interface describing the Order Contact Model
+export interface IOrderContactModel extends mongoose.Model<IOrderContactDoc> {
+  build(attrs: IOrderContactObj): IOrderContactDoc;
+}
+
+// Interface describing the Order Contact Document
+export interface IOrderContactDoc extends mongoose.Document {
+  _id: mongoose.Types.ObjectId;
+  userId: mongoose.Types.ObjectId;
+  name: string;
+  email: string;
+}
+
+// ================ IOrderItem ================
 export interface IOrderItemObj {
   productId: mongoose.Types.ObjectId;
   productName: string;
@@ -24,7 +44,7 @@ export interface IOrderItemDoc extends mongoose.Document {
   qty: number;
 }
 
-// =============== OrderTotalAmount ===============
+// =============== IOrderTotalAmount ===============
 export interface IOrderTotalAmountObj {
   itemsPrice: number;
   shippingPrice: number;
@@ -47,14 +67,12 @@ export interface IOrderTotalAmountDoc extends mongoose.Document {
   totalPrice: number;
 }
 
-// =============== Order ===============
+// =============== IOrder ===============
 // Interface describing the Order object attributes
 export interface IOrderObj {
   // sequenceProductId: string;
   userId: mongoose.Types.ObjectId;
   // user: any;
-  // userName: string;
-  // userEmail: string;
   orderItems: IOrderItemObj[];
   shippingAddress: {
     address: string;
@@ -89,8 +107,6 @@ export interface IOrderDoc extends mongoose.Document {
   // sequenceProductId: string;
   userId: mongoose.Types.ObjectId;
   // user: any;
-  // userName: string;
-  // userEmail: string;
   orderItems: mongoose.Types.DocumentArray<IOrderItemDoc>;
   shippingAddress: {
     address: string;
