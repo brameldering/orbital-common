@@ -1,24 +1,24 @@
 import mongoose from 'mongoose';
 
 // ================ IOrderContact ================
-export interface IOrderContactObj {
-  userId: mongoose.Types.ObjectId;
-  name: string;
-  email: string;
-}
+// export interface IOrderContactObj {
+//   userId: mongoose.Types.ObjectId;
+//   name: string;
+//   email: string;
+// }
 
-// Interface describing the Order Contact Model
-export interface IOrderContactModel extends mongoose.Model<IOrderContactDoc> {
-  build(attrs: IOrderContactObj): IOrderContactDoc;
-}
+// // Interface describing the Order Contact Model
+// export interface IOrderContactModel extends mongoose.Model<IOrderContactDoc> {
+//   build(attrs: IOrderContactObj): IOrderContactDoc;
+// }
 
-// Interface describing the Order Contact Document
-export interface IOrderContactDoc extends mongoose.Document {
-  _id: mongoose.Types.ObjectId;
-  userId: mongoose.Types.ObjectId;
-  name: string;
-  email: string;
-}
+// // Interface describing the Order Contact Document
+// export interface IOrderContactDoc extends mongoose.Document {
+//   _id: mongoose.Types.ObjectId;
+//   userId: mongoose.Types.ObjectId;
+//   name: string;
+//   email: string;
+// }
 
 // ================ IOrderItem ================
 export interface IOrderItemObj {
@@ -71,8 +71,11 @@ export interface IOrderTotalAmountDoc extends mongoose.Document {
 // Interface describing the Order object attributes
 export interface IOrderObj {
   // sequenceProductId: string;
-  userId: mongoose.Types.ObjectId;
-  // user: any;
+  user: {
+    userId: mongoose.Types.ObjectId;
+    name: string;
+    email: string;
+  };
   orderItems: IOrderItemObj[];
   shippingAddress: {
     address: string;
@@ -105,8 +108,11 @@ export interface IOrderModel extends mongoose.Model<IOrderDoc> {
 export interface IOrderDoc extends mongoose.Document {
   _id: mongoose.Types.ObjectId;
   // sequenceProductId: string;
-  userId: mongoose.Types.ObjectId;
-  // user: any;
+  user: {
+    userId: mongoose.Types.ObjectId;
+    name: string;
+    email: string;
+  };
   orderItems: mongoose.Types.DocumentArray<IOrderItemDoc>;
   shippingAddress: {
     address: string;
