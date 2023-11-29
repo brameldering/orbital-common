@@ -118,7 +118,11 @@ const orderTotalAmountsSchema = new mongoose.Schema({
 // ======================== Order ========================
 const orderSchema = new mongoose.Schema(
   {
-    // sequentialOrderId: { type: String, required: true, unique: true },
+    sequentialOrderId: {
+      type: String,
+      required: true,
+      unique: true,
+    },
     user: {
       userId: {
         type: mongoose.Schema.Types.ObjectId,
