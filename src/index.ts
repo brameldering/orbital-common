@@ -30,3 +30,8 @@ export * from './constants/payment-methods';
 export * from './constants/url-constants';
 export * from './constants/role-constants';
 export * from './constants/test-constants';
+
+export * from './models/orderModel';
+export * from './models/productModel';
+export * from './models/userModel';
+export * from './models/seqIdModel';
