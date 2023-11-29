@@ -26,7 +26,7 @@ export interface IReviewDoc extends mongoose.Document {
 
 // ================ IProductSequence ================
 export interface IProductSequenceObj {
-  latestId: number;
+  latestSeqId: number;
 }
 
 // Interface describing the Product Sequence Model
@@ -44,7 +44,7 @@ export interface IProductSequenceDoc extends mongoose.Document {
 // =========================================================
 // Interface describing the Product object attributes
 export interface IProductObj {
-  // sequenceProductId: string;
+  sequentialProductId: string;
   name: string;
   imageURL: string;
   brand: string;
@@ -65,7 +65,7 @@ export interface IProductModel extends mongoose.Model<IProductDoc> {
 
 // Interface describing the Product Document
 export interface IProductDoc extends mongoose.Document {
-  // sequenceProductId: string;
+  sequentialProductId: string;
   name: string;
   imageURL: string;
   brand: string;

@@ -62,7 +62,7 @@ const ProductSequence = mongoose.model<
 // ====================== Product ======================
 const productSchema = new mongoose.Schema(
   {
-    sequenceProductId: {
+    sequentialProductId: {
       type: String,
       required: false, // true
       unique: false, // true,

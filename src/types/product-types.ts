@@ -6,7 +6,7 @@ export interface IGetProductsPaginated {
 
 export interface IBaseProduct {
   id: string;
-  sequenceProductId: string;
+  sequentialProductId: string;
   name: string;
   imageURL: string;
   brand: string;

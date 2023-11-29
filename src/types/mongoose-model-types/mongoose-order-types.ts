@@ -22,7 +22,7 @@ import mongoose from 'mongoose';
 
 // ================ IOrderSequence ================
 export interface IOrderSequenceObj {
-  latestId: number;
+  latestSeqId: number;
 }
 
 // Interface describing the Order Sequence Model
@@ -86,7 +86,7 @@ export interface IOrderTotalAmountDoc extends mongoose.Document {
 // =============== IOrder ===============
 // Interface describing the Order object attributes
 export interface IOrderObj {
-  // sequenceProductId: string;
+  sequentialOrderId: string;
   user: {
     userId: string;
     name: string;
@@ -123,7 +123,7 @@ export interface IOrderModel extends mongoose.Model<IOrderDoc> {
 // Interface describing the Order Document
 export interface IOrderDoc extends mongoose.Document {
   _id: mongoose.Types.ObjectId;
-  // sequenceProductId: string;
+  sequentialOrderId: string;
   user: {
     userId: mongoose.Types.ObjectId;
     name: string;
