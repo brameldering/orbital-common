@@ -1,10 +1,8 @@
 import { IShippingAddress, ITotalAmounts } from './common-types';
-// import { IUser } from './user-types';
 
 export interface IOrder {
   id?: string;
   sequenceOrderId?: string;
-  // user?: IUser;
   user?: IOrderUser;
   orderItems: Array<IOrderItem>;
   shippingAddress: IShippingAddress;
