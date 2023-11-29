@@ -3,11 +3,15 @@ import {
   IReviewObj,
   IReviewDoc,
   IReviewModel,
+  IProductSequenceObj,
+  IProductSequenceDoc,
+  IProductSequenceModel,
   IProductObj,
   IProductDoc,
   IProductModel,
 } from '../types/mongoose-model-types/mongoose-product-types';
 
+// ====================== Review ======================
 const reviewSchema = new mongoose.Schema(
   {
     userId: {
@@ -37,8 +41,25 @@ reviewSchema.statics.build = (attrs: IReviewObj) => {
 
 const Review = mongoose.model<IReviewDoc, IReviewModel>('Review', reviewSchema);
 
-// ================================================================================
+// ====================== ProductSequence ======================
+const productSequenceSchema = new mongoose.Schema({
+  latestId: {
+    type: Number,
+    required: true,
+    default: 0,
+  },
+});
 
+productSequenceSchema.statics.build = (attrs: IProductSequenceObj) => {
+  return new ProductSequence(attrs);
+};
+
+const ProductSequence = mongoose.model<
+  IProductSequenceDoc,
+  IProductSequenceModel
+>('ProductSequence', productSequenceSchema);
+
+// ====================== Product ======================
 const productSchema = new mongoose.Schema(
   {
     sequenceProductId: {
@@ -115,4 +136,11 @@ const Product = mongoose.model<IProductDoc, IProductModel>(
   productSchema
 );
 
-export { Review, Product, reviewSchema, productSchema };
+export {
+  Review,
+  Product,
+  ProductSequence,
+  reviewSchema,
+  productSchema,
+  productSequenceSchema,
+};
