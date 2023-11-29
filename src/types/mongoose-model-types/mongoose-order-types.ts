@@ -72,7 +72,7 @@ export interface IOrderTotalAmountDoc extends mongoose.Document {
 export interface IOrderObj {
   // sequenceProductId: string;
   user: {
-    userId: mongoose.Types.ObjectId;
+    userId: string;
     name: string;
     email: string;
   };
