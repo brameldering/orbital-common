@@ -43,7 +43,7 @@ const Review = mongoose.model<IReviewDoc, IReviewModel>('Review', reviewSchema);
 
 // ====================== ProductSequence ======================
 const productSequenceSchema = new mongoose.Schema({
-  latestId: {
+  latestSeqId: {
     type: Number,
     required: true,
     default: 0,

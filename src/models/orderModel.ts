@@ -53,7 +53,7 @@ import {
 
 // ====================== OrderSequence ======================
 const orderSequenceSchema = new mongoose.Schema({
-  latestId: {
+  latestSeqId: {
     type: Number,
     required: true,
     default: 0,
