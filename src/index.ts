@@ -2,7 +2,6 @@
 export * from './types/mongoose-model-types/mongoose-user-types';
 export * from './types/mongoose-model-types/mongoose-product-types';
 export * from './types/mongoose-model-types/mongoose-order-types';
-export * from './types/mongoose-model-types/mongoose-sequence-types';
 
 export * from './types/cart-types';
 export * from './types/common-types';
@@ -34,4 +33,3 @@ export * from './constants/test-constants';
 export * from './models/orderModel';
 export * from './models/productModel';
 export * from './models/userModel';
-export * from './models/seqIdModel';
