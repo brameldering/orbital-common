@@ -1,13 +1,13 @@
 export interface IApi {
   microservice: string;
+  apiName: string;
   apiUrl: string;
   method: string;
   hasParams: boolean;
 }
 
 export interface IApiAccess {
-  apiUrl: string;
-  method: string;
-  hasParams: boolean;
+  microservice: string;
+  apiName: string;
   allowedRoles: string[];
 }
