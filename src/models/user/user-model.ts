@@ -4,7 +4,7 @@ import {
   IUserObj,
   IUserDoc,
   IUserModel,
-} from '../types/mongoose-model-types/mongoose-user-types';
+} from '../../types/mongoose-model-types/mongoose-user-types';
 
 const userSchema = new mongoose.Schema(
   {

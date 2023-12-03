@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 // Interface describing the Review object attributes
-export interface IReviewObj {
+export interface IProductReviewObj {
   userId: mongoose.Types.ObjectId;
   userName: string;
   rating: number;
@@ -9,12 +9,12 @@ export interface IReviewObj {
 }
 
 // Interface describing the Review Model
-export interface IReviewModel extends mongoose.Model<IReviewDoc> {
-  build(attrs: IReviewObj): IReviewDoc;
+export interface IProductReviewModel extends mongoose.Model<IProductReviewDoc> {
+  build(attrs: IProductReviewObj): IProductReviewDoc;
 }
 
 // Interface describing the Review Document
-export interface IReviewDoc extends mongoose.Document {
+export interface IProductReviewDoc extends mongoose.Document {
   _id: mongoose.Types.ObjectId;
   userId: mongoose.Types.ObjectId;
   userName: string;
@@ -51,7 +51,7 @@ export interface IProductObj {
   category: string;
   description: string;
   numReviews: number;
-  reviews?: IReviewDoc[];
+  reviews?: IProductReviewDoc[];
   rating?: number;
   price: number;
   countInStock: number;
@@ -72,7 +72,7 @@ export interface IProductDoc extends mongoose.Document {
   category: string;
   description: string;
   numReviews: number;
-  reviews?: IReviewDoc[];
+  reviews?: IProductReviewDoc[];
   rating?: number;
   price: number;
   countInStock: number;
