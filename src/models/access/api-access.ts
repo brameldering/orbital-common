@@ -4,14 +4,13 @@ import {
   IApiAccessDoc,
   IApiAccessModel,
 } from '../../types/mongoose-model-types/mongoose-access-types';
-import { roleSchema } from './access-role-model';
 
 // ====================== APIs ======================
 const apiAccessSchema = new mongoose.Schema(
   {
     microservice: { type: String, required: true },
     apiName: { type: String, required: true },
-    allowedRoles: [roleSchema],
+    allowedRoles: [String],
   },
   {
     timestamps: true,
