@@ -4,9 +4,3 @@ export interface IApi {
   method: string;
   hasParams: boolean;
 }
-
-export interface IApiAccess {
-  microservice: string;
-  apiName: string;
-  allowedRoles: string[];
-}

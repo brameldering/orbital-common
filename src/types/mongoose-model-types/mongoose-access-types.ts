@@ -19,31 +19,11 @@ export interface IRoleDoc extends mongoose.Document {
   updatedAt?: Date;
 }
 
-// ============================== APIs ==============================
-// Interface describing the API object attributes
-export interface IApiObj {
-  apiUrl: string;
-}
-
-// Interface describing the API Model
-export interface IApiModel extends mongoose.Model<IApiDoc> {
-  build(attrs: IApiObj): IApiDoc;
-}
-
-// Interface describing the API Document
-export interface IApiDoc extends mongoose.Document {
-  _id: mongoose.Types.ObjectId;
-  apiUrl: string;
-  createdAt?: Date;
-  updatedAt?: Date;
-}
-
 // ========================= Api Access =========================
 // Interface describing the Api Access object attributes
 export interface IApiAccessObj {
-  apiUrl: string;
-  apiMethod: string;
-  hasParams: boolean;
+  microservice: string;
+  apiName: string;
   allowedRoles: string[];
 }
 
@@ -55,9 +35,8 @@ export interface IApiAccessModel extends mongoose.Model<IApiAccessDoc> {
 // Interface describing the Api Access Document
 export interface IApiAccessDoc extends mongoose.Document {
   _id: mongoose.Types.ObjectId;
-  apiUrl: string;
-  apiMethod: string;
-  hasParams: boolean;
+  microservice: string;
+  apiName: string;
   allowedRoles: string[];
   createdAt?: Date;
   updatedAt?: Date;
