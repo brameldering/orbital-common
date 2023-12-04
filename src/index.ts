@@ -12,8 +12,8 @@ export * from './types/order-types';
 export * from './types/product-types';
 export * from './types/request-types';
 export * from './types/user-types';
+export * from './types/api-access-types';
 
-// export * from './api-access/types';
 // export * from './api-access/api-access-auth';
 // export * from './api-access/api-access-products';
 // export * from './api-access/api-access-orders';
