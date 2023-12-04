@@ -14,29 +14,24 @@ export * from './types/request-types';
 export * from './types/user-types';
 export * from './types/api-access-types';
 
-// export * from './api-access/api-access-auth';
-// export * from './api-access/api-access-products';
-// export * from './api-access/api-access-orders';
-// export * from './api-access/api-access-seq-service';
-
 export * from './middleware/auth-middleware';
 export * from './middleware/check-object-id';
 export * from './middleware/error-handler';
 export * from './middleware/validate-request';
 export * from './middleware/validate-url';
 
-export * from './constants/api-access/apis-auth-microservice';
-export * from './constants/api-access/apis-orders-microservice';
-export * from './constants/api-access/apis-products-microservice';
-export * from './constants/api-access/apis-seq-microservice';
-export * from './constants/api-access/microservice-names';
+export * from './constants/access/apis-auth';
+export * from './constants/access/apis-orders';
+export * from './constants/access/apis-products';
+export * from './constants/access/apis-seq-service';
+export * from './constants/access/microservice-names';
 
 export * from './constants/payment-methods';
 export * from './constants/url-constants';
 export * from './constants/role-constants';
 export * from './constants/test-constants';
 
-export * from './models/access/api-access';
+export * from './models/access/api-access-model';
 export * from './models/access/role-model';
 
 export * from './models/order/order-contact-model';
