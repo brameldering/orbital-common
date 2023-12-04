@@ -25,7 +25,12 @@ export * from './middleware/error-handler';
 export * from './middleware/validate-request';
 export * from './middleware/validate-url';
 
-export * from './constants/microservice-names';
+export * from './constants/api-access/apis-auth-microservice';
+export * from './constants/api-access/apis-orders-microservice';
+export * from './constants/api-access/apis-products-microservice';
+export * from './constants/api-access/apis-seq-microservice';
+export * from './constants/api-access/microservice-names';
+
 export * from './constants/payment-methods';
 export * from './constants/url-constants';
 export * from './constants/role-constants';
