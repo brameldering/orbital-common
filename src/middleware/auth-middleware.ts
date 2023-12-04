@@ -6,7 +6,7 @@ import {
   // NotAuthorizedError,
   ApplicationIntegrityError,
 } from '../types/error-types';
-import { IApiAccess } from '../types/api-access-types';
+import { IApiAccessObj } from '../types/mongoose-model-types/mongoose-access-types';
 // import {
 //   MICROSERVICE_AUTH,
 //   MICROSERVICE_PRODUCTS,
@@ -48,7 +48,7 @@ interface IAllowedRolesAndHasParams {
 
 // Find and return the allowed roles for the first matchning api, method and whether it has trailing param
 const getAllowedRolesAndHasParams = (
-  apiArray: IApiAccess[],
+  apiArray: IApiAccessObj[],
   apiUrl: string,
   apiMethod: string
 ): IAllowedRolesAndHasParams => {
@@ -85,7 +85,7 @@ export const authorize =
     const url = req.url;
     const method = req.method;
 
-    let API_ACCESS_TABLE: IApiAccess[];
+    let API_ACCESS_TABLE: IApiAccessObj[];
     // switch (microservice) {
     //   case MICROSERVICE_AUTH:
     //     API_ACCESS_TABLE = API_ACCESS_AUTH;
