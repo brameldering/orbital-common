@@ -1,5 +1,4 @@
 export interface IApi {
-  microservice: string;
   apiName: string;
   apiUrl: string;
   method: string;
