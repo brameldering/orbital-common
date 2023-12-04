@@ -3,16 +3,16 @@ import jwt from 'jsonwebtoken';
 import { IExtendedRequest } from '../types/request-types';
 import { IUserObj } from '../types/mongoose-model-types/mongoose-user-types';
 import {
-  NotAuthorizedError,
+  // NotAuthorizedError,
   ApplicationIntegrityError,
 } from '../types/error-types';
 import { IApiAccess } from '../types/api-access-types';
-import {
-  MICROSERVICE_AUTH,
-  MICROSERVICE_PRODUCTS,
-  MICROSERVICE_ORDERS,
-  MICROSERVICE_SEQUENCES,
-} from '../constants/microservice-names';
+// import {
+//   MICROSERVICE_AUTH,
+//   MICROSERVICE_PRODUCTS,
+//   MICROSERVICE_ORDERS,
+//   MICROSERVICE_SEQUENCES,
+// } from '../constants/api-access/microservice-names';
 // import { API_ACCESS_AUTH } from '../api-access/api-access-auth';
 // import { API_ACCESS_PRODUCTS } from '../api-access/api-access-products';
 // import { API_ACCESS_ORDERS } from '../api-access/api-access-orders';
