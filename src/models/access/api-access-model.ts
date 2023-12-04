@@ -8,8 +8,7 @@ import {
 // ====================== APIs ======================
 const apiAccessSchema = new mongoose.Schema(
   {
-    microservice: { type: String, required: true },
-    apiName: { type: String, required: true },
+    apiName: { type: String, required: true, unique: true },
     allowedRoles: [String],
   },
   {
@@ -22,9 +21,6 @@ const apiAccessSchema = new mongoose.Schema(
     },
   }
 );
-
-// combination of microservice and apiName has to be unique
-apiAccessSchema.index({ microservice: 1, apiName: 1 }, { unique: true });
 
 apiAccessSchema.statics.build = (attrs: IApiAccessObj) => {
   return new ApiAccess(attrs);
