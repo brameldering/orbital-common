@@ -36,7 +36,7 @@ export * from './constants/url-constants';
 export * from './constants/role-constants';
 export * from './constants/test-constants';
 
-export * from './models/access/access-api-model';
+export * from './models/access/access-api-role-model';
 export * from './models/access/access-role-model';
 
 export * from './models/order/order-contact-model';
