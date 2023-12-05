@@ -32,11 +32,6 @@ export const currentUser = (
   next();
 };
 
-// interface IAllowedRolesAndHasParams {
-//   allowedRoles: string[];
-//   hasParams: boolean;
-// }
-
 interface ICombinedAccessApiSpec {
   apiName: string;
   apiUrl: string;
@@ -80,8 +75,8 @@ export const authorize =
   (req: IExtendedRequest, res: Response, next: NextFunction) => {
     const url = req.url;
     const method = req.method;
-    console.log('apiSpecs: ', apiSpecs);
-    console.log('apiAccess: ', apiAccess);
+    // console.log('apiSpecs: ', apiSpecs);
+    // console.log('apiAccess: ', apiAccess);
     // combine apiSpecs and apiAccess into one array
     const combinedArray = apiSpecs.map((api) => {
       const accessObj = apiAccess.find(
@@ -95,7 +90,7 @@ export const authorize =
         allowedRoles: accessObj ? accessObj.allowedRoles : [], // Assign allowedRoles or an empty array if not found
       };
     });
-    console.log('==> combinedArray: ', combinedArray);
+    // console.log('==> combinedArray: ', combinedArray);
     const allowedRoles = getAllowedRolesAndHasParams(
       combinedArray,
       url,
