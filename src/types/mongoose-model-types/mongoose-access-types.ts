@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 // Interface describing the Role object attributes
 export interface IRoleObj {
   role: string;
+  roleDisplay: string;
 }
 
 // Interface describing the Role Model
@@ -15,6 +16,7 @@ export interface IRoleModel extends mongoose.Model<IRoleDoc> {
 export interface IRoleDoc extends mongoose.Document {
   _id: mongoose.Types.ObjectId;
   role: string;
+  roleDisplay: string;
   createdAt?: Date;
   updatedAt?: Date;
 }
