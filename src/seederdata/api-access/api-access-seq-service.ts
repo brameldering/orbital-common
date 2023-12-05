@@ -1,4 +1,9 @@
-import { IApiAccessObj, ADMIN_ROLE } from '@orbitelco/common';
+import { IApiAccessObj } from '../../types/mongoose-model-types/mongoose-access-types';
+import {
+  // ANONYMOUS_ROLE,
+  // CUSTOMER_ROLE,
+  ADMIN_ROLE,
+} from '../../constants/role-constants';
 
 // The order of the following array matters.
 // It should be the same as the order of routes in the app.ts
