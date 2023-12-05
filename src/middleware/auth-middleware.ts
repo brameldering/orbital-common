@@ -94,6 +94,7 @@ export const authorize =
         allowedRoles: accessObj ? accessObj.allowedRoles : [], // Assign allowedRoles or an empty array if not found
       };
     });
+    console.log('==> combinedArray: ', combinedArray);
     const allowedRoles = getAllowedRolesAndHasParams(
       combinedArray,
       url,
