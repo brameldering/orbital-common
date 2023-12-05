@@ -45,3 +45,9 @@ export * from './models/product/product-sequence-model';
 export * from './models/product/product-review-model';
 
 export * from './models/user/user-model';
+
+export * from './seederdata/api-access/roles';
+export * from './seederdata/api-access/api-access-auth';
+export * from './seederdata/api-access/api-access-orders';
+export * from './seederdata/api-access/api-access-products';
+export * from './seederdata/api-access/api-access-seq-service';
