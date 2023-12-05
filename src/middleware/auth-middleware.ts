@@ -80,7 +80,8 @@ export const authorize =
   (req: IExtendedRequest, res: Response, next: NextFunction) => {
     const url = req.url;
     const method = req.method;
-
+    console.log('apiSpecs: ', apiSpecs);
+    console.log('apiAccess: ', apiAccess);
     // combine apiSpecs and apiAccess into one array
     const combinedArray = apiSpecs.map((api) => {
       const accessObj = apiAccess.find(
