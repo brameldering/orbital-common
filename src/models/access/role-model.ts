@@ -9,7 +9,7 @@ import {
 const roleSchema = new mongoose.Schema(
   {
     role: { type: String, required: true, unique: true },
-    roleDisplay: { type: String, required: true },
+    roleDisplay: { type: String, required: true, unique: true },
   },
   {
     timestamps: true,
