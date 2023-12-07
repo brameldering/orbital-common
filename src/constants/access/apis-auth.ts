@@ -1,4 +1,5 @@
 import {
+  API_ACCESS_URL,
   USERS_URL,
   CURRENT_USER_URL,
   ROLES_URL,
@@ -12,6 +13,34 @@ import {
 import { IApi } from '../../types/api-access-types';
 
 export const AUTH_APIS: IApi[] = [
+  /* get-api-accesses */
+  {
+    apiName: 'get-api-accesses',
+    apiUrl: API_ACCESS_URL,
+    method: 'GET',
+    hasParams: false,
+  },
+  /* create-api-access - body: apiName: string, allowedRoles: [string] */
+  {
+    apiName: 'create-api-access',
+    apiUrl: API_ACCESS_URL,
+    method: 'POST',
+    hasParams: false,
+  },
+  /* update-api-access - body: apiName: string, allowedRoles: [string] */
+  {
+    apiName: 'update-api-access',
+    apiUrl: API_ACCESS_URL,
+    method: 'PUT',
+    hasParams: false,
+  },
+  /* delete-api-access - params: id */
+  {
+    apiName: 'delete-api-access',
+    apiUrl: API_ACCESS_URL,
+    method: 'DELETE',
+    hasParams: true,
+  },
   /* get-user-roles */
   {
     apiName: 'get-user-roles',

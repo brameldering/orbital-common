@@ -10,6 +10,26 @@ import {
 // At least make sure that URLs with an ID are placed after matching base URLs
 
 export const apiAccessAuth: IApiAccessObj[] = [
+  /* get-api-accesses */
+  {
+    apiName: 'get-api-accesses',
+    allowedRoles: [ADMIN_ROLE],
+  },
+  /* create-api-access */
+  {
+    apiName: 'create-api-access',
+    allowedRoles: [ADMIN_ROLE],
+  },
+  /* update-api-access */
+  {
+    apiName: 'update-api-access',
+    allowedRoles: [ADMIN_ROLE],
+  },
+  /* delete-api-access */
+  {
+    apiName: 'delete-api-access',
+    allowedRoles: [ADMIN_ROLE],
+  },
   /* get-user-roles */
   {
     apiName: 'get-user-roles',
