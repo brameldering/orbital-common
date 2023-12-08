@@ -27,9 +27,9 @@ export const AUTH_APIS: IApi[] = [
     method: 'POST',
     hasParams: false,
   },
-  /* get-api-access - params: id */
+  /* get-api-access-by-id - params: id */
   {
-    apiName: 'get-api-access',
+    apiName: 'get-api-access-by-id',
     apiUrl: API_ACCESS_URL,
     method: 'GET',
     hasParams: true,
