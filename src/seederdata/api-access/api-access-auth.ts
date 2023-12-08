@@ -29,10 +29,10 @@ export const apiAccessAuth: IApiAccessObj[] = [
     apiName: 'get-api-access',
     allowedRoles: [ADMIN_ROLE],
   },
-  /* update-api-access */
+  /* update-api-access-roles */
   {
     microservice: MICROSERVICE_AUTH,
-    apiName: 'update-api-access',
+    apiName: 'update-api-access-roles',
     allowedRoles: [ADMIN_ROLE],
   },
   /* delete-api-access */

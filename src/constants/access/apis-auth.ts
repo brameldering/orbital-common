@@ -34,9 +34,9 @@ export const AUTH_APIS: IApi[] = [
     method: 'GET',
     hasParams: true,
   },
-  /* update-api-access - params: id, body: microservice: string, apiName: string, allowedRoles: [string] */
+  /* update-api-access-roles - params: id, body: allowedRoles: [string] */
   {
-    apiName: 'update-api-access',
+    apiName: 'update-api-access-roles',
     apiUrl: API_ACCESS_URL,
     method: 'PUT',
     hasParams: true,
