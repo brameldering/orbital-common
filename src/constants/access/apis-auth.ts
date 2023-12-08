@@ -48,23 +48,23 @@ export const AUTH_APIS: IApi[] = [
     method: 'DELETE',
     hasParams: true,
   },
-  /* get-user-roles */
+  /* get-roles */
   {
-    apiName: 'get-user-roles',
+    apiName: 'get-roles',
     apiUrl: ROLES_URL,
     method: 'GET',
     hasParams: false,
   },
-  /* create-user-role - body: role */
+  /* create-role - body: role */
   {
-    apiName: 'create-user-role',
+    apiName: 'create-role',
     apiUrl: ROLES_URL,
     method: 'POST',
     hasParams: false,
   },
-  /* delete-user-role - params: id */
+  /* delete-role - params: id */
   {
-    apiName: 'delete-user-role',
+    apiName: 'delete-role',
     apiUrl: ROLES_URL,
     method: 'DELETE',
     hasParams: true,

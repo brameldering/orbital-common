@@ -46,22 +46,22 @@ export const apiAccessAll: IApiAccessObj[] = [
     apiName: 'delete-api-access',
     allowedRoles: [ADMIN_ROLE],
   },
-  /* get-user-roles */
+  /* get-roles */
   {
     microservice: MICROSERVICE_AUTH,
-    apiName: 'get-user-roles',
+    apiName: 'get-roles',
     allowedRoles: [ANONYMOUS_ROLE, CUSTOMER_ROLE, ADMIN_ROLE],
   },
-  /* create-user-role - body: role */
+  /* create-role - body: role */
   {
     microservice: MICROSERVICE_AUTH,
-    apiName: 'create-user-role',
+    apiName: 'create-role',
     allowedRoles: [ADMIN_ROLE],
   },
-  /* delete-user-role - params: id */
+  /* delete-role - params: id */
   {
     microservice: MICROSERVICE_AUTH,
-    apiName: 'delete-user-role',
+    apiName: 'delete-role',
     allowedRoles: [ADMIN_ROLE],
   },
   /* current-user */
