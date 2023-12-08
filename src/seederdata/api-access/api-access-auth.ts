@@ -11,16 +11,22 @@ import { MICROSERVICE_AUTH } from '../../constants/access/microservice-names';
 // At least make sure that URLs with an ID are placed after matching base URLs
 
 export const apiAccessAuth: IApiAccessObj[] = [
-  /* get-api-accesses */
+  /* get-api-access-records */
   {
     microservice: MICROSERVICE_AUTH,
-    apiName: 'get-api-accesses',
+    apiName: 'get-api-access-records',
     allowedRoles: [ADMIN_ROLE],
   },
   /* create-api-access */
   {
     microservice: MICROSERVICE_AUTH,
     apiName: 'create-api-access',
+    allowedRoles: [ADMIN_ROLE],
+  },
+  /* get-api-access */
+  {
+    microservice: MICROSERVICE_AUTH,
+    apiName: 'get-api-access',
     allowedRoles: [ADMIN_ROLE],
   },
   /* update-api-access */

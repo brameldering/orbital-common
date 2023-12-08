@@ -98,10 +98,10 @@ export const authorize =
       url,
       method
     );
-    console.log(
-      'url ' + req.url + ' method ' + req.method + ': ',
-      allowedRoles
-    );
+    // console.log(
+    //   'url ' + req.url + ' method ' + req.method + ': ',
+    //   allowedRoles
+    // );
     let currentUserRole: string;
     if (!req.currentUser) {
       // User is not logged in

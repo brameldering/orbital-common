@@ -13,9 +13,9 @@ import {
 import { IApi } from '../../types/api-access-types';
 
 export const AUTH_APIS: IApi[] = [
-  /* get-api-accesses */
+  /* get-api-access-records */
   {
-    apiName: 'get-api-accesses',
+    apiName: 'get-api-access-records',
     apiUrl: API_ACCESS_URL,
     method: 'GET',
     hasParams: false,
@@ -27,7 +27,14 @@ export const AUTH_APIS: IApi[] = [
     method: 'POST',
     hasParams: false,
   },
-  /* update-api-access - body: microservice: string, apiName: string, allowedRoles: [string] */
+  /* get-api-access - params: id */
+  {
+    apiName: 'get-api-access',
+    apiUrl: API_ACCESS_URL,
+    method: 'GET',
+    hasParams: true,
+  },
+  /* update-api-access - params: id, body: microservice: string, apiName: string, allowedRoles: [string] */
   {
     apiName: 'update-api-access',
     apiUrl: API_ACCESS_URL,
