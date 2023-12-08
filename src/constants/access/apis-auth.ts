@@ -32,7 +32,7 @@ export const AUTH_APIS: IApi[] = [
     apiName: 'update-api-access',
     apiUrl: API_ACCESS_URL,
     method: 'PUT',
-    hasParams: false,
+    hasParams: true,
   },
   /* delete-api-access - params: id */
   {
