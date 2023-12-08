@@ -20,14 +20,14 @@ export const AUTH_APIS: IApi[] = [
     method: 'GET',
     hasParams: false,
   },
-  /* create-api-access - body: apiName: string, allowedRoles: [string] */
+  /* create-api-access - body: microservice: string, apiName: string, allowedRoles: [string] */
   {
     apiName: 'create-api-access',
     apiUrl: API_ACCESS_URL,
     method: 'POST',
     hasParams: false,
   },
-  /* update-api-access - body: apiName: string, allowedRoles: [string] */
+  /* update-api-access - body: microservice: string, apiName: string, allowedRoles: [string] */
   {
     apiName: 'update-api-access',
     apiUrl: API_ACCESS_URL,

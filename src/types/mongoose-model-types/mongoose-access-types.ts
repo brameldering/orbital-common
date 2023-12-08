@@ -24,6 +24,7 @@ export interface IRoleDoc extends mongoose.Document {
 // ========================= Api Access =========================
 // Interface describing the Api Access object attributes
 export interface IApiAccessObj {
+  microservice: string;
   apiName: string;
   allowedRoles: string[];
 }
@@ -36,6 +37,7 @@ export interface IApiAccessModel extends mongoose.Model<IApiAccessDoc> {
 // Interface describing the Api Access Document
 export interface IApiAccessDoc extends mongoose.Document {
   _id: mongoose.Types.ObjectId;
+  microservice: string;
   apiName: string;
   allowedRoles: string[];
   createdAt?: Date;

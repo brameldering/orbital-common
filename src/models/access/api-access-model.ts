@@ -8,6 +8,7 @@ import {
 // ====================== APIs ======================
 const apiAccessSchema = new mongoose.Schema(
   {
+    microservice: { type: String, required: true },
     apiName: { type: String, required: true, unique: true },
     allowedRoles: [String],
   },
