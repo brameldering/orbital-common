@@ -2,7 +2,7 @@ import { IShippingAddress, ITotalAmounts } from './common-types';
 
 export interface IOrder {
   id?: string;
-  sequentialOrderId: string;
+  sequentialOrderId?: string;
   user?: IOrderUser;
   orderItems: Array<IOrderItem>;
   shippingAddress: IShippingAddress;

@@ -6,7 +6,7 @@ export interface IApi {
 }
 
 export interface IApiAccess {
-  id: string;
+  id?: string;
   microservice: string;
   apiName: string;
   allowedRoles: string[];
