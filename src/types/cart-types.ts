@@ -15,5 +15,5 @@ export interface ICartItem {
   price: number;
   countInStock: number;
   qty: number;
-  priceCalcSettings?: IPriceCalcSettingsObj;
+  priceCalcSettings: IPriceCalcSettingsObj;
 }
