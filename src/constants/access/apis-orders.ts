@@ -23,6 +23,13 @@ export const ORDERS_APIS: IApi[] = [
     method: 'GET',
     hasParams: false,
   },
+  /* update-price-calc-settings */
+  {
+    apiName: 'update-price-calc-settings',
+    apiUrl: PRICE_CALC_SETTINGS_URL,
+    method: 'PUT',
+    hasParams: false,
+  },
   /* get-orders */
   {
     apiName: 'get-orders',

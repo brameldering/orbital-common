@@ -184,6 +184,12 @@ export const apiAccessAll: IApiAccessObj[] = [
     apiName: 'get-price-calc-settings',
     allowedRoles: [ANONYMOUS_ROLE, CUSTOMER_ROLE, ADMIN_ROLE],
   },
+  /* update-price-calc-settings */
+  {
+    microservice: MICROSERVICE_ORDERS,
+    apiName: 'update-price-calc-settings',
+    allowedRoles: [ADMIN_ROLE],
+  },
   /* get-orders */
   {
     microservice: MICROSERVICE_ORDERS,
