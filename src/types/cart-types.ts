@@ -17,11 +17,6 @@ export interface ICartItem {
 }
 
 export interface ICartItemWithSettings {
-  productId: string;
-  productName: string;
-  imageURL: string;
-  price: number;
-  countInStock: number;
-  qty: number;
+  cartItem: ICartItem;
   priceCalcSettings: IPriceCalcSettingsObj;
 }
