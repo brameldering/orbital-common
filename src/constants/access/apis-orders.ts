@@ -4,6 +4,7 @@ import {
   UPDATE_ORDER_TO_PAID_URL,
   UPDATE_ORDER_TO_DELIVERED_URL,
   GET_PAYPAL_CLIENT_ID_URL,
+  PRICE_CALC_SETTINGS_URL,
 } from '../url-constants';
 import { IApi } from '../../types/api-access-types';
 
@@ -12,6 +13,13 @@ export const ORDERS_APIS: IApi[] = [
   {
     apiName: 'get-paypal-client-id',
     apiUrl: GET_PAYPAL_CLIENT_ID_URL,
+    method: 'GET',
+    hasParams: false,
+  },
+  /* get-price-calc-settings */
+  {
+    apiName: 'get-price-calc-settings',
+    apiUrl: PRICE_CALC_SETTINGS_URL,
     method: 'GET',
     hasParams: false,
   },

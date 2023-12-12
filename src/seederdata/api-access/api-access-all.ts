@@ -178,6 +178,12 @@ export const apiAccessAll: IApiAccessObj[] = [
     apiName: 'get-paypal-client-id',
     allowedRoles: [CUSTOMER_ROLE, ADMIN_ROLE],
   },
+  /* get-price-calc-settings */
+  {
+    microservice: MICROSERVICE_ORDERS,
+    apiName: 'get-price-calc-settings',
+    allowedRoles: [ANONYMOUS_ROLE, CUSTOMER_ROLE, ADMIN_ROLE],
+  },
   /* get-orders */
   {
     microservice: MICROSERVICE_ORDERS,
