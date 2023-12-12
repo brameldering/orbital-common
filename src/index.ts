@@ -3,6 +3,7 @@ export * from './types/mongoose-model-types/mongoose-access-types';
 export * from './types/mongoose-model-types/mongoose-user-types';
 export * from './types/mongoose-model-types/mongoose-product-types';
 export * from './types/mongoose-model-types/mongoose-order-types';
+export * from './types/mongoose-model-types/mongoose-price-calc-settings-types';
 
 export * from './types/api-access-types';
 export * from './types/cart-types';
@@ -42,6 +43,7 @@ export * from './models/order/order-item-model';
 export * from './models/order/order-model';
 export * from './models/order/order-sequence-model';
 export * from './models/order/order-total-amounts-model';
+export * from './models/order/price-calc-settings-model';
 
 export * from './models/product/product-model';
 export * from './models/product/product-sequence-model';
