@@ -1,4 +1,5 @@
 import { IShippingAddress, ITotalAmounts } from './common-types';
+import { IPriceCalcSettingsObj } from './mongoose-model-types/mongoose-price-calc-settings-types';
 
 export interface ICart {
   cartItems: Array<ICartItem>;
@@ -14,4 +15,5 @@ export interface ICartItem {
   price: number;
   countInStock: number;
   qty: number;
+  priceCalcSettings?: IPriceCalcSettingsObj;
 }
