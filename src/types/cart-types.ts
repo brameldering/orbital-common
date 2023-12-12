@@ -21,3 +21,9 @@ export interface ICartItemWithSettings {
   cartItem: ICartItem;
   priceCalcSettings: IPriceCalcSettingsObj;
 }
+
+// To pass to RemoveFromCart reducer
+export interface IRemoveFromCart {
+  id: string;
+  priceCalcSettings: IPriceCalcSettingsObj;
+}
