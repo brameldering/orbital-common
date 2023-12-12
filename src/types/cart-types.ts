@@ -16,6 +16,7 @@ export interface ICartItem {
   qty: number;
 }
 
+// To pass to AddToCart reducer
 export interface ICartItemWithSettings {
   cartItem: ICartItem;
   priceCalcSettings: IPriceCalcSettingsObj;
