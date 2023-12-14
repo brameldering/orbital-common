@@ -19,17 +19,25 @@ export abstract class Listener<T extends Event> {
 
   consumerOptions() {
     return {
+      kafkaHost: process.env.KAFKA_URL!,
       groupId: this.consumerGroupID,
       autoCommit: true, // Enable auto-commit
-      autoCommitIntervalMs: 3000, // Auto-commit interval (in ms)
-      sessionTimeout: 5000, // Session timeout (in ms)
+      autoCommitIntervalMs: 5000, // Auto-commit interval (in ms)
+      sessionTimeout: 10000, // Session timeout (in ms)
       fetchMaxBytes: 1024 * 1024, // Max fetch bytes
     };
   }
 
   listen() {
+    // Generate random consumerid
+    const consumerId =
+      'Consumer' + Math.floor(10000000 + Math.random() * 90000000).toString();
+
+    console.log('consumerId ', consumerId);
+    console.log(' process.env.KAFKA_URL! ', process.env.KAFKA_URL!);
+
     const consumerGroup = new kafka.ConsumerGroup(
-      Object.assign({ id: this.consumerGroupID }, this.consumerOptions()),
+      Object.assign({ id: consumerId }, this.consumerOptions()),
       this.topic
     );
 
