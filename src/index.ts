@@ -51,5 +51,15 @@ export * from './models/product/product-review-model';
 
 export * from './models/user/user-model';
 
+export * from './events/base-listener';
+export * from './events/base-publisher';
+
+export * from './events/types/topics';
+export * from './events/types/order-status';
+
+export * from './events/types/api-access-created-event';
+export * from './events/types/api-access-updated-event';
+export * from './events/types/api-access-deleted-event';
+
 export * from './seederdata/api-access/roles';
 export * from './seederdata/api-access/api-access-all';
