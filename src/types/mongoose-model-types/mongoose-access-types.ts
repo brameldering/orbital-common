@@ -2,14 +2,14 @@ import mongoose from 'mongoose';
 
 // ============================== Roles ==============================
 // Interface describing the Role object attributes
-export interface IRoleObj {
+export interface IRoleAttrs {
   role: string;
   roleDisplay: string;
 }
 
 // Interface describing the Role Model
 export interface IRoleModel extends mongoose.Model<IRoleDoc> {
-  build(attrs: IRoleObj): IRoleDoc;
+  build(attrs: IRoleAttrs): IRoleDoc;
 }
 
 // Interface describing the Role Document
@@ -23,7 +23,8 @@ export interface IRoleDoc extends mongoose.Document {
 
 // ========================= Api Access =========================
 // Interface describing the Api Access object attributes
-export interface IApiAccessObj {
+export interface IApiAccessAttrs {
+  id: string;
   microservice: string;
   apiName: string;
   allowedRoles: string[];
@@ -31,7 +32,7 @@ export interface IApiAccessObj {
 
 // Interface describing the Api Access Model
 export interface IApiAccessModel extends mongoose.Model<IApiAccessDoc> {
-  build(attrs: IApiAccessObj): IApiAccessDoc;
+  build(attrs: IApiAccessAttrs): IApiAccessDoc;
 }
 
 // Interface describing the Api Access Document

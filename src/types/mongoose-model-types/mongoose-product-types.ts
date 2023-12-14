@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 // Interface describing the Review object attributes
-export interface IProductReviewObj {
+export interface IProductReviewAttrs {
   userId: mongoose.Types.ObjectId;
   userName: string;
   rating: number;
@@ -10,7 +10,7 @@ export interface IProductReviewObj {
 
 // Interface describing the Review Model
 export interface IProductReviewModel extends mongoose.Model<IProductReviewDoc> {
-  build(attrs: IProductReviewObj): IProductReviewDoc;
+  build(attrs: IProductReviewAttrs): IProductReviewDoc;
 }
 
 // Interface describing the Review Document
@@ -25,14 +25,14 @@ export interface IProductReviewDoc extends mongoose.Document {
 }
 
 // ================ IProductSequence ================
-export interface IProductSequenceObj {
+export interface IProductSequenceAttrs {
   latestSeqId: number;
 }
 
 // Interface describing the Product Sequence Model
 export interface IProductSequenceModel
   extends mongoose.Model<IProductSequenceDoc> {
-  build(attrs: IProductSequenceObj): IProductSequenceDoc;
+  build(attrs: IProductSequenceAttrs): IProductSequenceDoc;
 }
 
 // Interface describing the Product Sequence Document
@@ -43,7 +43,7 @@ export interface IProductSequenceDoc extends mongoose.Document {
 
 // =========================================================
 // Interface describing the Product object attributes
-export interface IProductObj {
+export interface IProductAttrs {
   sequentialProductId: string;
   name: string;
   imageURL: string;
@@ -51,7 +51,7 @@ export interface IProductObj {
   category: string;
   description: string;
   numReviews: number;
-  reviews?: IProductReviewDoc[];
+  reviews?: IProductReviewAttrs[];
   rating?: number;
   price: number;
   countInStock: number;
@@ -60,7 +60,7 @@ export interface IProductObj {
 
 // Interface describing the Product Model
 export interface IProductModel extends mongoose.Model<IProductDoc> {
-  build(attrs: IProductObj): IProductDoc;
+  build(attrs: IProductAttrs): IProductDoc;
 }
 
 // Interface describing the Product Document

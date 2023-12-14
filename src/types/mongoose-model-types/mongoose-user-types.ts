@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 // Interface describing the User object attributes
-export interface IUserObj {
+export interface IUserAttrs {
   id?: string;
   name: string;
   email: string;
@@ -11,7 +11,7 @@ export interface IUserObj {
 
 // Interface describing the User Model
 export interface IUserModel extends mongoose.Model<IUserDoc> {
-  build(attrs: IUserObj): IUserDoc;
+  build(attrs: IUserAttrs): IUserDoc;
 }
 
 // Interface describing the User Document

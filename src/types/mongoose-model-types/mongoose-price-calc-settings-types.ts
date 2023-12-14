@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 // Interface describing the PriceCalcSettings object attributes
-export interface IPriceCalcSettingsObj {
+export interface IPriceCalcSettingsAttrs {
   vatPercentage: number;
   shippingFee: number;
   thresholdFreeShipping: number;
@@ -10,7 +10,7 @@ export interface IPriceCalcSettingsObj {
 // Interface describing the PriceCalcSettings Model
 export interface IPriceCalcSettingsModel
   extends mongoose.Model<IPriceCalcSettingsDoc> {
-  build(attrs: IPriceCalcSettingsObj): IPriceCalcSettingsDoc;
+  build(attrs: IPriceCalcSettingsAttrs): IPriceCalcSettingsDoc;
 }
 
 // Interface describing the PriceCalcSettings Document

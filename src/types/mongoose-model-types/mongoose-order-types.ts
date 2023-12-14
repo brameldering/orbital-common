@@ -21,13 +21,13 @@ import mongoose from 'mongoose';
 // }
 
 // ================ IOrderSequence ================
-export interface IOrderSequenceObj {
+export interface IOrderSequenceAttrs {
   latestSeqId: number;
 }
 
 // Interface describing the Order Sequence Model
 export interface IOrderSequenceModel extends mongoose.Model<IOrderSequenceDoc> {
-  build(attrs: IOrderSequenceObj): IOrderSequenceDoc;
+  build(attrs: IOrderSequenceAttrs): IOrderSequenceDoc;
 }
 
 // Interface describing the Order Sequence Document
@@ -37,7 +37,7 @@ export interface IOrderSequenceDoc extends mongoose.Document {
 }
 
 // ================ IOrderItem ================
-export interface IOrderItemObj {
+export interface IOrderItemAttrs {
   productId: mongoose.Types.ObjectId;
   productName: string;
   imageURL: string;
@@ -47,7 +47,7 @@ export interface IOrderItemObj {
 
 // Interface describing the Order Item Model
 export interface IOrderItemModel extends mongoose.Model<IOrderItemDoc> {
-  build(attrs: IOrderItemObj): IOrderItemDoc;
+  build(attrs: IOrderItemAttrs): IOrderItemDoc;
 }
 
 // Interface describing the Order Item Document
@@ -61,7 +61,7 @@ export interface IOrderItemDoc extends mongoose.Document {
 }
 
 // =============== IOrderTotalAmount ===============
-export interface IOrderTotalAmountObj {
+export interface IOrderTotalAmountAttrs {
   itemsPrice: number;
   shippingPrice: number;
   taxPrice: number;
@@ -71,7 +71,7 @@ export interface IOrderTotalAmountObj {
 // Interface describing the OrderTotalAmount Model
 export interface IOrderTotalAmountModel
   extends mongoose.Model<IOrderTotalAmountDoc> {
-  build(attrs: IOrderTotalAmountObj): IOrderTotalAmountDoc;
+  build(attrs: IOrderTotalAmountAttrs): IOrderTotalAmountDoc;
 }
 
 // Interface describing the OrderTotalAmount Document
@@ -85,14 +85,14 @@ export interface IOrderTotalAmountDoc extends mongoose.Document {
 
 // =============== IOrder ===============
 // Interface describing the Order object attributes
-export interface IOrderObj {
+export interface IOrderAttrs {
   sequentialOrderId: string;
   user: {
     userId: string;
     name: string;
     email: string;
   };
-  orderItems: IOrderItemObj[];
+  orderItems: IOrderItemAttrs[];
   shippingAddress: {
     address: string;
     city: string;
@@ -106,7 +106,7 @@ export interface IOrderObj {
     update_time?: string;
     email_address?: string;
   };
-  totalAmounts?: IOrderTotalAmountObj;
+  totalAmounts?: IOrderTotalAmountAttrs;
   isPaid: boolean;
   paidAt?: Date;
   isDelivered: boolean;
@@ -117,7 +117,7 @@ export interface IOrderObj {
 
 // Interface describing the Order Model
 export interface IOrderModel extends mongoose.Model<IOrderDoc> {
-  build(attrs: IOrderObj): IOrderDoc;
+  build(attrs: IOrderAttrs): IOrderDoc;
 }
 
 // Interface describing the Order Document
