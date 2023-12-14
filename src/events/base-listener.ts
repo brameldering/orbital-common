@@ -19,7 +19,7 @@ export abstract class Listener<T extends Event> {
 
   consumerOptions() {
     return {
-      kafkaHost: process.env.KAFKA_URL!,
+      kafkaHost: process.env.ZOOKEEPER_URL!,
       groupId: this.consumerGroupID,
       autoCommit: true, // Enable auto-commit
       autoCommitIntervalMs: 5000, // Auto-commit interval (in ms)
@@ -32,26 +32,18 @@ export abstract class Listener<T extends Event> {
     // Generate random consumerid
     const consumerId =
       'Consumer' + Math.floor(10000000 + Math.random() * 90000000).toString();
-
-    console.log('consumerId ', consumerId);
-    console.log(' process.env.KAFKA_URL! ', process.env.KAFKA_URL!);
-
     const consumerGroup = new kafka.ConsumerGroup(
       Object.assign({ id: consumerId }, this.consumerOptions()),
       this.topic
     );
-
     consumerGroup.on('message', (msg) => {
       const parsedData = this.parseMessage(msg);
-
       console.log(
         `= Received for consumerGroupID${this.consumerGroupID}, topic: ${msg.topic}, partition: ${msg.partition}, offset: ${msg.offset} - data:`,
         parsedData
       );
-
       this.onMessage(parsedData, msg);
     });
-
     consumerGroup.on('error', (error) => {
       console.error(
         `= Error = Consumergroupid: ${this.consumerGroupID}, topic: ${this.topic} error:`,
