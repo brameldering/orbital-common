@@ -24,7 +24,7 @@ export interface IRoleDoc extends mongoose.Document {
 // ========================= Api Access =========================
 // Interface describing the Api Access object attributes
 export interface IApiAccessAttrs {
-  id: string;
+  id?: string;
   microservice: string;
   apiName: string;
   allowedRoles: string[];
