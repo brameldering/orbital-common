@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import {
-  IOrderSequenceObj,
+  IOrderSequenceAttrs,
   IOrderSequenceDoc,
   IOrderSequenceModel,
 } from '../../types/mongoose-model-types/mongoose-order-types';
@@ -14,7 +14,7 @@ const orderSequenceSchema = new mongoose.Schema({
   },
 });
 
-orderSequenceSchema.statics.build = (attrs: IOrderSequenceObj) => {
+orderSequenceSchema.statics.build = (attrs: IOrderSequenceAttrs) => {
   return new OrderSequence(attrs);
 };
 

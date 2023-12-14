@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import {
-  IOrderObj,
+  IOrderAttrs,
   IOrderDoc,
   IOrderModel,
 } from '../../types/mongoose-model-types/mongoose-order-types';
@@ -80,7 +80,7 @@ const orderSchema = new mongoose.Schema(
 // orderSchema.set('toObject', { virtuals: true });
 // orderSchema.set('toJSON', { virtuals: true });
 
-orderSchema.statics.build = (attrs: IOrderObj) => {
+orderSchema.statics.build = (attrs: IOrderAttrs) => {
   return new Order(attrs);
 };
 

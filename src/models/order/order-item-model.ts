@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import {
-  IOrderItemObj,
+  IOrderItemAttrs,
   IOrderItemDoc,
   IOrderItemModel,
 } from '../../types/mongoose-model-types/mongoose-order-types';
@@ -18,7 +18,7 @@ const orderItemSchema = new mongoose.Schema({
   qty: { type: Number, required: true },
 });
 
-orderItemSchema.statics.build = (attrs: IOrderItemObj) => {
+orderItemSchema.statics.build = (attrs: IOrderItemAttrs) => {
   return new OrderItem(attrs);
 };
 

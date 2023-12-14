@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import {
-  IApiAccessObj,
+  IApiAccessAttrs,
   IApiAccessDoc,
   IApiAccessModel,
 } from '../../types/mongoose-model-types/mongoose-access-types';
@@ -23,8 +23,13 @@ const apiAccessSchema = new mongoose.Schema(
   }
 );
 
-apiAccessSchema.statics.build = (attrs: IApiAccessObj) => {
-  return new ApiAccess(attrs);
+apiAccessSchema.statics.build = (attrs: IApiAccessAttrs) => {
+  return new ApiAccess({
+    _id: attrs.id,
+    microservice: attrs.microservice,
+    apiName: attrs.apiName,
+    allowedRoles: attrs.allowedRoles,
+  });
 };
 
 const ApiAccess = mongoose.model<IApiAccessDoc, IApiAccessModel>(

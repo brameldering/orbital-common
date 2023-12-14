@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import {
-  IProductObj,
+  IProductAttrs,
   IProductDoc,
   IProductModel,
 } from '../../types/mongoose-model-types/mongoose-product-types';
@@ -74,7 +74,7 @@ const productSchema = new mongoose.Schema(
   }
 );
 
-productSchema.statics.build = (attrs: IProductObj) => {
+productSchema.statics.build = (attrs: IProductAttrs) => {
   return new Product(attrs);
 };
 

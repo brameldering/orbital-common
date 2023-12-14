@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import {
-  IProductSequenceObj,
+  IProductSequenceAttrs,
   IProductSequenceDoc,
   IProductSequenceModel,
 } from '../../types/mongoose-model-types/mongoose-product-types';
@@ -14,7 +14,7 @@ const productSequenceSchema = new mongoose.Schema({
   },
 });
 
-productSequenceSchema.statics.build = (attrs: IProductSequenceObj) => {
+productSequenceSchema.statics.build = (attrs: IProductSequenceAttrs) => {
   return new ProductSequence(attrs);
 };
 

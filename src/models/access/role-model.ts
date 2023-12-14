@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import {
-  IRoleObj,
+  IRoleAttrs,
   IRoleDoc,
   IRoleModel,
 } from '../../types/mongoose-model-types/mongoose-access-types';
@@ -22,7 +22,7 @@ const roleSchema = new mongoose.Schema(
   }
 );
 
-roleSchema.statics.build = (attrs: IRoleObj) => {
+roleSchema.statics.build = (attrs: IRoleAttrs) => {
   return new Role(attrs);
 };
 

@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs';
 import mongoose from 'mongoose';
 import {
-  IUserObj,
+  IUserAttrs,
   IUserDoc,
   IUserModel,
 } from '../../types/mongoose-model-types/mongoose-user-types';
@@ -39,7 +39,7 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-userSchema.statics.build = (attrs: IUserObj) => {
+userSchema.statics.build = (attrs: IUserAttrs) => {
   return new User(attrs);
 };
 

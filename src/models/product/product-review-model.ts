@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import {
-  IProductReviewObj,
+  IProductReviewAttrs,
   IProductReviewDoc,
   IProductReviewModel,
 } from '../../types/mongoose-model-types/mongoose-product-types';
@@ -29,7 +29,7 @@ const productReviewSchema = new mongoose.Schema(
   }
 );
 
-productReviewSchema.statics.build = (attrs: IProductReviewObj) => {
+productReviewSchema.statics.build = (attrs: IProductReviewAttrs) => {
   return new ProductReview(attrs);
 };
 
