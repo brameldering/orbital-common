@@ -33,14 +33,20 @@ export abstract class Listener<T extends Event> {
       this.topic
     );
 
-    consumerGroup.on('message', (message) => {
-      const parsedData = this.parseMessage(message);
-      this.onMessage(parsedData, message);
+    consumerGroup.on('message', (msg) => {
+      const parsedData = this.parseMessage(msg);
+
+      console.log(
+        `= Received for consumerGroupID${this.consumerGroupID}, topic: ${msg.topic}, partition: ${msg.partition}, offset: ${msg.offset} - data:`,
+        parsedData
+      );
+
+      this.onMessage(parsedData, msg);
     });
 
     consumerGroup.on('error', (error) => {
       console.error(
-        `= Listener = Consumergroupid: ${this.consumerGroupID}, topic: ${this.topic} error:`,
+        `= Error = Consumergroupid: ${this.consumerGroupID}, topic: ${this.topic} error:`,
         error
       );
     });

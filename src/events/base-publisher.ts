@@ -37,22 +37,19 @@ export abstract class Publisher<T extends Event> {
       ];
       this._producer.send(payload, (error, data) => {
         if (error) {
-          console.error('= Publisher = Error in publishing message:', error);
+          console.error('= Error in publishing message:', error);
           return reject(error);
         } else {
-          console.log(
-            `= Publisher = Message successfully published on topic: ${this.topic}`,
-            data
-          );
+          console.log(`= Message published on topic: ${this.topic}`, data);
           resolve();
         }
       });
       this._producer.on('ready', () => {
-        console.log('= Publisher = Producer ready');
+        console.log('= Producer ready');
       });
 
       this._producer.on('error', (error) => {
-        console.error('= Publisher = Error connecting to Kafka:', error);
+        console.error('= Error connecting to Kafka:', error);
       });
 
       process.on('SIGINT', () => {
