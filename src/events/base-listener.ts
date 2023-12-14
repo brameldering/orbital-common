@@ -21,8 +21,8 @@ export abstract class Listener<T extends Event> {
     return {
       groupId: this.consumerGroupID,
       autoCommit: true, // Enable auto-commit
-      autoCommitIntervalMs: 5000, // Auto-commit interval (in ms)
-      sessionTimeout: 15000, // Session timeout (in ms)
+      autoCommitIntervalMs: 3000, // Auto-commit interval (in ms)
+      sessionTimeout: 5000, // Session timeout (in ms)
       fetchMaxBytes: 1024 * 1024, // Max fetch bytes
     };
   }
