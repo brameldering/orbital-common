@@ -1,4 +1,4 @@
-import { IRoleObj } from '../../types/mongoose-model-types/mongoose-access-types';
+import { IRoleAttrs } from '../../types/mongoose-model-types/mongoose-access-types';
 import {
   ANONYMOUS_ROLE,
   ANONYMOUS_DISPLAY,
@@ -8,7 +8,7 @@ import {
   ADMIN_DISPLAY,
 } from '../../constants/role-constants';
 
-export const roles: IRoleObj[] = [
+export const roles: IRoleAttrs[] = [
   { role: ANONYMOUS_ROLE, roleDisplay: ANONYMOUS_DISPLAY },
   { role: CUSTOMER_ROLE, roleDisplay: CUSTOMER_DISPLAY },
   { role: ADMIN_ROLE, roleDisplay: ADMIN_DISPLAY },

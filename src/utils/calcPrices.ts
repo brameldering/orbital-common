@@ -1,5 +1,5 @@
 import { ITotalAmounts } from '../types/common-types';
-import { IOrderItemObj } from '../types/mongoose-model-types/mongoose-order-types';
+import { IOrderItemAttrs } from '../types/mongoose-model-types/mongoose-order-types';
 import { ICartItem } from '../types/cart-types';
 
 const roundTo2Decimals = (num: number) => {
@@ -7,7 +7,7 @@ const roundTo2Decimals = (num: number) => {
 };
 
 export const calcPrices = (
-  items: IOrderItemObj[] | ICartItem[],
+  items: IOrderItemAttrs[] | ICartItem[],
   vatPercentage: number,
   shippingFee: number,
   thresholdFreeShipping: number
@@ -17,7 +17,7 @@ export const calcPrices = (
   // Calculate the total items price
   const itemsPrice = roundTo2Decimals(
     items.reduce(
-      (acc: number, item: IOrderItemObj | ICartItem) =>
+      (acc: number, item: IOrderItemAttrs | ICartItem) =>
         acc + item.price * item.qty,
       0
     )

@@ -1,8 +1,8 @@
 import { Request } from 'express';
-import { IUserObj } from './mongoose-model-types/mongoose-user-types';
+import { IUserAttrs } from './mongoose-model-types/mongoose-user-types';
 
 export interface IExtendedRequest extends Request {
-  currentUser?: IUserObj;
+  currentUser?: IUserAttrs;
 }
 
 export interface IDecodedJWTVerify {

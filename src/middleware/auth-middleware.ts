@@ -1,13 +1,13 @@
 import { Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import { IExtendedRequest } from '../types/request-types';
-import { IUserObj } from '../types/mongoose-model-types/mongoose-user-types';
+import { IUserAttrs } from '../types/mongoose-model-types/mongoose-user-types';
 import {
   NotAuthorizedError,
   ApplicationIntegrityError,
 } from '../types/error-types';
 import { IApi } from '../types/api-access-types';
-import { IApiAccessObj } from '../types/mongoose-model-types/mongoose-access-types';
+import { IApiAccessAttrs } from '../types/mongoose-model-types/mongoose-access-types';
 import { ANONYMOUS_ROLE } from '../constants/role-constants';
 
 export const currentUser = (
@@ -23,7 +23,7 @@ export const currentUser = (
     const payload = jwt.verify(
       req.session.jwt,
       process.env.JWT_SECRET!
-    ) as IUserObj;
+    ) as IUserAttrs;
     // console.log('currentUser.payload', payload);
     req.currentUser = payload;
   } catch (err) {
@@ -72,7 +72,7 @@ const getAllowedRolesAndHasParams = (
 };
 
 export const authorize =
-  (apiSpecs: IApi[], apiAccess: IApiAccessObj[]) =>
+  (apiSpecs: IApi[], apiAccess: IApiAccessAttrs[]) =>
   (req: IExtendedRequest, res: Response, next: NextFunction) => {
     const url = req.url;
     const method = req.method;

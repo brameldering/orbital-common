@@ -1,5 +1,5 @@
 import { IShippingAddress, ITotalAmounts } from './common-types';
-import { IPriceCalcSettingsObj } from './mongoose-model-types/mongoose-price-calc-settings-types';
+import { IPriceCalcSettingsAttrs } from './mongoose-model-types/mongoose-price-calc-settings-types';
 
 export interface ICart {
   cartItems: Array<ICartItem>;
@@ -19,11 +19,11 @@ export interface ICartItem {
 // To pass to AddToCart reducer
 export interface ICartItemWithSettings {
   cartItem: ICartItem;
-  priceCalcSettings: IPriceCalcSettingsObj;
+  priceCalcSettings: IPriceCalcSettingsAttrs;
 }
 
 // To pass to RemoveFromCart reducer
 export interface IRemoveFromCart {
   id: string;
-  priceCalcSettings: IPriceCalcSettingsObj;
+  priceCalcSettings: IPriceCalcSettingsAttrs;
 }

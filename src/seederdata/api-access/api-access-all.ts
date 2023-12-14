@@ -1,4 +1,4 @@
-import { IApiAccessObj } from '../../types/mongoose-model-types/mongoose-access-types';
+import { IApiAccessAttrs } from '../../types/mongoose-model-types/mongoose-access-types';
 import {
   ANONYMOUS_ROLE,
   CUSTOMER_ROLE,
@@ -15,7 +15,7 @@ import {
 // It should be the same as the order of routes in the app.ts
 // At least make sure that URLs with an ID are placed after matching base URLs
 
-export const apiAccessAll: IApiAccessObj[] = [
+export const apiAccessAll: IApiAccessAttrs[] = [
   /* get-api-access-records */
   {
     microservice: MICROSERVICE_AUTH,
