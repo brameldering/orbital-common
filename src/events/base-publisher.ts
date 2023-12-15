@@ -30,7 +30,11 @@ export abstract class Publisher<T extends Event> {
     const key = data.id;
     try {
       await this._producer.connect();
-
+    } catch (error) {
+      console.error('Error in connecting producer:', error);
+      throw error; // Rethrow the error after logging
+    }
+    try {
       await this._producer.send({
         topic: this.topic,
         acks: 1,
@@ -45,26 +49,4 @@ export abstract class Publisher<T extends Event> {
       throw error; // Rethrow the error after logging
     }
   }
-  // publish(data: T['data']): Promise<void> {
-  //   return new Promise((resolve, reject) => {
-  //     const key = data.id;
-  //     this._producer
-  //       .send({
-  //         topic: this.topic,
-  //         acks: 1,
-  //         messages: [{ key, value: JSON.stringify(data) }],
-  //       })
-  //       .then(() => {
-  //         console.log(
-  //           `Published message on topic: ${this.topic} with key ${key}`,
-  //           data
-  //         );
-  //         resolve();
-  //       })
-  //       .catch((error) => {
-  //         console.error('Error in publishing message:', error);
-  //         reject(error);
-  //       });
-  //   });
-  // }
 }
