@@ -24,23 +24,13 @@ export abstract class Publisher<T extends Event> {
       console.log('Producer disconnected');
       process.exit(0);
     });
-
-    this.connectProducer();
-  }
-
-  private async connectProducer() {
-    try {
-      await this._producer.connect();
-      console.log('Producer connected');
-    } catch (error) {
-      console.error('Failed to connect producer:', error);
-      process.exit(1);
-    }
   }
 
   async publish(data: T['data']): Promise<void> {
     const key = data.id;
     try {
+      await this._producer.connect();
+
       await this._producer.send({
         topic: this.topic,
         acks: 1,
