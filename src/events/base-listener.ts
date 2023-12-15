@@ -1,4 +1,4 @@
-import kafka, { KafkaClient, Message } from 'kafka-node';
+import { Kafka, Consumer, EachMessagePayload } from 'kafkajs';
 import { Topics } from './types/topics';
 
 interface Event {
@@ -8,55 +8,59 @@ interface Event {
 
 export abstract class Listener<T extends Event> {
   abstract topic: T['topic'];
-  abstract consumerGroupID: string;
-  abstract onMessage(data: T['data'], msg: Message): void;
-  protected client: KafkaClient;
-  // protected ackWait = 5 * 1000;
+  // abstract consumerGroupID: string;
+  // abstract onMessage(data: T['data'], msg: Message): void;
+  abstract onMessage(data: T['data']): void;
+  protected client: Kafka;
+  private _consumer: Consumer;
 
-  constructor(client: KafkaClient) {
+  constructor(
+    client: Kafka,
+    protected consumerGroupID: string
+  ) {
     this.client = client;
+    this._consumer = this.client.consumer({ groupId: this.consumerGroupID });
   }
 
-  consumerOptions() {
-    return {
-      kafkaHost: process.env.ZOOKEEPER_URL!,
-      groupId: this.consumerGroupID,
-      autoCommit: true, // Enable auto-commit
-      autoCommitIntervalMs: 5000, // Auto-commit interval (in ms)
-      sessionTimeout: 10000, // Session timeout (in ms)
-      fetchMaxBytes: 1024 * 1024, // Max fetch bytes
-    };
-  }
+  // consumerOptions() {
+  //   return {
+  //     kafkaHost: process.env.ZOOKEEPER_URL!,
+  //     groupId: this.consumerGroupID,
+  //     autoCommit: true, // Enable auto-commit
+  //     autoCommitIntervalMs: 5000, // Auto-commit interval (in ms)
+  //     sessionTimeout: 10000, // Session timeout (in ms)
+  //     fetchMaxBytes: 1024 * 1024, // Max fetch bytes
+  //   };
+  // }
+  async listen() {
+    await this._consumer.connect();
+    await this._consumer.subscribe({ topic: this.topic, fromBeginning: true });
 
-  listen() {
-    // Generate random consumerid
-    const consumerId =
-      'Consumer' + Math.floor(10000000 + Math.random() * 90000000).toString();
-    const consumerGroup = new kafka.ConsumerGroup(
-      Object.assign({ id: consumerId }, this.consumerOptions()),
-      this.topic
-    );
-    consumerGroup.on('message', (msg) => {
-      const parsedData = this.parseMessage(msg);
-      console.log(
-        `= Received for consumerGroupID${this.consumerGroupID}, topic: ${msg.topic}, partition: ${msg.partition}, offset: ${msg.offset} - data:`,
-        parsedData
-      );
-      this.onMessage(parsedData, msg);
+    await this._consumer.run({
+      eachMessage: async ({
+        topic,
+        partition,
+        message,
+      }: EachMessagePayload) => {
+        const parsedData = this.parseMessage(message);
+        console.log(
+          `Received message for consumerGroupID: ${this.consumerGroupID}, topic: ${topic}, partition: ${partition}, offset: ${message.offset} - data:`,
+          parsedData
+        );
+        this.onMessage(parsedData);
+      },
     });
-    consumerGroup.on('error', (error) => {
+
+    this._consumer.on('consumer.crash', ({ payload }) => {
       console.error(
-        `= Error = Consumergroupid: ${this.consumerGroupID}, topic: ${this.topic} error:`,
-        error
+        `Error in consumer group: ${this.consumerGroupID}, topic: ${this.topic}:`,
+        payload.error
       );
     });
   }
 
-  parseMessage(msg: Message) {
-    // const data = msg.value();
-    const data = msg.value;
-    return typeof data === 'string'
-      ? JSON.parse(data)
-      : JSON.parse(data.toString());
+  parseMessage(message: { value: Buffer | null }) {
+    const data = message.value;
+    return data ? JSON.parse(data.toString()) : null;
   }
 }
