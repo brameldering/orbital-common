@@ -1,4 +1,4 @@
-import { Kafka, Consumer, EachMessagePayload, logLevel } from 'kafkajs';
+import { Kafka, Consumer, EachMessagePayload } from 'kafkajs';
 import { Topics } from './types/topics';
 
 interface Event {
@@ -15,11 +15,10 @@ export abstract class Listener<T extends Event> {
   private _consumer: Consumer;
 
   constructor(
-    clientId: string,
-    brokers: string[],
+    client: Kafka,
     protected consumerGroupID: string
   ) {
-    this.client = new Kafka({ clientId, brokers, logLevel: logLevel.ERROR });
+    this.client = client;
     this._consumer = this.client.consumer({ groupId: this.consumerGroupID });
   }
 
