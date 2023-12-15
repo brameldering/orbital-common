@@ -1,4 +1,4 @@
-import { Kafka, Producer, logLevel } from 'kafkajs';
+import { Kafka, Producer } from 'kafkajs';
 import { Topics } from './types/topics';
 
 interface Event {
@@ -11,8 +11,11 @@ export abstract class Publisher<T extends Event> {
   protected client: Kafka;
   private _producer: Producer;
 
-  constructor(clientId: string, brokers: string[]) {
-    this.client = new Kafka({ clientId, brokers, logLevel: logLevel.ERROR });
+  constructor(client: Kafka) {
+    // constructor(clientId: string, brokers: string[]) {
+    // this.client = new Kafka({ clientId, brokers, logLevel: logLevel.ERROR });
+    this.client = client;
+
     this._producer = this.client.producer({
       allowAutoTopicCreation: true,
       transactionTimeout: 30000,
