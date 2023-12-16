@@ -34,6 +34,7 @@ export * from './constants/role-constants';
 export * from './constants/test-constants';
 
 export * from './utils/calcPrices';
+export * from './utils/apiAccessArrayManager';
 
 export * from './models/access/api-access-model';
 export * from './models/access/role-model';
