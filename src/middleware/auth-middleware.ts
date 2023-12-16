@@ -47,7 +47,7 @@ const getAllowedRolesAndHasParams = (
   apiUrl: string,
   apiMethod: string
 ): string[] => {
-  // Check for first match, in other words the order in apiAccessArray matters!
+  // Check for first match, in other words the order in apiAccessCache matters!
   const matchingRecord = apiArray.find((access) => {
     // Check if an API object in apiArray matches the apiUrl and apiMethod
     if (
@@ -72,17 +72,17 @@ const getAllowedRolesAndHasParams = (
 };
 
 export const authorize =
-  (apiSpecs: IApi[], apiAccessArray: IApiAccessAttrs[]) =>
+  (apiSpecs: IApi[], apiAccessCache: IApiAccessAttrs[]) =>
   (req: IExtendedRequest, res: Response, next: NextFunction) => {
     // console.log('apiSpecs: ', apiSpecs);
-    // console.log('apiAccessArray: ', apiAccessArray);
+    // console.log('apiAccessCache: ', apiAccessCache);
 
     const url = req.url;
     const method = req.method;
 
     // combine apiSpecs and apiAccess into one array
     const combinedArray = apiSpecs.map((api) => {
-      const accessObj = apiAccessArray.find(
+      const accessObj = apiAccessCache.find(
         (access) => access.apiName === api.apiName
       );
       return {
