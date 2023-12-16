@@ -3,31 +3,24 @@ import { IApiAccessAttrs } from '../types/mongoose-model-types/mongoose-access-t
 
 let apiAccessArray: IApiAccessAttrs[] = [];
 
-async function updateApiAccessArray() {
+export async function updateApiAccessArray() {
   try {
-    apiAccessArray = await getApiAccessArrayFromDB(); // Fetch the latest data from MongoDB
+    // Fetch the latest data from MongoDB
+    // Load API access rights in original format array
+    const apiAccessArrayOriginal = await ApiAccess.find({});
+    // map records to json format as defined in apiAccessSchema
+    apiAccessArray = apiAccessArrayOriginal.map(
+      (apiAccess: { toJSON: () => any }) => apiAccess.toJSON()
+    );
     console.log('ApiAccessArray updated.');
   } catch (error) {
     console.error('Error updating API Access Array:', error);
   }
 }
 
-async function getApiAccessArrayFromDB() {
-  // ======= api access authorization logic =========
-  // Load API access rights in array
-  const apiAccessArrayOriginal = await ApiAccess.find({});
-  // map records to json format as defined in apiAccessSchema
-  const apiAccessArray = apiAccessArrayOriginal.map(
-    (apiAccess: { toJSON: () => any }) => apiAccess.toJSON()
-  );
-  return apiAccessArray;
-}
-
-function getCurrentApiAccessArray() {
+export function getCurrentApiAccessArray() {
   return apiAccessArray; // Return the current state of the array
 }
 
-// Fetch initial data at server start
+// Fetch initial data at module import, such as server start
 updateApiAccessArray();
-
-export { updateApiAccessArray, getCurrentApiAccessArray };
