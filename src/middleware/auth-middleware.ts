@@ -77,10 +77,12 @@ export const authorize =
   (req: IExtendedRequest, res: Response, next: NextFunction) => {
     // load current list of Api Access Array
     const apiAccessArray: IApiAccessAttrs[] = getCurrentApiAccessArray();
-    const url = req.url;
-    const method = req.method;
     // console.log('apiSpecs: ', apiSpecs);
     // console.log('apiAccessArray: ', apiAccessArray);
+
+    const url = req.url;
+    const method = req.method;
+
     // combine apiSpecs and apiAccess into one array
     const combinedArray = apiSpecs.map((api) => {
       const accessObj = apiAccessArray.find(
