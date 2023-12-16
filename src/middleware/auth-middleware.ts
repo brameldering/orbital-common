@@ -9,6 +9,7 @@ import {
 import { IApi } from '../types/api-access-types';
 import { IApiAccessAttrs } from '../types/mongoose-model-types/mongoose-access-types';
 import { ANONYMOUS_ROLE } from '../constants/role-constants';
+import { getCurrentApiAccessArray } from '../utils/apiAccessArrayManager';
 
 export const currentUser = (
   req: IExtendedRequest,
@@ -72,15 +73,17 @@ const getAllowedRolesAndHasParams = (
 };
 
 export const authorize =
-  (apiSpecs: IApi[], apiAccess: IApiAccessAttrs[]) =>
+  (apiSpecs: IApi[]) =>
   (req: IExtendedRequest, res: Response, next: NextFunction) => {
+    // load current list of Api Access Array
+    const apiAccessArray: IApiAccessAttrs[] = getCurrentApiAccessArray();
     const url = req.url;
     const method = req.method;
     // console.log('apiSpecs: ', apiSpecs);
-    // console.log('apiAccess: ', apiAccess);
+    // console.log('apiAccessArray: ', apiAccessArray);
     // combine apiSpecs and apiAccess into one array
     const combinedArray = apiSpecs.map((api) => {
-      const accessObj = apiAccess.find(
+      const accessObj = apiAccessArray.find(
         (access) => access.apiName === api.apiName
       );
       return {
