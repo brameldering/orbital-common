@@ -16,7 +16,9 @@ export * from './types/request-types';
 export * from './types/role-types';
 export * from './types/user-types';
 
+export * from './middleware/api-access-cache';
 export * from './middleware/auth-middleware';
+export * from './middleware/cache-middleware';
 export * from './middleware/check-object-id';
 export * from './middleware/error-handler';
 export * from './middleware/validate-request';
