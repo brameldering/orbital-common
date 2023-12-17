@@ -22,11 +22,11 @@ class KafkaWrapper {
     if (!this._client) {
       throw new Error('Cannot access Kafka admin client before connecting');
     }
-
-    // initialize admin client
-    this._admin = this._client.admin();
-    await this._admin.connect();
     try {
+      // initialize admin client
+      this._admin = this._client.admin();
+      await this._admin.connect();
+      console.log('Created and connected kafka admin');
       // check if topic is in list of existing topics
       const existingTopics = await this._admin.listTopics();
       if (!existingTopics.includes(topicToCheck))
@@ -40,7 +40,7 @@ class KafkaWrapper {
       console.error('Failed to ensure Kafka topic exists:', error);
       throw error;
     } finally {
-      await this._admin.disconnect();
+      await this._admin?.disconnect();
     }
   }
 }
