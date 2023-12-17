@@ -16,6 +16,8 @@ export * from './types/request-types';
 export * from './types/role-types';
 export * from './types/user-types';
 
+export * from './kafka/kafka-wrapper';
+
 export * from './middleware/api-access-cache';
 export * from './middleware/auth-middleware';
 export * from './middleware/cache-middleware';
