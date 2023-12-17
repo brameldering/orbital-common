@@ -3,7 +3,7 @@ import { Response, NextFunction } from 'express';
 import { IExtendedRequest } from '../types/request-types';
 import { apiAccessCache } from './api-access-cache';
 
-const cacheMiddleware = (
+export const cacheMiddleware = (
   req: IExtendedRequest,
   res: Response,
   next: NextFunction
@@ -15,5 +15,3 @@ const cacheMiddleware = (
     next(error);
   }
 };
-
-export default cacheMiddleware;
