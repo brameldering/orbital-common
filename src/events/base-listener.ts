@@ -23,6 +23,11 @@ export abstract class Listener<T extends Event> {
     this._consumer = this.client.consumer({ groupId: this.consumerGroupID });
   }
 
+  async shutdown() {
+    console.log(`Shutting down consumer for group: ${this.consumerGroupID}`);
+    await this._consumer.disconnect();
+  }
+
   // consumerOptions() {
   //   return {
   //     kafkaHost: process.env.ZOOKEEPER_URL!,
