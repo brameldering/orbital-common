@@ -31,13 +31,10 @@ export abstract class Publisher<T extends Event> {
 
   async publish(data: T['data']): Promise<void> {
     const key = data.id;
+
     try {
       await this._producer.connect();
-    } catch (error) {
-      console.error('Error in connecting producer:', error);
-      throw error; // Rethrow the error after logging
-    }
-    try {
+
       await this._producer.send({
         topic: this.topic,
         acks: 1,
@@ -50,6 +47,8 @@ export abstract class Publisher<T extends Event> {
     } catch (error) {
       console.error('Error in publishing message:', error);
       throw error; // Rethrow the error after logging
+    } finally {
+      await this._producer.disconnect();
     }
   }
 }
