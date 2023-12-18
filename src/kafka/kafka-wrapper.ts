@@ -8,7 +8,7 @@ class KafkaWrapper {
   get client() {
     if (!this._client) {
       throw new Error(
-        'Use the kafkaWrapper.connect() method first before get client'
+        'Cannot get client, use the kafkaWrapper.connect() method first before get client'
       );
     }
     return this._client;
@@ -17,21 +17,24 @@ class KafkaWrapper {
   get admin() {
     if (!this._admin) {
       throw new Error(
-        'Use the kafkaWrapper.connect() method first before get admin'
+        'Cannot get admin, use the kafkaWrapper.connect() method first before get admin'
       );
     }
     return this._admin;
   }
 
   async connect(clientId: string, brokers: string[]) {
+    // Initialize kafka client
     this._client = new Kafka({ clientId, brokers, logLevel: logLevel.ERROR });
     this._clientId = clientId;
     console.log('Created client for Kafka brokers', brokers);
-    // initialize admin client
+
+    // initialize kafka admin
     this._admin = this._client.admin();
     await this._admin.connect();
     console.log('Connected to kafka admin');
   }
+
   async disconnect() {
     try {
       if (this._admin) {
