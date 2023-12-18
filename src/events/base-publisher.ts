@@ -25,7 +25,6 @@ export abstract class Publisher<T extends Event> {
 
   async connect() {
     try {
-      console.log(`Connecting producer for topic: ${this.topic}`);
       await this._producer.connect();
       console.log(`Producer connected for topic: ${this.topic}`);
       this.isConnected = true;
