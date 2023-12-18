@@ -21,11 +21,6 @@ export abstract class Publisher<T extends Event> {
       allowAutoTopicCreation: true,
       transactionTimeout: 30000,
     });
-
-    process.on('SIGINT', async () => {
-      this.shutdown();
-      process.exit(0);
-    });
   }
 
   async connect() {
