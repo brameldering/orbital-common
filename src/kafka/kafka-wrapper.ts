@@ -8,32 +8,63 @@ class KafkaWrapper {
   get client() {
     if (!this._client) {
       throw new Error(
-        'Kafka client has not yet been connected, use the connect method first before get client'
+        'Use the kafkaWrapper.connect() method first before get client'
       );
     }
     return this._client;
   }
 
-  connect(clientId: string, brokers: string[]) {
+  get admin() {
+    if (!this._admin) {
+      throw new Error(
+        'Use the kafkaWrapper.connect() method first before get admin'
+      );
+    }
+    return this._admin;
+  }
+
+  async connect(clientId: string, brokers: string[]) {
     this._client = new Kafka({ clientId, brokers, logLevel: logLevel.ERROR });
     this._clientId = clientId;
     console.log('Created client for Kafka brokers', brokers);
+    // initialize admin client
+    this._admin = this._client.admin();
+    await this._admin.connect();
+    console.log('Connected to kafka admin');
+  }
+  async disconnect() {
+    try {
+      if (this._admin) {
+        console.log('Disconnecting Kafka admin client');
+        await this._admin.disconnect();
+        this._admin = undefined;
+      }
+
+      if (this._client) {
+        console.log('Invalidating Kafka client');
+        // await this._client.disconnect();
+        this._client = undefined;
+      }
+
+      console.log('Kafka client and admin disconnected successfully');
+    } catch (error) {
+      console.error('Error while disconnecting Kafka client and admin:', error);
+      throw error;
+    }
   }
 
   async ensureTopicExists(topicToCheck: string) {
     if (!this._client) {
-      throw new Error('KafkaWrapper: Cannot access admin before connecting');
+      throw new Error(
+        'KafkaWrapper: Cannot use ensureTopicExists before using kafkaWrapper.connect(...)'
+      );
     }
     try {
-      // initialize admin client
-      this._admin = this._client.admin();
-      await this._admin.connect();
-      console.log('Connected to kafka admin');
       // check if topic is in list of existing topics
-      const existingTopics = await this._admin.listTopics();
+      const existingTopics = await this.admin.listTopics();
       if (!existingTopics.includes(topicToCheck)) {
         // Create topic
-        await this._admin.createTopics({
+        await this.admin.createTopics({
           topics: [{ topic: topicToCheck }],
           waitForLeaders: true, // Wait for topic leaders to be elected
         });
@@ -51,8 +82,6 @@ class KafkaWrapper {
         error
       );
       throw error;
-    } finally {
-      await this._admin?.disconnect();
     }
   }
 }
