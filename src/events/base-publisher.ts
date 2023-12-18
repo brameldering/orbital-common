@@ -10,6 +10,7 @@ export abstract class Publisher<T extends Event> {
   abstract topic: T['topic'];
   protected client: Kafka;
   private _producer: Producer;
+  private isConnected = false;
 
   constructor(client: Kafka) {
     // constructor(clientId: string, brokers: string[]) {
@@ -22,19 +23,45 @@ export abstract class Publisher<T extends Event> {
     });
 
     process.on('SIGINT', async () => {
-      console.log('Disconnecting producer...');
-      await this._producer.disconnect();
-      console.log('Producer disconnected');
+      this.shutdown();
       process.exit(0);
     });
+  }
+
+  async connect() {
+    try {
+      console.log(`Connecting producer for topic: ${this.topic}`);
+      await this._producer.connect();
+      console.log(`Producer connected for topic: ${this.topic}`);
+      this.isConnected = true;
+    } catch (error) {
+      this.isConnected = false;
+      console.error('Error in connecting publisher:', error);
+      throw error; // Rethrow the error after logging
+    }
+  }
+
+  async shutdown() {
+    try {
+      console.log(`Disconnecting producer for topic: ${this.topic}`);
+      await this._producer.disconnect();
+      console.log(`Producer disconnected for topic: ${this.topic}`);
+    } catch (error) {
+      console.error('Error in disconnecting publisher:', error);
+      throw error; // Rethrow the error after logging
+    } finally {
+      this.isConnected = false;
+    }
   }
 
   async publish(data: T['data']): Promise<void> {
     const key = data.id;
 
     try {
-      await this._producer.connect();
-
+      if (!this.isConnected) {
+        console.log('Producer is not yet connected, trying to connect now...');
+        await this.connect();
+      }
       await this._producer.send({
         topic: this.topic,
         acks: 1,
@@ -47,8 +74,6 @@ export abstract class Publisher<T extends Event> {
     } catch (error) {
       console.error('Error in publishing message:', error);
       throw error; // Rethrow the error after logging
-    } finally {
-      await this._producer.disconnect();
     }
   }
 }
