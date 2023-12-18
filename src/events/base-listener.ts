@@ -9,17 +9,14 @@ interface Event {
 export abstract class Listener<T extends Event> {
   abstract topic: T['topic'];
   abstract onMessage(data: T['data']): void;
-  protected client: Kafka;
   private _consumer: Consumer;
 
   constructor(
-    // clientId: string,
-    // brokers: string[],
-    client: Kafka,
+    protected client: Kafka,
     protected consumerGroupID: string
   ) {
     // this.client = new Kafka({ clientId, brokers, logLevel: logLevel.ERROR });
-    this.client = client;
+    // this.client = client;
     this._consumer = this.client.consumer({ groupId: this.consumerGroupID });
   }
 
