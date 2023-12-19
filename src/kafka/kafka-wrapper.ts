@@ -65,7 +65,11 @@ class KafkaWrapper {
     }
   }
 
-  async ensureTopicExists(topicToCheck: string) {
+  async ensureTopicExists(
+    topicToCheck: string,
+    numPartitions: number,
+    replicationFactor: number
+  ) {
     if (!this._client) {
       throw new Error(
         'KafkaWrapper: Cannot use ensureTopicExists before using kafkaWrapper.connect(...)'
@@ -77,7 +81,18 @@ class KafkaWrapper {
       if (!existingTopics.includes(topicToCheck)) {
         // Create topic
         await this.admin.createTopics({
-          topics: [{ topic: topicToCheck }],
+          topics: [
+            {
+              topic: topicToCheck,
+              numPartitions,
+              replicationFactor,
+              configEntries: [
+                { name: 'cleanup.policy', value: 'compact' },
+                { name: 'compression.type', value: 'gzip' },
+              ],
+            },
+          ],
+          timeout: 10000,
           waitForLeaders: true, // Wait for topic leaders to be elected
         });
         console.log(
