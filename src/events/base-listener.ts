@@ -23,6 +23,7 @@ export abstract class Listener<T extends Event> {
       groupId: this.consumerGroupID,
       ...consumerConfig,
     });
+    console.log(`Created consumer for CG ${this.consumerGroupID}`);
   }
 
   async shutdown() {
