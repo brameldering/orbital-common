@@ -25,8 +25,8 @@ export abstract class Listener<T extends Event> {
     try {
       await this._consumer.disconnect();
     } catch (error) {
-      console.log(
-        `Error disconnecting listener for topic ${this.topic} and consumer group ${this.consumerGroupID}`,
+      console.error(
+        `Error disconnecting consumer for topic ${this.topic} and consumer group ${this.consumerGroupID}`,
         error
       );
     }
@@ -45,13 +45,19 @@ export abstract class Listener<T extends Event> {
   async listen() {
     try {
       await this._consumer.connect();
+      console.log(
+        `Successfully connected consumer for topic ${this.topic} and consumer group ${this.consumerGroupID}`
+      );
       await this._consumer.subscribe({
         topic: this.topic,
         fromBeginning: true,
       });
-    } catch (error) {
       console.log(
-        `Error subscribing listener for topic ${this.topic} and consumer group ${this.consumerGroupID}`,
+        `Successfully subscribed consumer to topic ${this.topic} and consumer group ${this.consumerGroupID}`
+      );
+    } catch (error) {
+      console.error(
+        `Error subscribing consumer for topic ${this.topic} and consumer group ${this.consumerGroupID}`,
         error
       );
     }

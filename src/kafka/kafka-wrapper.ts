@@ -24,15 +24,24 @@ class KafkaWrapper {
   }
 
   async connect(clientId: string, brokers: string[]) {
-    // Initialize kafka client
-    this._client = new Kafka({ clientId, brokers, logLevel: logLevel.ERROR });
-    this._clientId = clientId;
-    console.log('Created client for Kafka brokers', brokers);
-
-    // initialize kafka admin
-    this._admin = this._client.admin();
-    await this._admin.connect();
-    console.log('Connected to kafka admin');
+    try {
+      // Initialize kafka client
+      this._client = new Kafka({ clientId, brokers, logLevel: logLevel.ERROR });
+      this._clientId = clientId;
+      console.log('Created client for Kafka brokers', brokers);
+    } catch (error) {
+      console.error(`Error creating client for brokers ${brokers}`, error);
+      throw error;
+    }
+    try {
+      // initialize kafka admin
+      this._admin = this._client.admin();
+      await this._admin.connect();
+      console.log('Connected to kafka admin');
+    } catch (error) {
+      console.error(`Error connecting admin for brokers ${brokers}`, error);
+      throw error;
+    }
   }
 
   async disconnect() {

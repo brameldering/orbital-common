@@ -26,8 +26,8 @@ export const currentUser = (
     ) as IUserAttrs;
     // console.log('currentUser.payload', payload);
     req.currentUser = payload;
-  } catch (err) {
-    console.log('currentUser error:', err);
+  } catch (error) {
+    console.error('currentUser error:', error);
   }
   next();
 };
@@ -64,7 +64,7 @@ const getAllowedRolesAndHasParams = (
   if (!matchingRecord) {
     const errorMessage =
       'getAllowedRoleForApi - No role found for the given API: ' + apiUrl;
-    console.log(errorMessage);
+    console.error(errorMessage);
     throw new ApplicationIntegrityError(errorMessage);
   }
   //Return role and hasParams boolean for first match
