@@ -1,5 +1,6 @@
 import { Kafka, Consumer, EachMessagePayload } from 'kafkajs';
 import { Topics } from './types/topics';
+import { IConsumerConfig } from './types/consumer-config';
 
 interface Event {
   topic: Topics;
@@ -13,20 +14,24 @@ export abstract class Listener<T extends Event> {
 
   constructor(
     protected client: Kafka,
-    protected consumerGroupID: string
+    protected consumerGroupID: string,
+    protected consumerConfig: IConsumerConfig
   ) {
     // this.client = new Kafka({ clientId, brokers, logLevel: logLevel.ERROR });
     // this.client = client;
-    this._consumer = this.client.consumer({ groupId: this.consumerGroupID });
+    this._consumer = this.client.consumer({
+      groupId: this.consumerGroupID,
+      ...consumerConfig,
+    });
   }
 
   async shutdown() {
-    console.log(`Shutting down consumer for group: ${this.consumerGroupID}`);
+    console.log(`Shutting down consumer for CG: ${this.consumerGroupID}`);
     try {
       await this._consumer.disconnect();
     } catch (error) {
       console.error(
-        `Error disconnecting consumer for topic ${this.topic} and consumer group ${this.consumerGroupID}`,
+        `Error disconnecting consumer for topic ${this.topic} and CG ${this.consumerGroupID}`,
         error
       );
     }
@@ -46,18 +51,18 @@ export abstract class Listener<T extends Event> {
     try {
       await this._consumer.connect();
       console.log(
-        `Successfully connected consumer for topic ${this.topic} and consumer group ${this.consumerGroupID}`
+        `Connected consumer for topic ${this.topic} and CG ${this.consumerGroupID}`
       );
       await this._consumer.subscribe({
         topic: this.topic,
         fromBeginning: true,
       });
       console.log(
-        `Successfully subscribed consumer to topic ${this.topic} and consumer group ${this.consumerGroupID}`
+        `Subscribed consumer to topic ${this.topic} and CG ${this.consumerGroupID}`
       );
     } catch (error) {
       console.error(
-        `Error subscribing consumer for topic ${this.topic} and consumer group ${this.consumerGroupID}`,
+        `Error subscribing consumer for topic ${this.topic} and CG ${this.consumerGroupID}`,
         error
       );
     }
@@ -70,7 +75,7 @@ export abstract class Listener<T extends Event> {
       }: EachMessagePayload) => {
         const parsedData = this.parseMessage(message);
         console.log(
-          `Received message for consumerGroupID: ${this.consumerGroupID}, topic: ${topic}, partition: ${partition}, offset: ${message.offset} - data:`,
+          `Received message for CG: ${this.consumerGroupID}, topic: ${topic}, partition: ${partition}, offset: ${message.offset} - data:`,
           parsedData
         );
         this.onMessage(parsedData);
@@ -79,7 +84,7 @@ export abstract class Listener<T extends Event> {
 
     this._consumer.on('consumer.crash', ({ payload }) => {
       console.error(
-        `Error in consumer group: ${this.consumerGroupID}, topic: ${this.topic}:`,
+        `Error in CG: ${this.consumerGroupID}, topic: ${this.topic}:`,
         payload.error
       );
     });

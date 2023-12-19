@@ -60,6 +60,7 @@ export * from './events/base-publisher';
 
 export * from './events/types/topics';
 export * from './events/types/order-status';
+export * from './events/types/consumer-config';
 
 export * from './events/types/api-access-created-event';
 export * from './events/types/api-access-updated-event';
