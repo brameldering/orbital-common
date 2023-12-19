@@ -59,6 +59,8 @@ export * from './models/user/user-model';
 export * from './events/base-listener';
 export * from './events/base-publisher';
 
+export * from './events/listener-manager';
+
 export * from './events/types/topics';
 export * from './events/types/order-status';
 export * from './events/types/consumer-config';
