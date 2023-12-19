@@ -17,13 +17,23 @@ export abstract class Listener<T extends Event> {
     protected consumerGroupID: string,
     protected consumerConfig: IConsumerConfig
   ) {
-    // this.client = new Kafka({ clientId, brokers, logLevel: logLevel.ERROR });
-    // this.client = client;
     this._consumer = this.client.consumer({
       groupId: this.consumerGroupID,
       ...consumerConfig,
     });
     console.log(`Created consumer for CG ${this.consumerGroupID}`);
+  }
+
+  async initialize() {
+    try {
+      await this._consumer.connect();
+      console.log(`Connected consumer for CG ${this.consumerGroupID}`);
+    } catch (error) {
+      console.error(
+        `Error connecting consumer for CG ${this.consumerGroupID}`,
+        error
+      );
+    }
   }
 
   async shutdown() {
@@ -43,22 +53,8 @@ export abstract class Listener<T extends Event> {
     }
   }
 
-  // consumerOptions() {
-  //   return {
-  //     kafkaHost: process.env.ZOOKEEPER_URL!,
-  //     groupId: this.consumerGroupID,
-  //     autoCommit: true, // Enable auto-commit
-  //     autoCommitIntervalMs: 5000, // Auto-commit interval (in ms)
-  //     sessionTimeout: 10000, // Session timeout (in ms)
-  //     fetchMaxBytes: 1024 * 1024, // Max fetch bytes
-  //   };
-  // }
   async listen() {
     try {
-      await this._consumer.connect();
-      console.log(
-        `Connected consumer for topic ${this.topic} and CG ${this.consumerGroupID}`
-      );
       await this._consumer.subscribe({
         topic: this.topic,
         fromBeginning: true,
