@@ -26,9 +26,14 @@ export abstract class Listener<T extends Event> {
   }
 
   async shutdown() {
-    console.log(`Shutting down consumer for CG: ${this.consumerGroupID}`);
+    console.log(
+      `Shutting down consumer for topic ${this.topic} and CG ${this.consumerGroupID}`
+    );
     try {
       await this._consumer.disconnect();
+      console.log(
+        `Disconnected consumer for topic ${this.topic} and CG ${this.consumerGroupID}`
+      );
     } catch (error) {
       console.error(
         `Error disconnecting consumer for topic ${this.topic} and CG ${this.consumerGroupID}`,
