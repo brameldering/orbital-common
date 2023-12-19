@@ -22,7 +22,14 @@ export abstract class Listener<T extends Event> {
 
   async shutdown() {
     console.log(`Shutting down consumer for group: ${this.consumerGroupID}`);
-    await this._consumer.disconnect();
+    try {
+      await this._consumer.disconnect();
+    } catch (error) {
+      console.log(
+        `Error disconnecting listener for topic ${this.topic} and consumer group ${this.consumerGroupID}`,
+        error
+      );
+    }
   }
 
   // consumerOptions() {
@@ -36,8 +43,18 @@ export abstract class Listener<T extends Event> {
   //   };
   // }
   async listen() {
-    await this._consumer.connect();
-    await this._consumer.subscribe({ topic: this.topic, fromBeginning: true });
+    try {
+      await this._consumer.connect();
+      await this._consumer.subscribe({
+        topic: this.topic,
+        fromBeginning: true,
+      });
+    } catch (error) {
+      console.log(
+        `Error subscribing listener for topic ${this.topic} and consumer group ${this.consumerGroupID}`,
+        error
+      );
+    }
 
     await this._consumer.run({
       eachMessage: async ({
