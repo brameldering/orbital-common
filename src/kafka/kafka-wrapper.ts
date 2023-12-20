@@ -1,5 +1,6 @@
 import { Kafka, Admin, logLevel } from 'kafkajs';
 import { Publisher } from '../events/base-publisher';
+import { getLogLevel } from '../utils/get-log-level';
 
 class KafkaWrapper {
   private _client?: Kafka;
@@ -27,8 +28,9 @@ class KafkaWrapper {
 
   async connect(clientId: string, brokers: string[]) {
     try {
+      const loglevel: number = getLogLevel(process.env.KAFKA_LOG_LEVEL!);
       // Initialize kafka client
-      this._client = new Kafka({ clientId, brokers, logLevel: logLevel.ERROR });
+      this._client = new Kafka({ clientId, brokers, logLevel: loglevel });
       this._clientId = clientId;
       console.log('Created client for Kafka brokers', brokers);
     } catch (error) {
@@ -69,6 +71,7 @@ class KafkaWrapper {
 
   // Getter to get access to publishers object
   get publishers(): { [topic: string]: Publisher<any> } {
+    console.log('kafkaWrapper.get publishers', this._publishers);
     return this._publishers;
   }
 
