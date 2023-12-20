@@ -38,7 +38,7 @@ export * from './constants/role-constants';
 export * from './constants/test-constants';
 
 export * from './utils/calc-prices';
-export * from './utils/get-log-level';
+export * from './utils/get-kafka-log-level';
 export * from './utils/wait';
 
 export * from './models/access/api-access-model';
