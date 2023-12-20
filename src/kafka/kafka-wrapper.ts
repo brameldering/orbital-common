@@ -1,9 +1,11 @@
 import { Kafka, Admin, logLevel } from 'kafkajs';
+import { Publisher } from '../events/base-publisher';
 
 class KafkaWrapper {
   private _client?: Kafka;
   private _clientId?: string;
   private _admin?: Admin;
+  private _publishers: { [topic: string]: Publisher<any> } = {};
 
   get client() {
     if (!this._client) {
@@ -63,6 +65,11 @@ class KafkaWrapper {
       console.error('Error while disconnecting Kafka client and admin:', error);
       throw error;
     }
+  }
+
+  // Getter to get access to publishers object
+  get publishers(): { [topic: string]: Publisher<any> } {
+    return this._publishers;
   }
 
   async ensureTopicExists(
