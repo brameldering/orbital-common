@@ -1,6 +1,6 @@
 {
   "name": "@orbitelco/common",
-  "version": "1.0.230",
+  "version": "1.0.231",
   "description": "",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
