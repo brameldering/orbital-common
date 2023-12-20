@@ -71,7 +71,7 @@ class KafkaWrapper {
 
   // Getter to get access to publishers object
   get publishers(): { [topic: string]: Publisher<any> } {
-    console.log('kafkaWrapper.get publishers', this._publishers);
+    // console.log('kafkaWrapper.get publishers', this._publishers);
     return this._publishers;
   }
 
