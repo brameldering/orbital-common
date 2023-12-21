@@ -1,5 +1,5 @@
 import { Kafka, Admin, logLevel } from 'kafkajs';
-import { Publisher } from '../events/base-publisher';
+import { Publisher } from './base-publisher';
 import { getKafkaLogLevel } from '../utils/get-kafka-log-level';
 
 class KafkaWrapper {
