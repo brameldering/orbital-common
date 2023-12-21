@@ -1,5 +1,6 @@
 import { ApiAccess } from '../models/access/api-access-model';
 import { IApiAccessAttrs } from '../types/mongoose-model-types/mongoose-access-types';
+import { DatabaseError } from '../types/error-types';
 
 class ApiAccessCache {
   private _apiAccessCacheData?: IApiAccessAttrs[];
@@ -25,6 +26,7 @@ class ApiAccessCache {
       console.log('ApiAccessData loaded.');
     } catch (error) {
       console.error('Error loading API Access Data:', error);
+      throw new DatabaseError('Error loading API Access Data');
     }
   }
 }
