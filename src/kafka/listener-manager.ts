@@ -81,13 +81,6 @@ export class ListenerManager {
       },
     });
 
-    this.listen().catch(async (error) => {
-      console.error(
-        '=> Error in Kafka consumer for CG: ${this.consumerGroupID}:',
-        error
-      );
-    });
-
     this.consumer.on('consumer.crash', ({ payload }) => {
       console.error(
         `=> consumer.crash in CG: ${this.consumerGroupID}:`,
