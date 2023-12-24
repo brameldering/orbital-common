@@ -24,7 +24,6 @@ export const currentUser = (
       req.session.jwt,
       process.env.JWT_SECRET!
     ) as IUserAttrs;
-    // console.log('currentUser.payload', payload);
     req.currentUser = payload;
   } catch (error) {
     console.error('currentUser error:', error);
@@ -74,9 +73,6 @@ const getAllowedRolesAndHasParams = (
 export const authorize =
   (apiSpecs: IApi[], apiAccessCache: IApiAccessAttrs[]) =>
   (req: IExtendedRequest, res: Response, next: NextFunction) => {
-    // console.log('apiSpecs: ', apiSpecs);
-    // console.log('apiAccessCache: ', apiAccessCache);
-
     const url = req.url;
     const method = req.method;
 
@@ -94,16 +90,11 @@ export const authorize =
         allowedRoles: accessObj ? accessObj.allowedRoles : [], // Assign allowedRoles or an empty array if not found
       };
     });
-    // console.log('==> combinedArray: ', combinedArray);
     const allowedRoles = getAllowedRolesAndHasParams(
       combinedArray,
       url,
       method
     );
-    // console.log(
-    //   'url ' + req.url + ' method ' + req.method + ': ',
-    //   allowedRoles
-    // );
     let currentUserRole: string;
     if (!req.currentUser) {
       // User is not logged in
