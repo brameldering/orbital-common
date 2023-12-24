@@ -1,5 +1,5 @@
 import { MockPublisher } from './base-publisher';
-import { Topics } from '@orbitelco/common';
+import { Topics } from '../kafka/types/topics';
 
 // __mocks__/@orbitelco/common.js
 class KafkaWrapper {
