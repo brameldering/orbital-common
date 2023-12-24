@@ -1,5 +1,6 @@
 // Mock version of ApiAccessCache
-import { IApiAccessAttrs, apiAccessAll } from '@orbitelco/common';
+import { IApiAccessAttrs } from '../types/mongoose-model-types/mongoose-access-types';
+import { apiAccessAll } from '../seederdata/api-access/api-access-all';
 
 class ApiAccessCache {
   private _apiAccessCacheData?: IApiAccessAttrs[];
