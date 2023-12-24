@@ -1,4 +1,4 @@
-import { Kafka, Admin, logLevel } from 'kafkajs';
+import { Kafka, Admin } from 'kafkajs';
 import { Publisher } from './base-publisher';
 import { getKafkaLogLevel } from '../utils/get-kafka-log-level';
 
