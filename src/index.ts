@@ -57,9 +57,9 @@ export * from './kafka/listener-manager';
 export * from './kafka/types/topics';
 export * from './kafka/types/order-status';
 export * from './kafka/types/consumer-config';
-export * from './kafka/types/api-access-created-event';
-export * from './kafka/types/api-access-updated-event';
-export * from './kafka/types/api-access-deleted-event';
+export * from './kafka/types/api-access/api-access-created-event';
+export * from './kafka/types/api-access/api-access-updated-event';
+export * from './kafka/types/api-access/api-access-deleted-event';
 
 export * from './seederdata/api-access/roles';
 export * from './seederdata/api-access/api-access-all';

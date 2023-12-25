@@ -1,4 +1,4 @@
-import { Topics } from './topics';
+import { Topics } from '../topics';
 
 export interface ApiAccessDeletedEvent {
   topic: Topics.ApiAccessDeleted;
@@ -6,6 +6,5 @@ export interface ApiAccessDeletedEvent {
     id: string;
     microservice: string;
     apiName: string;
-    // allowedRoles: string[];
   };
 }

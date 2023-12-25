@@ -1,4 +1,4 @@
-import { Topics } from './topics';
+import { Topics } from '../topics';
 
 export interface ApiAccessCreatedEvent {
   topic: Topics.ApiAccessCreated;
