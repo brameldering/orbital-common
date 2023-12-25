@@ -14,7 +14,7 @@ class ApiAccessCache {
     return this._apiAccessCacheData;
   }
 
-  // Fetch the data from MongoDB
+  // Mock fetching the data from MongoDB by assigning apiAccessAll
   async loadCacheFromDB() {
     this._apiAccessCacheData = apiAccessAll;
   }
