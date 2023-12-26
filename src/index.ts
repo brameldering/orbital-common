@@ -7,6 +7,7 @@ export * from './constants/payment-methods';
 export * from './constants/role-constants';
 export * from './constants/test-constants';
 export * from './constants/url-constants';
+export * from './constants/various-constants';
 
 export * from './kafka/types/api-access/api-access-created-event';
 export * from './kafka/types/api-access/api-access-updated-event';
