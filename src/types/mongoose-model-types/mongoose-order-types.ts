@@ -20,22 +20,6 @@ import mongoose from 'mongoose';
 //   email: string;
 // }
 
-// ================ IOrderSequence ================
-export interface IOrderSequenceAttrs {
-  latestSeqId: number;
-}
-
-// Interface describing the Order Sequence Model
-export interface IOrderSequenceModel extends mongoose.Model<IOrderSequenceDoc> {
-  build(attrs: IOrderSequenceAttrs): IOrderSequenceDoc;
-}
-
-// Interface describing the Order Sequence Document
-export interface IOrderSequenceDoc extends mongoose.Document {
-  _id: mongoose.Types.ObjectId;
-  latestSeqId: number;
-}
-
 // ================ IOrderItem ================
 export interface IOrderItemAttrs {
   productId: mongoose.Types.ObjectId;

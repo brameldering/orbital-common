@@ -24,23 +24,6 @@ export interface IProductReviewDoc extends mongoose.Document {
   updatedAt?: Date;
 }
 
-// ================ IProductSequence ================
-export interface IProductSequenceAttrs {
-  latestSeqId: number;
-}
-
-// Interface describing the Product Sequence Model
-export interface IProductSequenceModel
-  extends mongoose.Model<IProductSequenceDoc> {
-  build(attrs: IProductSequenceAttrs): IProductSequenceDoc;
-}
-
-// Interface describing the Product Sequence Document
-export interface IProductSequenceDoc extends mongoose.Document {
-  _id: mongoose.Types.ObjectId;
-  latestSeqId: number;
-}
-
 // =========================================================
 // Interface describing the Product object attributes
 export interface IProductAttrs {

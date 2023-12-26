@@ -36,12 +36,10 @@ export * from './models/access/role-model';
 export * from './models/order/order-contact-model';
 export * from './models/order/order-item-model';
 export * from './models/order/order-model';
-export * from './models/order/order-sequence-model'; // To remove
 export * from './models/order/order-total-amounts-model';
 export * from './models/order/price-calc-settings-model';
 export * from './models/product/product-model';
 export * from './models/product/product-review-model';
-export * from './models/product/product-sequence-model'; // To remove
 export * from './models/sequence/sequence-model';
 export * from './models/user/user-model';
 
