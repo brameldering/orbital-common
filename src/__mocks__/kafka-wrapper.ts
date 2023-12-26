@@ -25,7 +25,7 @@ class KafkaWrapper {
 
   get publishers() {
     for (const topic of Object.values(Topics)) {
-      this._publishers[topic] = new MockPublisher('topic');
+      this._publishers[topic] = new MockPublisher(topic);
     }
     return this._publishers;
   }
