@@ -13,6 +13,7 @@ export * from './kafka/types/api-access/api-access-created-event';
 export * from './kafka/types/api-access/api-access-updated-event';
 export * from './kafka/types/api-access/api-access-deleted-event';
 export * from './kafka/types/sequence/sequence-request-event';
+export * from './kafka/types/sequence/entity-types';
 export * from './kafka/types/sequence/sequence-response-event';
 export * from './kafka/types/consumer-config';
 export * from './kafka/types/order-status';
