@@ -1,11 +1,9 @@
 import { Topics } from '../topics';
-import { Entities } from './entity-types';
 
-export interface SequenceRequestEvent {
-  topic: Topics.SequenceRequest;
-  key: string; // key is the same as entity and should be one of the enum values
+export interface SequenceRequestOrdersEvent {
+  topic: Topics.SequenceRequestOrders;
+  key: string; // key is the same as entityObjectId
   data: {
-    entity: Entities;
     entityObjectId: string;
   };
 }
