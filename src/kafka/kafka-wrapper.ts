@@ -1,6 +1,7 @@
 import { Kafka, Admin } from 'kafkajs';
 import { Publisher } from './base-publisher';
 import { getKafkaLogLevel } from '../utils/get-kafka-log-level';
+import { ApplicationServerError } from '../types/error-types';
 
 class KafkaWrapper {
   private _client?: Kafka;
@@ -33,18 +34,18 @@ class KafkaWrapper {
       this._client = new Kafka({ clientId, brokers, logLevel: loglevel });
       this._clientId = clientId;
       console.log('Created client for Kafka brokers', brokers);
-    } catch (error) {
+    } catch (error: any) {
       console.error(`Error creating client for brokers ${brokers}`, error);
-      throw error;
+      throw new ApplicationServerError(error.toString());
     }
     try {
       // initialize kafka admin
       this._admin = this._client.admin();
       await this._admin.connect();
       console.log('Connected to kafka admin');
-    } catch (error) {
+    } catch (error: any) {
       console.error(`Error connecting admin for brokers ${brokers}`, error);
-      throw error;
+      throw new ApplicationServerError(error.toString());
     }
   }
 
@@ -63,9 +64,9 @@ class KafkaWrapper {
       }
 
       console.log('Kafka client and admin disconnected successfully');
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error while disconnecting Kafka client and admin:', error);
-      throw error;
+      throw new ApplicationServerError(error.toString());
     }
   }
 
@@ -113,12 +114,12 @@ class KafkaWrapper {
           `Kafka client ${this._clientId} found topic: ${topicToCheck} already exists`
         );
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error(
         `Kafka client ${this._clientId} failed to ensure topic: ${topicToCheck}:`,
         error
       );
-      throw error;
+      throw new ApplicationServerError(error.toString());
     }
   }
 }

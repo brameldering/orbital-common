@@ -1,6 +1,7 @@
 import { Kafka, Consumer, EachMessagePayload } from 'kafkajs';
 import { Listener } from './base-listener';
 import { IConsumerConfig } from './types/consumer-config';
+import { ApplicationIntegrityError } from '../types/error-types';
 
 export class ListenerManager {
   private consumer: Consumer;
@@ -22,7 +23,7 @@ export class ListenerManager {
     try {
       await this.consumer.connect();
       console.log(`Connected consumer for CG ${this.consumerGroupID}`);
-    } catch (error) {
+    } catch (error: any) {
       console.error(
         `Error connecting consumer for CG ${this.consumerGroupID}`,
         error
@@ -35,7 +36,7 @@ export class ListenerManager {
     try {
       await this.consumer.disconnect();
       console.log(`Disconnected consumer for CG ${this.consumerGroupID}`);
-    } catch (error) {
+    } catch (error: any) {
       console.error(
         `Error disconnecting consumer for CG ${this.consumerGroupID}`,
         error
@@ -54,7 +55,7 @@ export class ListenerManager {
       console.log(
         `Subscribed consumer to topic ${listener.topic} and CG ${this.consumerGroupID}`
       );
-    } catch (error) {
+    } catch (error: any) {
       console.error(
         `Error subscribing consumer for topic ${listener.topic} and CG ${this.consumerGroupID}`,
         error
@@ -71,12 +72,27 @@ export class ListenerManager {
       }: EachMessagePayload) => {
         const listener = this.listeners.get(topic);
         if (listener) {
+          // Extracting the key from the message
+          const keyBuffer = message.key;
+          let keyString = '';
+          // Convert the key from Buffer to string, if the key exists
+          if (keyBuffer) {
+            keyString = keyBuffer.toString();
+          } else {
+            throw new ApplicationIntegrityError(
+              `Error in listenerManager.listen: message.key has not been given for topic ${topic}`
+            );
+          }
           const parsedData = listener.parseMessage(message);
           console.log(
-            `Received message for CG: ${this.consumerGroupID}, topic: ${topic}, partition: ${partition}, offset: ${message.offset} - data:`,
+            `Received message for CG: ${this.consumerGroupID}, topic: ${topic}, partition: ${partition}, offset: ${message.offset}, key: ${keyString} - data:`,
             parsedData
           );
-          await listener.onMessage(parsedData);
+          await listener.onMessage(keyString, parsedData);
+        } else {
+          throw new ApplicationIntegrityError(
+            `Error in listenerManager.listen: listener is not defined for topic ${topic}`
+          );
         }
       },
     });

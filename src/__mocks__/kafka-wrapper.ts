@@ -5,7 +5,7 @@ import { Topics } from '../kafka/types/topics';
 class KafkaWrapper {
   _client: any;
   _admin: any;
-  _publishers: { [topic: string]: MockPublisher } = {};
+  _publishers: { [topic: string]: MockPublisher<any> } = {};
   _createdTopics = new Set(); // Keep track of "created" topics
   _clientId: any;
 

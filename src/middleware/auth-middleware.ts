@@ -25,7 +25,7 @@ export const currentUser = (
       process.env.JWT_SECRET!
     ) as IUserAttrs;
     req.currentUser = payload;
-  } catch (error) {
+  } catch (error: any) {
     console.error('currentUser error:', error);
   }
   next();

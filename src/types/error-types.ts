@@ -13,12 +13,24 @@ export abstract class CustomError extends Error {
   }[];
 }
 
-// Following error is thrown when a problem with an external API such as PayPal
-class ExternalAPIError extends CustomError {
+// Following error is thrown when a problem in code config is detected
+class ApplicationIntegrityError extends CustomError {
   statusCode = 500;
   constructor(public message: string) {
     super(message);
-    Object.setPrototypeOf(this, ExternalAPIError.prototype);
+    Object.setPrototypeOf(this, ApplicationIntegrityError.prototype);
+  }
+  serializeErrors() {
+    return [{ message: this.message }];
+  }
+}
+
+// Following error is thrown when a non specific server error occurs
+class ApplicationServerError extends CustomError {
+  statusCode = 500;
+  constructor(public message: string) {
+    super(message);
+    Object.setPrototypeOf(this, ApplicationServerError.prototype);
   }
   serializeErrors() {
     return [{ message: this.message }];
@@ -36,23 +48,23 @@ class DatabaseError extends CustomError {
   }
 }
 
-// Following error is thrown when a problem in code config is detected
-class ApplicationIntegrityError extends CustomError {
+class EnvConfigurationError extends CustomError {
   statusCode = 500;
   constructor(public message: string) {
     super(message);
-    Object.setPrototypeOf(this, ApplicationIntegrityError.prototype);
+    Object.setPrototypeOf(this, EnvConfigurationError.prototype);
   }
   serializeErrors() {
     return [{ message: this.message }];
   }
 }
 
-class EnvConfigurationError extends CustomError {
+// Following error is thrown when a problem with an external API such as PayPal
+class ExternalAPIError extends CustomError {
   statusCode = 500;
   constructor(public message: string) {
     super(message);
-    Object.setPrototypeOf(this, EnvConfigurationError.prototype);
+    Object.setPrototypeOf(this, ExternalAPIError.prototype);
   }
   serializeErrors() {
     return [{ message: this.message }];
@@ -132,10 +144,11 @@ class UserInputError extends CustomError {
 }
 
 export {
-  DatabaseError,
-  ExternalAPIError,
   ApplicationIntegrityError,
+  ApplicationServerError,
+  DatabaseError,
   EnvConfigurationError,
+  ExternalAPIError,
   FileUploadError,
   NotAuthorizedError,
   ObjectNotFoundError,

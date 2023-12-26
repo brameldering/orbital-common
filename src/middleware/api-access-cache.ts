@@ -24,7 +24,7 @@ class ApiAccessCache {
         (apiAccess: { toJSON: () => any }) => apiAccess.toJSON()
       );
       console.log('ApiAccessData loaded.');
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error loading API Access Data:', error);
       throw new DatabaseError('Error loading API Access Data');
     }

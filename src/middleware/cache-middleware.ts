@@ -11,7 +11,7 @@ export const cacheMiddleware = (
   try {
     req.apiAccessCache = apiAccessCache.cache;
     next();
-  } catch (error) {
+  } catch (error: any) {
     next(error);
   }
 };

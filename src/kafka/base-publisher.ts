@@ -1,8 +1,13 @@
 import { Kafka, Producer } from 'kafkajs';
 import { Topics } from './types/topics';
+import {
+  ApplicationServerError,
+  ApplicationIntegrityError,
+} from '../types/error-types';
 
 interface Event {
   topic: Topics;
+  key: string;
   data: any;
 }
 
@@ -28,13 +33,13 @@ export abstract class Publisher<T extends Event> {
       await this._producer.connect();
       console.log(`Producer connected for topic ${this.topic}`);
       this.isConnected = true;
-    } catch (error) {
+    } catch (error: any) {
       this.isConnected = false;
       console.error(
         `Error in connecting producer for topic ${this.topic}`,
         error
       );
-      throw error; // Rethrow the error after logging
+      throw new ApplicationServerError(error.toString()); // Rethrow the error after logging
     }
   }
 
@@ -43,19 +48,23 @@ export abstract class Publisher<T extends Event> {
       console.log(`Disconnecting producer for topic: ${this.topic}`);
       await this._producer.disconnect();
       console.log(`Producer disconnected for topic: ${this.topic}`);
-    } catch (error) {
+    } catch (error: any) {
       console.error(
         `Error in disconnecting producer for topic: ${this.topic}`,
         error
       );
-      throw error; // Rethrow the error after logging
+      throw new ApplicationServerError(error.toString()); // Rethrow the error after logging
     } finally {
       this.isConnected = false;
     }
   }
 
-  async publish(data: T['data']): Promise<void> {
-    const key = data.id;
+  async publish(key: string, data: T['data']): Promise<void> {
+    if (!key) {
+      throw new ApplicationIntegrityError(
+        `Error publishing message on topic ${this.topic}: property key is empty`
+      );
+    }
 
     try {
       if (!this.isConnected) {
@@ -71,9 +80,9 @@ export abstract class Publisher<T extends Event> {
         `Published message on topic: ${this.topic} with key ${key}`,
         data
       );
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error in publishing message:', error);
-      throw error; // Rethrow the error after logging
+      throw new ApplicationServerError(error.toString()); // Rethrow the error after logging
     }
   }
 }
