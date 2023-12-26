@@ -12,7 +12,6 @@ const productSchema = new mongoose.Schema(
     sequentialProductId: {
       type: String,
       required: true,
-      unique: true,
     },
     name: {
       type: String,

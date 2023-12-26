@@ -13,7 +13,6 @@ const orderSchema = new mongoose.Schema(
     sequentialOrderId: {
       type: String,
       required: true,
-      unique: true,
     },
     user: {
       userId: {
