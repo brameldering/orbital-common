@@ -7,6 +7,7 @@ export class ListenerManager {
   private consumer: Consumer;
   private listeners: Map<string, Listener<any>> = new Map();
 
+  // Test
   constructor(
     protected client: Kafka,
     protected consumerGroupID: string,
