@@ -19,6 +19,11 @@ class ApiAccessCache {
     try {
       // Load API access rights in original format array
       const apiAccessDataOriginal = await ApiAccess.find({});
+      if (apiAccessDataOriginal.length === 0) {
+        throw new Error(
+          'ApiAccess table is empty. Probably the data has not yet been initialized/seeded.'
+        );
+      }
       // map records to json format as defined in apiAccessSchema
       this._apiAccessCacheData = apiAccessDataOriginal.map(
         (apiAccess: { toJSON: () => any }) => apiAccess.toJSON()
