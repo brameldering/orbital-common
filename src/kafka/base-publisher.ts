@@ -30,9 +30,10 @@ export abstract class Publisher<T extends Event> {
   }
 
   async connect() {
+    console.log(`Connecting producer for topic ${this.topic}...`);
     try {
       await this._producer.connect();
-      console.log(`Producer connected for topic ${this.topic}`);
+      console.log(`Connected producer for topic ${this.topic}`);
       this.isConnected = true;
     } catch (error: any) {
       this.isConnected = false;
@@ -48,7 +49,7 @@ export abstract class Publisher<T extends Event> {
     try {
       console.log(`Disconnecting producer for topic: ${this.topic}`);
       await this._producer.disconnect();
-      console.log(`Producer disconnected for topic: ${this.topic}`);
+      console.log(`Disconnected Producer for topic: ${this.topic}`);
     } catch (error: any) {
       console.error(
         `Error in disconnecting producer for topic: ${this.topic}`,
