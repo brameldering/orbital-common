@@ -18,8 +18,6 @@ export abstract class Publisher<T extends Event> {
   private isConnected = false;
 
   constructor(client: Kafka) {
-    // constructor(clientId: string, brokers: string[]) {
-    // this.client = new Kafka({ clientId, brokers, logLevel: logLevel.ERROR });
     this.client = client;
 
     this._producer = this.client.producer({

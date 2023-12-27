@@ -110,13 +110,11 @@ export class ListenerManager {
         }
       },
     });
-
-    this.consumer.on('consumer.crash', ({ payload }) => {
-      console.error(
-        `=> consumer.crash in CG: ${this.consumerGroupID}:`,
-        payload.error
-      );
-      throw new Error(`Error in consumer for CG ${this.consumerGroupID}`);
-    });
+    // this.consumer.on('consumer.crash', ({ payload }) => {
+    //   console.error(
+    //     `=> consumer.crash in CG: ${this.consumerGroupID}:`,
+    //     payload.error
+    //   );
+    // });
   }
 }
