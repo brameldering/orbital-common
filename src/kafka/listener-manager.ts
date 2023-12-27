@@ -1,7 +1,10 @@
 import { Kafka, Consumer, EachMessagePayload } from 'kafkajs';
 import { Listener } from './base-listener';
 import { IConsumerConfig } from './types/consumer-config';
-import { ApplicationIntegrityError } from '../types/error-types';
+import {
+  ApplicationIntegrityError,
+  ApplicationServerError,
+} from '../types/error-types';
 
 export class ListenerManager {
   private consumer: Consumer;
@@ -13,6 +16,7 @@ export class ListenerManager {
     protected consumerGroupID: string,
     protected consumerConfig: IConsumerConfig
   ) {
+    console.log(`Creating consumer for CG ${consumerGroupID}...`);
     this.consumer = client.consumer({
       groupId: consumerGroupID,
       ...consumerConfig,
@@ -22,12 +26,14 @@ export class ListenerManager {
 
   async connect() {
     try {
+      console.log(`Connecting consumer for CG ${this.consumerGroupID}...`);
       await this.consumer.connect();
       console.log(`Connected consumer for CG ${this.consumerGroupID}`);
     } catch (error: any) {
-      console.error(
-        `Error connecting consumer for CG ${this.consumerGroupID}`,
-        error
+      console.error(error);
+      throw new ApplicationServerError(
+        `Error connecting consumer for CG ${this.consumerGroupID}` +
+          error.message
       );
     }
   }
@@ -42,11 +48,18 @@ export class ListenerManager {
         `Error disconnecting consumer for CG ${this.consumerGroupID}`,
         error
       );
+      throw new ApplicationServerError(
+        `Error disconnecting consumer for CG ${this.consumerGroupID}` +
+          error.message
+      );
     }
   }
 
   async registerListener(listener: Listener<any>) {
     try {
+      console.log(
+        `Subscribing consumer to topic ${listener.topic} and CG ${this.consumerGroupID}`
+      );
       this.listeners.set(listener.topic, listener);
       // Subscribe the consumer to the topic
       await this.consumer.subscribe({
@@ -61,10 +74,17 @@ export class ListenerManager {
         `Error subscribing consumer for topic ${listener.topic} and CG ${this.consumerGroupID}`,
         error
       );
+      throw new ApplicationServerError(
+        `Error subscribing consumer for topic ${listener.topic} and CG ${this.consumerGroupID}` +
+          error.message
+      );
     }
   }
 
   async listen() {
+    console.log(
+      `Setting up listen for consumer to topic CG ${this.consumerGroupID}`
+    );
     await this.consumer.run({
       eachMessage: async ({
         topic,

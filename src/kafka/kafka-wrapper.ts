@@ -11,7 +11,10 @@ class KafkaWrapper {
 
   get client() {
     if (!this._client) {
-      throw new Error(
+      console.error(
+        'Cannot get client, use the kafkaWrapper.connect() method first before get client'
+      );
+      throw new ApplicationServerError(
         'Cannot get client, use the kafkaWrapper.connect() method first before get client'
       );
     }
@@ -20,7 +23,10 @@ class KafkaWrapper {
 
   get admin() {
     if (!this._admin) {
-      throw new Error(
+      console.error(
+        'Cannot get admin, use the kafkaWrapper.connect() method first before get admin'
+      );
+      throw new ApplicationServerError(
         'Cannot get admin, use the kafkaWrapper.connect() method first before get admin'
       );
     }
@@ -29,6 +35,7 @@ class KafkaWrapper {
 
   async connect(clientId: string, brokers: string[]) {
     try {
+      console.log(`Creating client for Kafka brokers ${brokers}...`);
       const loglevel: number = getKafkaLogLevel(process.env.KAFKA_LOG_LEVEL!);
       // Initialize kafka client
       this._client = new Kafka({ clientId, brokers, logLevel: loglevel });
@@ -36,7 +43,9 @@ class KafkaWrapper {
       console.log('Created client for Kafka brokers', brokers);
     } catch (error: any) {
       console.error(`Error creating client for brokers ${brokers}`, error);
-      throw new ApplicationServerError(error.toString());
+      throw new ApplicationServerError(
+        `Error creating client for brokers ${brokers}: ` + error.toString()
+      );
     }
     try {
       // initialize kafka admin
@@ -45,7 +54,9 @@ class KafkaWrapper {
       console.log('Connected to kafka admin');
     } catch (error: any) {
       console.error(`Error connecting admin for brokers ${brokers}`, error);
-      throw new ApplicationServerError(error.toString());
+      throw new ApplicationServerError(
+        `Error connecting admin for brokers ${brokers}: ` + error.toString()
+      );
     }
   }
 
@@ -56,17 +67,17 @@ class KafkaWrapper {
         await this._admin.disconnect();
         this._admin = undefined;
       }
-
       if (this._client) {
         console.log('Invalidating Kafka client');
         // await this._client.disconnect();
         this._client = undefined;
       }
-
       console.log('Kafka client and admin disconnected successfully');
     } catch (error: any) {
       console.error('Error while disconnecting Kafka client and admin:', error);
-      throw new ApplicationServerError(error.toString());
+      throw new ApplicationServerError(
+        'Error while disconnecting Kafka client and admin: ' + error.toString()
+      );
     }
   }
 
@@ -82,7 +93,10 @@ class KafkaWrapper {
     replicationFactor: number
   ) {
     if (!this._client) {
-      throw new Error(
+      console.error(
+        'KafkaWrapper: Cannot use ensureTopicExists before using kafkaWrapper.connect(...)'
+      );
+      throw new ApplicationServerError(
         'KafkaWrapper: Cannot use ensureTopicExists before using kafkaWrapper.connect(...)'
       );
     }

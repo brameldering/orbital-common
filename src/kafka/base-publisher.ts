@@ -18,6 +18,7 @@ export abstract class Publisher<T extends Event> {
   private isConnected = false;
 
   constructor(client: Kafka) {
+    console.log(`Creating Kafka Client...`);
     this.client = client;
 
     this._producer = this.client.producer({
@@ -25,6 +26,7 @@ export abstract class Publisher<T extends Event> {
       transactionTimeout: 30000,
       createPartitioner: Partitioners.DefaultPartitioner,
     });
+    console.log(`Created Kafka Client`);
   }
 
   async connect() {
