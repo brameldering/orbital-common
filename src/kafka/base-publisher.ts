@@ -47,7 +47,7 @@ export abstract class Publisher<T extends Event> {
 
   async shutdown() {
     try {
-      console.log(`Disconnecting producer for topic: ${this.topic}`);
+      console.log(`Disconnecting producer for topic: ${this.topic}...`);
       await this._producer.disconnect();
       console.log(`Disconnected Producer for topic: ${this.topic}`);
     } catch (error: any) {

@@ -39,7 +39,7 @@ export class ListenerManager {
   }
 
   async disconnect() {
-    console.log(`Disconnecting consumer for CG ${this.consumerGroupID}`);
+    console.log(`Disconnecting consumer for CG ${this.consumerGroupID}...`);
     try {
       console.log(`Stopping consumer for CG ${this.consumerGroupID}...`);
       await this.consumer.stop();
@@ -63,7 +63,7 @@ export class ListenerManager {
   async registerListener(listener: Listener<any>) {
     try {
       console.log(
-        `Subscribing consumer to topic ${listener.topic} and CG ${this.consumerGroupID}`
+        `Subscribing consumer to topic ${listener.topic} and CG ${this.consumerGroupID}...`
       );
       this.listeners.set(listener.topic, listener);
       // Subscribe the consumer to the topic
@@ -88,7 +88,7 @@ export class ListenerManager {
 
   async listen() {
     console.log(
-      `Setting up listen for consumer to topic CG ${this.consumerGroupID}`
+      `Setting up listen for consumer to topic CG ${this.consumerGroupID}...`
     );
     await this.consumer.run({
       eachMessage: async ({

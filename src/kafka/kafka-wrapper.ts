@@ -63,7 +63,7 @@ class KafkaWrapper {
   async disconnect() {
     try {
       if (this._admin) {
-        console.log('Disconnecting Kafka admin client');
+        console.log('Disconnecting Kafka admin client...');
         await this._admin.disconnect();
         this._admin = undefined;
       }
@@ -94,10 +94,10 @@ class KafkaWrapper {
   ) {
     if (!this._client) {
       console.error(
-        'KafkaWrapper: Cannot use ensureTopicExists before using kafkaWrapper.connect(...)'
+        'KafkaWrapper: Cannot use ensureTopicExists before using kafkaWrapper.connect()'
       );
       throw new ApplicationServerError(
-        'KafkaWrapper: Cannot use ensureTopicExists before using kafkaWrapper.connect(...)'
+        'KafkaWrapper: Cannot use ensureTopicExists before using kafkaWrapper.connect()'
       );
     }
     try {
