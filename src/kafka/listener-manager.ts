@@ -41,7 +41,11 @@ export class ListenerManager {
   async disconnect() {
     console.log(`Disconnecting consumer for CG ${this.consumerGroupID}`);
     try {
+      console.log(`Stopping consumer for CG ${this.consumerGroupID}...`);
       await this.consumer.stop();
+      console.log(
+        `Stopped consumer, now disconnecting consumer for CG ${this.consumerGroupID}...`
+      );
       await this.consumer.disconnect();
       console.log(`Disconnected consumer for CG ${this.consumerGroupID}`);
     } catch (error: any) {
