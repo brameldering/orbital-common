@@ -148,7 +148,7 @@ export class ListenerManager {
         `Error in listenerManager.listen for CG ${this.consumerGroupID}`
       );
     }
-
+    // To do, improve error handling
     if (this.consumer) {
       this.consumer.on('consumer.crash', ({ payload }) => {
         console.error(
