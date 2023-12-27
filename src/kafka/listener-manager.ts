@@ -12,7 +12,6 @@ export class ListenerManager {
     protected consumerGroupID: string,
     protected consumerConfig: IConsumerConfig
   ) {
-    console.log(`Creating consumer for CG ${consumerGroupID}...`);
     this.consumer = client.consumer({
       groupId: consumerGroupID,
       ...consumerConfig,
@@ -21,7 +20,6 @@ export class ListenerManager {
   }
 
   async connect() {
-    console.log(`Connecting consumer for CG ${this.consumerGroupID}...`);
     try {
       await this.consumer.connect();
       console.log(`Connected consumer for CG ${this.consumerGroupID}`);
@@ -30,14 +28,11 @@ export class ListenerManager {
         `Error connecting consumer for CG ${this.consumerGroupID}`,
         error
       );
-      throw new Error(
-        `Error connecting consumer for CG ${this.consumerGroupID}`
-      );
     }
   }
 
   async disconnect() {
-    console.log(`Disconnecting consumer for CG ${this.consumerGroupID}...`);
+    console.log(`Disconnecting consumer for CG ${this.consumerGroupID}`);
     try {
       await this.consumer.disconnect();
       console.log(`Disconnected consumer for CG ${this.consumerGroupID}`);
@@ -46,16 +41,10 @@ export class ListenerManager {
         `Error disconnecting consumer for CG ${this.consumerGroupID}`,
         error
       );
-      throw new Error(
-        `Error disconnecting consumer for CG ${this.consumerGroupID}`
-      );
     }
   }
 
   async registerListener(listener: Listener<any>) {
-    console.log(
-      `Registering consumer to CG ${this.consumerGroupID} for topic ${listener.topic}`
-    );
     try {
       this.listeners.set(listener.topic, listener);
       // Subscribe the consumer to the topic
@@ -64,15 +53,12 @@ export class ListenerManager {
         fromBeginning: true,
       });
       console.log(
-        `Subscribed consumer to CG ${this.consumerGroupID} for topic ${listener.topic}`
+        `Subscribed consumer to topic ${listener.topic} and CG ${this.consumerGroupID}`
       );
     } catch (error: any) {
       console.error(
-        `Error subscribing consumer to CG ${this.consumerGroupID} for topic ${listener.topic}`,
+        `Error subscribing consumer for topic ${listener.topic} and CG ${this.consumerGroupID}`,
         error
-      );
-      throw new Error(
-        `Error subscribing consumer to CG ${this.consumerGroupID} for topic ${listener.topic}`
       );
     }
   }
@@ -110,11 +96,12 @@ export class ListenerManager {
         }
       },
     });
-    // this.consumer.on('consumer.crash', ({ payload }) => {
-    //   console.error(
-    //     `=> consumer.crash in CG: ${this.consumerGroupID}:`,
-    //     payload.error
-    //   );
-    // });
+
+    this.consumer.on('consumer.crash', ({ payload }) => {
+      console.error(
+        `=> consumer.crash in CG: ${this.consumerGroupID}:`,
+        payload.error
+      );
+    });
   }
 }

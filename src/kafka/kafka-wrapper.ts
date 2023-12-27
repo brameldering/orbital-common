@@ -42,7 +42,7 @@ class KafkaWrapper {
       // initialize kafka admin
       this._admin = this._client.admin();
       await this._admin.connect();
-      console.log(`Connected to kafka admin for brokers ${brokers}`);
+      console.log('Connected to kafka admin');
     } catch (error: any) {
       console.error(`Error connecting admin for brokers ${brokers}`, error);
       throw new ApplicationServerError(error.toString());
