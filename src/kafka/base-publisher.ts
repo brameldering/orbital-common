@@ -1,4 +1,4 @@
-import { Kafka, Producer } from 'kafkajs';
+import { Kafka, Producer, Partitioners } from 'kafkajs';
 import { Topics } from './types/topics';
 import {
   ApplicationServerError,
@@ -25,6 +25,7 @@ export abstract class Publisher<T extends Event> {
     this._producer = this.client.producer({
       allowAutoTopicCreation: true,
       transactionTimeout: 30000,
+      createPartitioner: Partitioners.DefaultPartitioner,
     });
   }
 
