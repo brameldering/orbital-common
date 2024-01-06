@@ -10,6 +10,7 @@ import { productReviewSchema } from './product-review-model';
 const productSchema = new mongoose.Schema(
   {
     sequentialProductId: {
+      // Example: PRD-0000000001
       type: String,
       required: true,
     },

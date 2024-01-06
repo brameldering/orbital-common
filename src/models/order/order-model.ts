@@ -11,6 +11,7 @@ import { orderTotalAmountsSchema } from './order-total-amounts-model';
 const orderSchema = new mongoose.Schema(
   {
     sequentialOrderId: {
+      // Example: ORD-0000000001
       type: String,
       required: true,
     },
