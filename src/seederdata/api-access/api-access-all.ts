@@ -8,7 +8,7 @@ import {
   MICROSERVICE_AUTH,
   MICROSERVICE_PRODUCTS,
   MICROSERVICE_ORDERS,
-  MICROSERVICE_SEQUENCES,
+  MICROSERVICE_INVENTORY
 } from '../../constants/access/microservice-names';
 
 // The order (within a particular microservice) of the following array matters.
@@ -226,21 +226,46 @@ export const apiAccessAll: IApiAccessAttrs[] = [
     apiName: 'get-order-by-id',
     allowedRoles: [CUSTOMER_ROLE, ADMIN_ROLE],
   },
+  /* get-product-inventory */
   {
-    microservice: MICROSERVICE_SEQUENCES,
-    apiName: 'create-sequence-Record',
+    microservice: MICROSERVICE_INVENTORY,
+    apiName: 'get-product-inventory',
+    allowedRoles: [ANONYMOUS_ROLE, CUSTOMER_ROLE, ADMIN_ROLE],
+  },
+  /* get-product-inventory-by-id - params: id*/
+  {
+    microservice: MICROSERVICE_INVENTORY,
+    apiName: 'get-product-inventory-by-id ',
+    allowedRoles: [ANONYMOUS_ROLE, CUSTOMER_ROLE, ADMIN_ROLE],
+  },
+  /* update-quantity - params: id */
+  {
+    microservice: MICROSERVICE_INVENTORY,
+    apiName: 'update-quantity',
     allowedRoles: [ADMIN_ROLE],
   },
-  /* get-product-seq-id */
+  /* get-serial-numbers */
   {
-    microservice: MICROSERVICE_SEQUENCES,
-    apiName: 'get-product-seq-id',
+    microservice: MICROSERVICE_INVENTORY,
+    apiName: 'get-serial-numbers',
+    allowedRoles: [ANONYMOUS_ROLE, CUSTOMER_ROLE, ADMIN_ROLE],
+  },
+  /* get-serial-numbers-by-status - params: status */
+  {
+    microservice: MICROSERVICE_INVENTORY,
+    apiName: 'get-serial-numbers-by-status',
+    allowedRoles: [ANONYMOUS_ROLE, CUSTOMER_ROLE, ADMIN_ROLE],
+  },
+  /* create-serial-number */
+  {
+    microservice: MICROSERVICE_INVENTORY,
+    apiName: 'create-serial-number',
     allowedRoles: [ADMIN_ROLE],
   },
-  /* get-order-seq-id */
+  /* update-serial-number-status - params: productId/serialNumber */
   {
-    microservice: MICROSERVICE_SEQUENCES,
-    apiName: 'get-order-seq-id',
-    allowedRoles: [ADMIN_ROLE],
+    microservice: MICROSERVICE_INVENTORY,
+    apiName: 'update-serial-number-status',
+    allowedRoles: [ANONYMOUS_ROLE, CUSTOMER_ROLE, ADMIN_ROLE],
   },
 ];
