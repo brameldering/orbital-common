@@ -1,15 +1,15 @@
-import { IApiAccessAttrs } from '../../types/mongoose-model-types/mongoose-access-types';
+import { IApiAccessAttrs } from '../../../types/mongoose-model-types/mongoose-access-types';
 import {
   ANONYMOUS_ROLE,
   CUSTOMER_ROLE,
   ADMIN_ROLE,
-} from '../../constants/role-constants';
+} from '../../../constants/role-constants';
 import {
   MICROSERVICE_AUTH,
   MICROSERVICE_PRODUCTS,
   MICROSERVICE_ORDERS,
   MICROSERVICE_INVENTORY
-} from '../../constants/access/microservice-names';
+} from '../../../constants/access/microservice-names';
 
 // The order (within a particular microservice) of the following array matters.
 // It should be the same as the order of routes in the app.ts
