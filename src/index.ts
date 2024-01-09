@@ -45,7 +45,10 @@ export * from './models/product/product-review-model';
 export * from './models/sequence/sequence-model';
 export * from './models/user/user-model';
 
-export * from './seederdata/api-access/api-access-all';
+export * from './seederdata/api-access/api-access-auth';
+export * from './seederdata/api-access/api-access-products';
+export * from './seederdata/api-access/api-access-orders';
+export * from './seederdata/api-access/api-access-inventory';
 export * from './seederdata/api-access/roles';
 
 export * from './types/mongoose-model-types/mongoose-access-types';
