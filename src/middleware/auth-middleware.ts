@@ -32,8 +32,8 @@ export const currentUser = (
 };
 
 interface ICombinedAccessApiSpec {
-  microservice: string;
   apiName: string;
+  microservice: string;
   apiUrl: string;
   method: string;
   hasParams: boolean;
@@ -82,8 +82,8 @@ export const authorize =
         (access) => access.apiName === api.apiName
       );
       return {
-        microservice: accessObj ? accessObj.microservice : '',
         apiName: api.apiName,
+        microservice: accessObj ? accessObj.microservice : '',
         apiUrl: api.apiUrl,
         method: api.method,
         hasParams: api.hasParams,

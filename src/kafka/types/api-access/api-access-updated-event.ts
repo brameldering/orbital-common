@@ -5,8 +5,8 @@ export interface ApiAccessUpdatedEvent {
   key: string;
   data: {
     id: string;
-    microservice: string;
     apiName: string;
+    microservice: string;
     allowedRoles: string[];
   };
 }

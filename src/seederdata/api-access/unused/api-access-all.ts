@@ -8,7 +8,7 @@ import {
   MICROSERVICE_AUTH,
   MICROSERVICE_PRODUCTS,
   MICROSERVICE_ORDERS,
-  MICROSERVICE_INVENTORY
+  MICROSERVICE_INVENTORY,
 } from '../../../constants/access/microservice-names';
 
 // The order (within a particular microservice) of the following array matters.
@@ -18,254 +18,254 @@ import {
 export const apiAccessAll: IApiAccessAttrs[] = [
   /* get-api-access-records */
   {
-    microservice: MICROSERVICE_AUTH,
     apiName: 'get-api-access-records',
+    microservice: MICROSERVICE_AUTH,
     allowedRoles: [ADMIN_ROLE],
   },
   /* create-api-access */
   {
-    microservice: MICROSERVICE_AUTH,
     apiName: 'create-api-access',
+    microservice: MICROSERVICE_AUTH,
     allowedRoles: [ADMIN_ROLE],
   },
   /* get-api-access-by-id */
   {
-    microservice: MICROSERVICE_AUTH,
     apiName: 'get-api-access-by-id',
+    microservice: MICROSERVICE_AUTH,
     allowedRoles: [ADMIN_ROLE],
   },
   /* update-api-access-roles */
   {
-    microservice: MICROSERVICE_AUTH,
     apiName: 'update-api-access-roles',
+    microservice: MICROSERVICE_AUTH,
     allowedRoles: [ADMIN_ROLE],
   },
   /* delete-api-access */
   {
-    microservice: MICROSERVICE_AUTH,
     apiName: 'delete-api-access',
+    microservice: MICROSERVICE_AUTH,
     allowedRoles: [ADMIN_ROLE],
   },
   /* get-roles */
   {
-    microservice: MICROSERVICE_AUTH,
     apiName: 'get-roles',
+    microservice: MICROSERVICE_AUTH,
     allowedRoles: [ANONYMOUS_ROLE, CUSTOMER_ROLE, ADMIN_ROLE],
   },
   /* create-role - body: role */
   {
-    microservice: MICROSERVICE_AUTH,
     apiName: 'create-role',
+    microservice: MICROSERVICE_AUTH,
     allowedRoles: [ADMIN_ROLE],
   },
   /* delete-role - params: id */
   {
-    microservice: MICROSERVICE_AUTH,
     apiName: 'delete-role',
+    microservice: MICROSERVICE_AUTH,
     allowedRoles: [ADMIN_ROLE],
   },
   /* current-user */
   {
-    microservice: MICROSERVICE_AUTH,
     apiName: 'current-user',
+    microservice: MICROSERVICE_AUTH,
     allowedRoles: [ANONYMOUS_ROLE, CUSTOMER_ROLE, ADMIN_ROLE],
   },
   /* signup - body: name, email, password, role */
   {
-    microservice: MICROSERVICE_AUTH,
     apiName: 'signup',
+    microservice: MICROSERVICE_AUTH,
     allowedRoles: [ANONYMOUS_ROLE, CUSTOMER_ROLE, ADMIN_ROLE],
   },
   /* signin - body: email, password */
   {
-    microservice: MICROSERVICE_AUTH,
     apiName: 'signin',
+    microservice: MICROSERVICE_AUTH,
     allowedRoles: [ANONYMOUS_ROLE, CUSTOMER_ROLE, ADMIN_ROLE],
   },
   /* signout */
   {
-    microservice: MICROSERVICE_AUTH,
     apiName: 'signout',
+    microservice: MICROSERVICE_AUTH,
     allowedRoles: [ANONYMOUS_ROLE, CUSTOMER_ROLE, ADMIN_ROLE],
   },
   /* reset-password - body: email */
   {
-    microservice: MICROSERVICE_AUTH,
     apiName: 'reset-password',
+    microservice: MICROSERVICE_AUTH,
     allowedRoles: [ANONYMOUS_ROLE, CUSTOMER_ROLE, ADMIN_ROLE],
   },
   /* update-password - body: currentPassword, newPassword */
   {
-    microservice: MICROSERVICE_AUTH,
     apiName: 'update-password',
+    microservice: MICROSERVICE_AUTH,
     allowedRoles: [CUSTOMER_ROLE, ADMIN_ROLE],
   },
   /* update-user-profile - body: name, email */
   {
-    microservice: MICROSERVICE_AUTH,
     apiName: 'update-user-profile',
+    microservice: MICROSERVICE_AUTH,
     allowedRoles: [CUSTOMER_ROLE, ADMIN_ROLE],
   },
   /* get-users */
   {
-    microservice: MICROSERVICE_AUTH,
     apiName: 'get-users',
+    microservice: MICROSERVICE_AUTH,
     allowedRoles: [ADMIN_ROLE],
   },
   /* get-user-by-id - params: id */
   {
-    microservice: MICROSERVICE_AUTH,
     apiName: 'get-user-by-id',
+    microservice: MICROSERVICE_AUTH,
     allowedRoles: [ADMIN_ROLE],
   },
   /* update-user - params: id, body: name, email, role */
   {
-    microservice: MICROSERVICE_AUTH,
     apiName: 'update-user',
+    microservice: MICROSERVICE_AUTH,
     allowedRoles: [ADMIN_ROLE],
   },
   /* delete-user - params: id */
   {
-    microservice: MICROSERVICE_AUTH,
     apiName: 'delete-user',
+    microservice: MICROSERVICE_AUTH,
     allowedRoles: [ADMIN_ROLE],
   },
   /* upload-file */
   {
-    microservice: MICROSERVICE_PRODUCTS,
     apiName: 'upload-file',
+    microservice: MICROSERVICE_PRODUCTS,
     allowedRoles: [ADMIN_ROLE],
   },
   /* create-product-review - params: id, body: rating, comment */
   {
-    microservice: MICROSERVICE_PRODUCTS,
     apiName: 'create-product-review',
+    microservice: MICROSERVICE_PRODUCTS,
     allowedRoles: [CUSTOMER_ROLE, ADMIN_ROLE],
   },
   /* get-products */
   {
-    microservice: MICROSERVICE_PRODUCTS,
     apiName: 'get-products',
+    microservice: MICROSERVICE_PRODUCTS,
     allowedRoles: [ANONYMOUS_ROLE, CUSTOMER_ROLE, ADMIN_ROLE],
   },
   /* get-product-by-id - params: id*/
   {
-    microservice: MICROSERVICE_PRODUCTS,
     apiName: 'get-product-by-id',
+    microservice: MICROSERVICE_PRODUCTS,
     allowedRoles: [ANONYMOUS_ROLE, CUSTOMER_ROLE, ADMIN_ROLE],
   },
   /* create-product */
   {
-    microservice: MICROSERVICE_PRODUCTS,
     apiName: 'create-product',
+    microservice: MICROSERVICE_PRODUCTS,
     allowedRoles: [ADMIN_ROLE],
   },
   /* update-product - params: id, body: Product data */
   {
-    microservice: MICROSERVICE_PRODUCTS,
     apiName: 'update-product',
+    microservice: MICROSERVICE_PRODUCTS,
     allowedRoles: [ADMIN_ROLE],
   },
   /* delete-product - params: id */
   {
-    microservice: MICROSERVICE_PRODUCTS,
     apiName: 'delete-product',
+    microservice: MICROSERVICE_PRODUCTS,
     allowedRoles: [ADMIN_ROLE],
   },
   /* get-paypal-client-id */
   {
-    microservice: MICROSERVICE_ORDERS,
     apiName: 'get-paypal-client-id',
+    microservice: MICROSERVICE_ORDERS,
     allowedRoles: [CUSTOMER_ROLE, ADMIN_ROLE],
   },
   /* get-price-calc-settings */
   {
-    microservice: MICROSERVICE_ORDERS,
     apiName: 'get-price-calc-settings',
+    microservice: MICROSERVICE_ORDERS,
     allowedRoles: [ANONYMOUS_ROLE, CUSTOMER_ROLE, ADMIN_ROLE],
   },
   /* update-price-calc-settings */
   {
-    microservice: MICROSERVICE_ORDERS,
     apiName: 'update-price-calc-settings',
+    microservice: MICROSERVICE_ORDERS,
     allowedRoles: [ADMIN_ROLE],
   },
   /* get-orders */
   {
-    microservice: MICROSERVICE_ORDERS,
     apiName: 'get-orders',
+    microservice: MICROSERVICE_ORDERS,
     allowedRoles: [ADMIN_ROLE],
   },
   /* create-order */
   {
-    microservice: MICROSERVICE_ORDERS,
     apiName: 'create-order',
+    microservice: MICROSERVICE_ORDERS,
     allowedRoles: [CUSTOMER_ROLE, ADMIN_ROLE],
   },
   /* get-my-orders */
   {
-    microservice: MICROSERVICE_ORDERS,
     apiName: 'get-my-orders',
+    microservice: MICROSERVICE_ORDERS,
     allowedRoles: [CUSTOMER_ROLE, ADMIN_ROLE],
   },
   /* update-order-to-paid - params: order_id */
   {
-    microservice: MICROSERVICE_ORDERS,
     apiName: 'update-order-to-paid',
+    microservice: MICROSERVICE_ORDERS,
     allowedRoles: [CUSTOMER_ROLE, ADMIN_ROLE],
   },
   /* update-order-to-delivered - params: order_id */
   {
-    microservice: MICROSERVICE_ORDERS,
     apiName: 'update-order-to-delivered',
+    microservice: MICROSERVICE_ORDERS,
     allowedRoles: [ADMIN_ROLE],
   },
   /* get-order-by-id - params: order_id */
   {
-    microservice: MICROSERVICE_ORDERS,
     apiName: 'get-order-by-id',
+    microservice: MICROSERVICE_ORDERS,
     allowedRoles: [CUSTOMER_ROLE, ADMIN_ROLE],
   },
   /* get-product-inventory */
   {
-    microservice: MICROSERVICE_INVENTORY,
     apiName: 'get-product-inventory',
+    microservice: MICROSERVICE_INVENTORY,
     allowedRoles: [ANONYMOUS_ROLE, CUSTOMER_ROLE, ADMIN_ROLE],
   },
   /* get-product-inventory-by-id - params: id*/
   {
-    microservice: MICROSERVICE_INVENTORY,
     apiName: 'get-product-inventory-by-id ',
+    microservice: MICROSERVICE_INVENTORY,
     allowedRoles: [ANONYMOUS_ROLE, CUSTOMER_ROLE, ADMIN_ROLE],
   },
   /* update-quantity - params: id */
   {
-    microservice: MICROSERVICE_INVENTORY,
     apiName: 'update-quantity',
+    microservice: MICROSERVICE_INVENTORY,
     allowedRoles: [ADMIN_ROLE],
   },
   /* get-serial-numbers */
   {
-    microservice: MICROSERVICE_INVENTORY,
     apiName: 'get-serial-numbers',
+    microservice: MICROSERVICE_INVENTORY,
     allowedRoles: [ANONYMOUS_ROLE, CUSTOMER_ROLE, ADMIN_ROLE],
   },
   /* get-serial-numbers-by-status - params: status */
   {
-    microservice: MICROSERVICE_INVENTORY,
     apiName: 'get-serial-numbers-by-status',
+    microservice: MICROSERVICE_INVENTORY,
     allowedRoles: [ANONYMOUS_ROLE, CUSTOMER_ROLE, ADMIN_ROLE],
   },
   /* create-serial-number */
   {
-    microservice: MICROSERVICE_INVENTORY,
     apiName: 'create-serial-number',
+    microservice: MICROSERVICE_INVENTORY,
     allowedRoles: [ADMIN_ROLE],
   },
   /* update-serial-number-status - params: productId/serialNumber */
   {
-    microservice: MICROSERVICE_INVENTORY,
     apiName: 'update-serial-number-status',
+    microservice: MICROSERVICE_INVENTORY,
     allowedRoles: [ANONYMOUS_ROLE, CUSTOMER_ROLE, ADMIN_ROLE],
   },
 ];

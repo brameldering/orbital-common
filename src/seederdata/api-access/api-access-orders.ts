@@ -4,9 +4,7 @@ import {
   CUSTOMER_ROLE,
   ADMIN_ROLE,
 } from '../../constants/role-constants';
-import {
-  MICROSERVICE_ORDERS,
-} from '../../constants/access/microservice-names';
+import { MICROSERVICE_ORDERS } from '../../constants/access/microservice-names';
 
 // The order (within a particular microservice) of the following array matters.
 // It should be the same as the order of routes in the app.ts
@@ -15,56 +13,56 @@ import {
 export const apiAccessOrders: IApiAccessAttrs[] = [
   /* get-paypal-client-id */
   {
-    microservice: MICROSERVICE_ORDERS,
     apiName: 'get-paypal-client-id',
+    microservice: MICROSERVICE_ORDERS,
     allowedRoles: [CUSTOMER_ROLE, ADMIN_ROLE],
   },
   /* get-price-calc-settings */
   {
-    microservice: MICROSERVICE_ORDERS,
     apiName: 'get-price-calc-settings',
+    microservice: MICROSERVICE_ORDERS,
     allowedRoles: [ANONYMOUS_ROLE, CUSTOMER_ROLE, ADMIN_ROLE],
   },
   /* update-price-calc-settings */
   {
-    microservice: MICROSERVICE_ORDERS,
     apiName: 'update-price-calc-settings',
+    microservice: MICROSERVICE_ORDERS,
     allowedRoles: [ADMIN_ROLE],
   },
   /* get-orders */
   {
-    microservice: MICROSERVICE_ORDERS,
     apiName: 'get-orders',
+    microservice: MICROSERVICE_ORDERS,
     allowedRoles: [ADMIN_ROLE],
   },
   /* create-order */
   {
-    microservice: MICROSERVICE_ORDERS,
     apiName: 'create-order',
+    microservice: MICROSERVICE_ORDERS,
     allowedRoles: [CUSTOMER_ROLE, ADMIN_ROLE],
   },
   /* get-my-orders */
   {
-    microservice: MICROSERVICE_ORDERS,
     apiName: 'get-my-orders',
+    microservice: MICROSERVICE_ORDERS,
     allowedRoles: [CUSTOMER_ROLE, ADMIN_ROLE],
   },
   /* update-order-to-paid - params: order_id */
   {
-    microservice: MICROSERVICE_ORDERS,
     apiName: 'update-order-to-paid',
+    microservice: MICROSERVICE_ORDERS,
     allowedRoles: [CUSTOMER_ROLE, ADMIN_ROLE],
   },
   /* update-order-to-delivered - params: order_id */
   {
-    microservice: MICROSERVICE_ORDERS,
     apiName: 'update-order-to-delivered',
+    microservice: MICROSERVICE_ORDERS,
     allowedRoles: [ADMIN_ROLE],
   },
   /* get-order-by-id - params: order_id */
   {
-    microservice: MICROSERVICE_ORDERS,
     apiName: 'get-order-by-id',
+    microservice: MICROSERVICE_ORDERS,
     allowedRoles: [CUSTOMER_ROLE, ADMIN_ROLE],
   },
- ];
+];

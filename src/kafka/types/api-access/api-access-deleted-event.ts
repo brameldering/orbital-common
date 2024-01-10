@@ -5,7 +5,7 @@ export interface ApiAccessDeletedEvent {
   key: string;
   data: {
     id: string;
-    microservice: string;
     apiName: string;
+    microservice: string;
   };
 }

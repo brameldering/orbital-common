@@ -4,9 +4,7 @@ import {
   CUSTOMER_ROLE,
   ADMIN_ROLE,
 } from '../../constants/role-constants';
-import {
-  MICROSERVICE_INVENTORY
-} from '../../constants/access/microservice-names';
+import { MICROSERVICE_INVENTORY } from '../../constants/access/microservice-names';
 
 // The order (within a particular microservice) of the following array matters.
 // It should be the same as the order of routes in the app.ts
@@ -15,44 +13,44 @@ import {
 export const apiAccessInventory: IApiAccessAttrs[] = [
   /* get-product-inventory */
   {
-    microservice: MICROSERVICE_INVENTORY,
     apiName: 'get-product-inventory',
+    microservice: MICROSERVICE_INVENTORY,
     allowedRoles: [ANONYMOUS_ROLE, CUSTOMER_ROLE, ADMIN_ROLE],
   },
   /* get-product-inventory-by-id - params: id*/
   {
-    microservice: MICROSERVICE_INVENTORY,
     apiName: 'get-product-inventory-by-id ',
+    microservice: MICROSERVICE_INVENTORY,
     allowedRoles: [ANONYMOUS_ROLE, CUSTOMER_ROLE, ADMIN_ROLE],
   },
   /* update-quantity - params: id */
   {
-    microservice: MICROSERVICE_INVENTORY,
     apiName: 'update-quantity',
+    microservice: MICROSERVICE_INVENTORY,
     allowedRoles: [ADMIN_ROLE],
   },
   /* get-serial-numbers */
   {
-    microservice: MICROSERVICE_INVENTORY,
     apiName: 'get-serial-numbers',
+    microservice: MICROSERVICE_INVENTORY,
     allowedRoles: [ANONYMOUS_ROLE, CUSTOMER_ROLE, ADMIN_ROLE],
   },
   /* get-serial-numbers-by-status - params: status */
   {
-    microservice: MICROSERVICE_INVENTORY,
     apiName: 'get-serial-numbers-by-status',
+    microservice: MICROSERVICE_INVENTORY,
     allowedRoles: [ANONYMOUS_ROLE, CUSTOMER_ROLE, ADMIN_ROLE],
   },
   /* create-serial-number */
   {
-    microservice: MICROSERVICE_INVENTORY,
     apiName: 'create-serial-number',
+    microservice: MICROSERVICE_INVENTORY,
     allowedRoles: [ADMIN_ROLE],
   },
   /* update-serial-number-status - params: productId/serialNumber */
   {
-    microservice: MICROSERVICE_INVENTORY,
     apiName: 'update-serial-number-status',
+    microservice: MICROSERVICE_INVENTORY,
     allowedRoles: [ANONYMOUS_ROLE, CUSTOMER_ROLE, ADMIN_ROLE],
   },
 ];
