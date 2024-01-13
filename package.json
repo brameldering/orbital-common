@@ -1,5 +1,5 @@
 {
-  "name": "@orbital/common",
+  "name": "@orbital_app/common",
   "version": "1.0.283",
   "description": "",
   "main": "./build/index.js",
@@ -11,7 +11,7 @@
     "clean": "del-cli ./build/*",
     "build": "npm run clean && tsc",
     "pub": "git add . && git commit -m \"Updates\" && npm version patch && npm run build && npm publish --access public && git push origin main",
-    "upd": "cd ../auth && npm i @orbital/common && cd ../client && npm i @orbital/common && cd ../products && npm i @orbital/common  && cd ../orders && npm i @orbital/common && cd ../seeder-service && npm i @orbital/common && cd ../sequences && npm i @orbital/common"
+    "upd": "cd ../auth && npm i @orbital_app/common && cd ../client && npm i @orbital_app/common && cd ../products && npm i @orbital_app/common  && cd ../orders && npm i @orbital_app/common && cd ../seeder-service && npm i @orbital_app/common && cd ../sequences && npm i @orbital_app/common"
   },
   "keywords": [],
   "author": "Bram Eldering",
