@@ -10,8 +10,8 @@ export interface IApiAccess {
   apiName: string;
   microservice: string;
   allowedRoles: string[];
-  createdAt?: Date;
-  updatedAt?: Date;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
 }
 
 export interface IApiAccessCreate {

@@ -16,8 +16,8 @@ export interface IUser {
   name: string;
   email: string;
   role: string;
-  createdAt?: Date;
-  updatedAt?: Date;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
 }
 
 export interface ISignUp {

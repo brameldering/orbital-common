@@ -2,8 +2,8 @@ export interface IRole {
   id: string;
   role: string;
   roleDisplay: string;
-  createdAt?: Date;
-  updatedAt?: Date;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
 }
 export interface IRoleCreate {
   role: string;
