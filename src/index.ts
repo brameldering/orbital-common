@@ -72,5 +72,6 @@ export * from './types/role-types';
 export * from './types/user-types';
 
 export * from './utils/calc-prices';
+export * from './utils/format-date';
 export * from './utils/get-kafka-log-level';
 export * from './utils/wait';
