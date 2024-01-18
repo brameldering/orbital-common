@@ -65,6 +65,7 @@ export * from './types/cart-types';
 export * from './types/common-types';
 export * from './types/config-types';
 export * from './types/error-types';
+export * from './types/inventory-types';
 export * from './types/order-types';
 export * from './types/product-types';
 export * from './types/request-types';
