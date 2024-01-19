@@ -7,7 +7,7 @@ import {
 import { productReviewSchema } from './product-review-model';
 
 // ====================== Product ======================
-export const productSchema = new mongoose.Schema(
+const productSchema = new mongoose.Schema(
   {
     sequentialProductId: {
       // Example: PRD-0000000001
@@ -77,9 +77,9 @@ productSchema.statics.build = (attrs: IProductAttrs) => {
   return new Product(attrs);
 };
 
-export const Product = mongoose.model<IProductDoc, IProductModel>(
+const Product = mongoose.model<IProductDoc, IProductModel>(
   'Product',
   productSchema
 );
 
-// export { Product, productSchema };
+export { Product, productSchema };
