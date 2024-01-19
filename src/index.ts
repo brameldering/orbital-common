@@ -12,6 +12,7 @@ export * from './constants/various-constants';
 export * from './kafka/types/api-access/api-access-created-event';
 export * from './kafka/types/api-access/api-access-updated-event';
 export * from './kafka/types/api-access/api-access-deleted-event';
+export * from './kafka/types/inventory/inventory-updated-event';
 export * from './kafka/types/product/product-created-event';
 export * from './kafka/types/product/product-updated-event';
 export * from './kafka/types/product/product-deleted-event';
