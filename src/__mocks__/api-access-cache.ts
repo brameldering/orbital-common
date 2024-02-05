@@ -19,8 +19,11 @@ class ApiAccessCache {
 
   // Mock fetching the data from MongoDB by assigning apiAccessAll
   async loadCacheFromDB() {
-    this._apiAccessCacheData = [ ...apiAccessAuth,
-    ...apiAccessProducts, ...apiAccessOrders, ...apiAccessInventory
+    this._apiAccessCacheData = [
+      ...apiAccessAuth,
+      ...apiAccessProducts,
+      ...apiAccessOrders,
+      ...apiAccessInventory,
     ];
   }
 }

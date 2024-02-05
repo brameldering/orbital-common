@@ -1,4 +1,8 @@
-import { INVENTORY_PRODUCTS_URL, INVENTORY_QUANTITY_URL, INVENTORY_SERIALS_URL } from '../url-constants';
+import {
+  INVENTORY_PRODUCTS_URL,
+  INVENTORY_QUANTITY_URL,
+  INVENTORY_SERIALS_URL,
+} from '../url-constants';
 import { IApi } from '../../types/api-access-types';
 
 // The order of the following array matters.
@@ -41,7 +45,7 @@ export const INVENTORY_APIS: IApi[] = [
     method: 'GET',
     hasParams: true,
   },
-    /* create-serial-number */
+  /* create-serial-number */
   {
     apiName: 'create-serial-number',
     apiUrl: INVENTORY_SERIALS_URL,
