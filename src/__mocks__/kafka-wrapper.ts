@@ -1,7 +1,7 @@
 import { MockPublisher } from './base-publisher';
 import { Topics } from '../kafka/types/topics';
 
-// __mocks__/ @orbital_app/common.js
+// __mocks__/@orbital_app/common.js
 class KafkaWrapper {
   _client: any;
   _admin: any;
