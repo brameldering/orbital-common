@@ -23,9 +23,9 @@ export const apiAccessInventory: IApiAccessAttrs[] = [
     microservice: MICROSERVICE_INVENTORY,
     allowedRoles: [ANONYMOUS_ROLE, CUSTOMER_ROLE, ADMIN_ROLE],
   },
-  /* update-quantity - params: id */
+  /* update-product-inventory - params: id */
   {
-    apiName: 'update-quantity',
+    apiName: 'update-product-inventory',
     microservice: MICROSERVICE_INVENTORY,
     allowedRoles: [ADMIN_ROLE],
   },

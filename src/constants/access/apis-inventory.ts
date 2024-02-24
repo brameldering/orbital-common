@@ -1,6 +1,6 @@
 import {
   INVENTORY_PRODUCTS_URL,
-  INVENTORY_QUANTITY_URL,
+  // INVENTORY_QUANTITY_URL,
   INVENTORY_SERIALS_URL,
 } from '../url-constants';
 import { IApi } from '../../types/api-access-types';
@@ -24,10 +24,10 @@ export const INVENTORY_APIS: IApi[] = [
     method: 'GET',
     hasParams: true,
   },
-  /* update-quantity - params: id */
+  /* update-product-inventory - params: id */
   {
-    apiName: 'update-quantity',
-    apiUrl: INVENTORY_QUANTITY_URL,
+    apiName: 'update-product-inventory',
+    apiUrl: INVENTORY_PRODUCTS_URL,
     method: 'PUT',
     hasParams: true,
   },
