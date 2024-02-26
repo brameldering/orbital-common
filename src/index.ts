@@ -1,5 +1,6 @@
 // Re-export definitions
 export * from './constants/access/apis-auth';
+export * from './constants/access/apis-inventory';
 export * from './constants/access/apis-orders';
 export * from './constants/access/apis-products';
 export * from './constants/access/microservice-names';
