@@ -3,7 +3,7 @@ import { Response, NextFunction } from 'express';
 import { IExtendedRequest } from '../types/request-types';
 import { apiAccessCachePostgres } from './api-access-cache-postgres';
 
-export const cacheMiddleware = (
+export const cacheMiddlewarePostgres = (
   req: IExtendedRequest,
   res: Response,
   next: NextFunction
