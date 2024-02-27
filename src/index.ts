@@ -31,6 +31,7 @@ export * from './kafka/kafka-wrapper';
 export * from './kafka/listener-manager';
 
 export * from './middleware/api-access-cache';
+export * from './middleware/api-access-cache-postgres';
 export * from './middleware/auth-middleware';
 export * from './middleware/cache-middleware';
 export * from './middleware/check-object-id';
