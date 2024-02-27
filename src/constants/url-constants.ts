@@ -30,6 +30,6 @@ export const UPDATE_ORDER_TO_DELIVERED_URL = ORDERS_URL + '/updatetodelivered';
 export const PRICE_CALC_SETTINGS_URL = ORDERS_URL + '/pricecalcsettings';
 
 // Inventory
-export const INVENTORY_PRODUCTS_URL = '/api/inventory/v2/products';
+export const PRODUCT_INVENTORY_URL = '/api/inventory/v2/products';
 // export const INVENTORY_QUANTITY_URL = '/api/inventory/v2/quantity';
 export const INVENTORY_SERIALS_URL = '/api/inventory/v2/serials';

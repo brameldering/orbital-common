@@ -1,5 +1,5 @@
 import {
-  INVENTORY_PRODUCTS_URL,
+  PRODUCT_INVENTORY_URL,
   // INVENTORY_QUANTITY_URL,
   INVENTORY_SERIALS_URL,
 } from '../url-constants';
@@ -13,21 +13,21 @@ export const INVENTORY_APIS: IApi[] = [
   /* get-product-inventory */
   {
     apiName: 'get-product-inventory',
-    apiUrl: INVENTORY_PRODUCTS_URL,
+    apiUrl: PRODUCT_INVENTORY_URL,
     method: 'GET',
     hasParams: false,
   },
   /* get-product-inventory-by-id - params: id*/
   {
     apiName: 'get-product-inventory-by-id',
-    apiUrl: INVENTORY_PRODUCTS_URL,
+    apiUrl: PRODUCT_INVENTORY_URL,
     method: 'GET',
     hasParams: true,
   },
   /* update-product-inventory - params: id */
   {
     apiName: 'update-product-inventory',
-    apiUrl: INVENTORY_PRODUCTS_URL,
+    apiUrl: PRODUCT_INVENTORY_URL,
     method: 'PUT',
     hasParams: true,
   },
