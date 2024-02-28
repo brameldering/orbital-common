@@ -95,11 +95,17 @@ export const authorize =
         allowedRoles: accessObj ? accessObj.allowedRoles : [], // Assign allowedRoles or an empty array if not found
       };
     });
+
+    console.log('combinedArray', combinedArray);
+
     const allowedRoles = getAllowedRolesAndHasParams(
       combinedArray,
       url,
       method
     );
+
+    console.log('allowedRoles', allowedRoles);
+
     let currentUserRole: string;
     if (!req.currentUser) {
       // User is not logged in
@@ -110,7 +116,7 @@ export const authorize =
     }
     // Check if role is authorized to access API, if not then raise NotAuthorizedError
     if (!allowedRoles.includes(currentUserRole)) {
-      // console.log ('User not authorised to access API');
+      console.log('User not authorised to access API');
       throw new NotAuthorizedError();
     }
     // All good, proceed:
