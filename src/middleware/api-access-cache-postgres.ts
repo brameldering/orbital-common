@@ -19,7 +19,11 @@ class ApiAccessCachePostgres {
     try {
       // Load API access rights in original format array
       console.log('loadCacheFromDB before query');
-      const apiAccessDataOriginal = await inventoryDB.api_access.findMany();
+      const apiAccessDataOriginal = await inventoryDB.api_access.findMany({
+        include: {
+          allowed_roles: true,
+        },
+      });
       console.log('loadCacheFromDB after query');
       if (apiAccessDataOriginal.length === 0) {
         throw new Error(
