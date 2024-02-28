@@ -14,14 +14,16 @@ class ApiAccessCachePostgres {
     return this._apiAccessCacheData;
   }
 
-  // Fetch the data from MongoDB
+  // Fetch the data from Postgres
   async loadCacheFromDB(inventoryDB: PrismaClient) {
     try {
       // Load API access rights in original format array
+      console.log('loadCacheFromDB before query');
       const apiAccessDataOriginal = await inventoryDB.api_access.findMany();
+      console.log('loadCacheFromDB after query');
       if (apiAccessDataOriginal.length === 0) {
         throw new Error(
-          'ApiAccess table is empty. Probably the data has not yet been initialized/seeded.'
+          'ApiAccess table in Inventory Postgres is empty. Probably the data has not yet been initialized/seeded.'
         );
       }
       // map records to json format as defined in apiAccessSchema

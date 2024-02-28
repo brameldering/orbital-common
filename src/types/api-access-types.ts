@@ -19,3 +19,8 @@ export interface IApiAccessCreate {
   microservice: string;
   allowedRoles: string[];
 }
+
+export interface IApiAccessRole {
+  api_access_name: string;
+  role_id: string;
+}
