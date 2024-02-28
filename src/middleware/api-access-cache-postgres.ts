@@ -21,7 +21,11 @@ class ApiAccessCachePostgres {
       console.log('loadCacheFromDB before query');
       const apiAccessDataOriginal = await inventoryDB.api_access.findMany({
         include: {
-          allowed_roles: true,
+          allowed_roles: {
+            include: {
+              role: true,
+            },
+          },
         },
       });
       console.log('loadCacheFromDB after query');
@@ -31,7 +35,14 @@ class ApiAccessCachePostgres {
         );
       }
       // map records to json format as defined in apiAccessSchema
-      this._apiAccessCacheData = apiAccessDataOriginal;
+      this._apiAccessCacheData = apiAccessDataOriginal.map(
+        (apiAccess: any) => ({
+          ...apiAccess,
+          allowed_roles: apiAccess.allowed_roles.flatMap(
+            (role: any) => role.role.role_id
+          ),
+        })
+      );
       // .map(
       //   (apiAccess: { toJSON: () => any }) => apiAccess.toJSON()
       // );
