@@ -28,6 +28,7 @@ class ApiAccessCachePostgres {
           },
         },
       });
+
       console.log('loadCacheFromDB after query');
       if (apiAccessDataOriginal.length === 0) {
         throw new Error(
@@ -39,7 +40,7 @@ class ApiAccessCachePostgres {
         (apiAccess: any) => ({
           ...apiAccess,
           allowed_roles: apiAccess.allowed_roles.flatMap(
-            (role: any) => role.role.role_id
+            (role: any) => role.role_id
           ),
         })
       );
