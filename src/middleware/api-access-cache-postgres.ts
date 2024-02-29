@@ -1,9 +1,14 @@
 import { PrismaClient } from '@prisma/client';
-import { IApiAccessAttrs } from '../types/mongoose-model-types/mongoose-access-types';
+import {
+  IApiAccess,
+  IApiAccessPostgres,
+  IApiAccessPostgresRoleString,
+  IApiAccessRolePostgres,
+} from '../types/api-access-types';
 import { DatabaseError } from '../types/error-types';
 
 class ApiAccessCachePostgres {
-  private _apiAccessCacheData?: IApiAccessAttrs[];
+  private _apiAccessCacheData?: IApiAccess[];
 
   get cache() {
     if (!this._apiAccessCacheData) {
@@ -19,15 +24,16 @@ class ApiAccessCachePostgres {
     try {
       // Load API access rights in original format array
       console.log('loadCacheFromDB before query');
-      const apiAccessDataOriginal = await inventoryDB.api_access.findMany({
-        include: {
-          allowed_roles: {
-            include: {
-              role: true,
+      const apiAccessDataOriginal: IApiAccessPostgres[] =
+        await inventoryDB.api_access.findMany({
+          include: {
+            allowed_roles: {
+              include: {
+                role: true,
+              },
             },
           },
-        },
-      });
+        });
 
       console.log('loadCacheFromDB after query');
       if (apiAccessDataOriginal.length === 0) {
@@ -35,18 +41,22 @@ class ApiAccessCachePostgres {
           'ApiAccess table in Inventory Postgres is empty. Probably the data has not yet been initialized/seeded.'
         );
       }
-      // map records to json format as defined in apiAccessSchema
-      this._apiAccessCacheData = apiAccessDataOriginal.map(
-        (apiAccess: any) => ({
+      // map records to include allowed_roles as strings
+      const apiAccessPostgres: IApiAccessPostgresRoleString[] =
+        apiAccessDataOriginal.map((apiAccess: IApiAccessPostgres) => ({
           ...apiAccess,
           allowed_roles: apiAccess.allowed_roles.flatMap(
-            (role: any) => role.role_id
+            (role: IApiAccessRolePostgres) => role.role_id
           ),
-        })
-      );
-      // .map(
-      //   (apiAccess: { toJSON: () => any }) => apiAccess.toJSON()
-      // );
+        }));
+
+      // transform to IApiAccess
+      this._apiAccessCacheData = apiAccessPostgres.map((item) => ({
+        microservice: item.microservice,
+        apiName: item.api_name,
+        allowedRoles: item.allowed_roles,
+      }));
+
       console.log('ApiAccessData loaded.');
     } catch (error: any) {
       console.error('Error loading API Access Data:', error);

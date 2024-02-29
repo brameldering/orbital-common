@@ -20,7 +20,19 @@ export interface IApiAccessCreate {
   allowedRoles: string[];
 }
 
-export interface IApiAccessRole {
+export interface IApiAccessPostgres {
+  api_name: string;
+  microservice: string;
+  allowed_roles: IApiAccessRolePostgres[];
+}
+
+export interface IApiAccessPostgresRoleString {
+  api_name: string;
+  microservice: string;
+  allowed_roles: string[];
+}
+
+export interface IApiAccessRolePostgres {
   api_access_name: string;
   role_id: string;
 }
