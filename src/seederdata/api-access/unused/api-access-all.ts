@@ -234,7 +234,7 @@ export const apiAccessAll: IApiAccessAttrs[] = [
   },
   /* get-product-inventory-by-id - params: id*/
   {
-    apiName: 'get-product-inventory-by-id ',
+    apiName: 'get-product-inventory-by-id',
     microservice: MICROSERVICE_INVENTORY,
     allowedRoles: [ANONYMOUS_ROLE, CUSTOMER_ROLE, ADMIN_ROLE],
   },
