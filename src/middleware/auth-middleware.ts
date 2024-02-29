@@ -96,7 +96,7 @@ export const authorize =
       };
     });
 
-    console.log('combinedArray', combinedArray);
+    // console.log('combinedArray', combinedArray);
 
     const allowedRoles = getAllowedRolesAndHasParams(
       combinedArray,
@@ -104,7 +104,7 @@ export const authorize =
       method
     );
 
-    console.log('allowedRoles', allowedRoles);
+    // console.log('allowedRoles', allowedRoles);
 
     let currentUserRole: string;
     if (!req.currentUser) {
