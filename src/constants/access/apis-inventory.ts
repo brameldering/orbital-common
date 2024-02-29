@@ -31,14 +31,14 @@ export const INVENTORY_APIS: IApi[] = [
     method: 'PUT',
     hasParams: true,
   },
-  /* get-serial-numbers */
+  /* get-serial-numbers-by-product-id - params: productId */
   {
-    apiName: 'get-serial-numbers',
+    apiName: 'get-serial-numbers-by-product-id',
     apiUrl: INVENTORY_SERIALS_URL,
     method: 'GET',
-    hasParams: false,
+    hasParams: true,
   },
-  /* get-serial-numbers-by-status - params: status */
+  /* get-serial-numbers-by-status - params: productId/status */
   {
     apiName: 'get-serial-numbers-by-status',
     apiUrl: INVENTORY_SERIALS_URL,

@@ -29,9 +29,9 @@ export const apiAccessInventory: IApiAccessAttrs[] = [
     microservice: MICROSERVICE_INVENTORY,
     allowedRoles: [ADMIN_ROLE],
   },
-  /* get-serial-numbers */
+  /* get-serial-numbers-by-product-id */
   {
-    apiName: 'get-serial-numbers',
+    apiName: 'get-serial-numbers-by-product-id',
     microservice: MICROSERVICE_INVENTORY,
     allowedRoles: [ANONYMOUS_ROLE, CUSTOMER_ROLE, ADMIN_ROLE],
   },
