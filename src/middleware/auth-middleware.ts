@@ -76,10 +76,10 @@ export const authorize =
     const url = req.url;
     const method = req.method;
 
-    console.log('=========================================');
-    console.log('apiSpecs', apiSpecs);
-    console.log('apiAccessCache', apiAccessCache);
-    console.log('=========================================');
+    // console.log('=========================================');
+    // console.log('apiSpecs', apiSpecs);
+    // console.log('apiAccessCache', apiAccessCache);
+    // console.log('=========================================');
 
     // combine apiSpecs and apiAccess into one array
     const combinedArray = apiSpecs.map((api) => {
