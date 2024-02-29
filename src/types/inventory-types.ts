@@ -9,6 +9,12 @@ export interface IInventory extends IInventoryProduct {
   quantity: number;
 }
 
+export interface ISerialNumber {
+  productId: string;
+  serialNumber: string;
+  status: string;
+}
+
 export enum SerialStatus {
   AVAILABLE = 'AVAILABLE',
   RESERVED = 'RESERVED',
