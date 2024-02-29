@@ -1,6 +1,6 @@
 {
   "name": "@orbital_app/common",
-  "version": "1.0.315",
+  "version": "1.0.316",
   "description": "",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
